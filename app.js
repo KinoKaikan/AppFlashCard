@@ -874,7 +874,37 @@
     const backTextEl = document.getElementById('fc-back-text');
     if (backTextEl) {
       const correctOpt = currentQ.options.find(o => o.isCorrect) || currentQ.options[0];
-      backTextEl.textContent = correctOpt ? correctOpt.text : 'N/A';
+      const correctText = correctOpt ? correctOpt.text : 'N/A';
+
+      // Check if correct answer is "All above are correct" pattern
+      const allAbovePattern = /(ba nhận định|cả 3|tất cả|cả ba|ba phương án|cả 3 nhận định|tất cả các)/i;
+      const isAllAbove = allAbovePattern.test(correctText);
+
+      if (isAllAbove && currentQ.options.length > 1) {
+        // Build list of all preceding choices so learner can read all true statements
+        let choicesListHTML = '';
+        currentQ.options.forEach((opt, oIdx) => {
+          if (opt !== correctOpt) {
+            const letter = ['A', 'B', 'C', 'D', 'E', 'F'][oIdx] || (oIdx + 1);
+            choicesListHTML += `<li class="fc-all-above-item"><strong>• ${letter}.</strong> ${escapeHTML(opt.text)}</li>`;
+          }
+        });
+
+        backTextEl.innerHTML = `
+          <div style="font-size: 1.05rem; font-weight: 700; color: #065f46; margin-bottom: 6px;">
+            ✓ Cả 3 nhận định dưới đây đều ĐÚNG:
+          </div>
+          <ul class="fc-all-above-list">
+            ${choicesListHTML}
+          </ul>
+          <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted); font-weight: 700; border-top: 1px dashed var(--success-border); padding-top: 6px;">
+            ➜ ${escapeHTML(correctOpt.label ? correctOpt.label + '. ' : '')}${escapeHTML(correctText)}
+          </div>
+        `;
+      } else {
+        // Standard question: show ONLY the correct answer
+        backTextEl.textContent = correctText;
+      }
     }
 
     const progressFill = document.getElementById('fc-progress-fill');
