@@ -49,6 +49,7 @@
     viewQuiz: document.getElementById('view-quiz'),
     viewSummary: document.getElementById('view-summary'),
     viewWrong: document.getElementById('view-wrong'),
+    viewDetail: document.getElementById('view-detail'),
 
     // Theme Toggle
     themeToggleBtn: document.getElementById('theme-toggle-btn'),
@@ -66,6 +67,7 @@
     bankInfoCard: document.getElementById('bank-info-card'),
     bankFilename: document.getElementById('bank-filename'),
     bankCountBadge: document.getElementById('bank-count-badge'),
+    totalBankBtnCount: document.getElementById('total-bank-btn-count'),
     
     // Mastery Progress DOM
     masteredCountText: document.getElementById('mastered-count-text'),
@@ -76,10 +78,19 @@
     btnStartUnlearned: document.getElementById('btn-start-unlearned'),
     unlearnedCountBtn: document.getElementById('unlearned-count-btn'),
     btnStartQuiz: document.getElementById('btn-start-quiz'),
+    btnViewAllQ: document.getElementById('btn-view-all-q'),
     btnStartWrong: document.getElementById('btn-start-wrong'),
     wrongCountBtn: document.getElementById('wrong-count-btn'),
     btnResetMastery: document.getElementById('btn-reset-mastery'),
     btnClearBank: document.getElementById('btn-clear-bank'),
+
+    // Detail View DOM
+    btnDetailBack: document.getElementById('btn-detail-back'),
+    detailSearchInput: document.getElementById('detail-search-input'),
+    filterCountAll: document.getElementById('filter-count-all'),
+    filterCountUnlearned: document.getElementById('filter-count-unlearned'),
+    filterCountMastered: document.getElementById('filter-count-mastered'),
+    detailQuestionsContainer: document.getElementById('detail-questions-container'),
 
     // Quiz View
     btnQuizQuit: document.getElementById('btn-quiz-quit'),
@@ -146,10 +157,10 @@
 
   // Switch View
   function showView(viewElement) {
-    [DOM.viewUpload, DOM.viewQuiz, DOM.viewSummary, DOM.viewWrong].forEach(v => {
-      v.classList.remove('active');
+    [DOM.viewUpload, DOM.viewQuiz, DOM.viewSummary, DOM.viewWrong, DOM.viewDetail].forEach(v => {
+      if (v) v.classList.remove('active');
     });
-    viewElement.classList.add('active');
+    if (viewElement) viewElement.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (window.lucide) lucide.createIcons();
   }
@@ -263,6 +274,7 @@
       DOM.bankInfoCard.style.display = 'block';
       DOM.bankFilename.textContent = APP_STATE.bankFilename;
       DOM.bankCountBadge.textContent = `${bankSize} câu`;
+      if (DOM.totalBankBtnCount) DOM.totalBankBtnCount.textContent = bankSize;
       
       DOM.masteredCountText.textContent = masteredSize;
       DOM.totalBankText.textContent = bankSize;
@@ -271,6 +283,10 @@
       DOM.masteryProgressFill.style.width = `${percent}%`;
 
       DOM.unlearnedCountBtn.textContent = unlearnedSize;
+
+      if (DOM.filterCountAll) DOM.filterCountAll.textContent = bankSize;
+      if (DOM.filterCountUnlearned) DOM.filterCountUnlearned.textContent = unlearnedSize;
+      if (DOM.filterCountMastered) DOM.filterCountMastered.textContent = masteredSize;
 
       if (wrongSize > 0) {
         DOM.btnStartWrong.style.display = 'inline-flex';
@@ -281,6 +297,84 @@
     } else {
       DOM.bankInfoCard.style.display = 'none';
     }
+  }
+
+  // =========================================================================
+  // DETAIL QUESTIONS & ANSWERS VIEW ENGINE
+  // =========================================================================
+  function renderDetailQuestions(searchText = '', filterStatus = 'all') {
+    const container = DOM.detailQuestionsContainer;
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    const query = searchText.toLowerCase().trim();
+
+    let filtered = APP_STATE.questionBank.filter(q => {
+      const isMastered = APP_STATE.masteredQuestionIds.includes(q.id);
+      
+      if (filterStatus === 'unlearned' && isMastered) return false;
+      if (filterStatus === 'mastered' && !isMastered) return false;
+
+      if (!query) return true;
+
+      const qMatches = q.questionText.toLowerCase().includes(query);
+      const optMatches = q.options.some(o => o.text.toLowerCase().includes(query));
+      return qMatches || optMatches;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon"><i data-lucide="search-x"></i></div>
+          <h3>Không tìm thấy câu hỏi phù hợp!</h3>
+          <p style="color: var(--text-muted); margin-top: 8px;">Thử nhập từ khóa khác hoặc chuyển bộ lọc.</p>
+        </div>
+      `;
+      if (window.lucide) lucide.createIcons();
+      return;
+    }
+
+    const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+    filtered.forEach((q, idx) => {
+      const card = document.createElement('div');
+      card.className = 'wrong-item-card';
+
+      const isMastered = APP_STATE.masteredQuestionIds.includes(q.id);
+      const badgeStyle = isMastered 
+        ? 'background: var(--success-bg); color: var(--success);'
+        : 'background: var(--primary-light); color: var(--primary);';
+      const badgeText = isMastered ? '✓ Đã thuộc' : 'Chưa thuộc';
+
+      let optionsHTML = '';
+      q.options.forEach((opt, oIdx) => {
+        const letter = labels[oIdx] || (oIdx + 1);
+        const isCorrect = opt.isCorrect;
+        
+        optionsHTML += `
+          <div class="detail-option-row ${isCorrect ? 'is-correct' : ''}">
+            <div class="detail-option-badge">${letter}</div>
+            <div style="flex: 1;">${escapeHTML(opt.text)} ${isCorrect ? '<strong style="color: var(--success); margin-left: 8px;">[ĐÁP ÁN ĐÚNG]</strong>' : ''}</div>
+          </div>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="wrong-item-header">
+          <span>Câu ${q.originalNum || idx + 1}</span>
+          <span class="badge" style="${badgeStyle}">${badgeText}</span>
+        </div>
+        <div class="wrong-item-q">${escapeHTML(q.questionText)}</div>
+        <div style="margin-top: 12px;">
+          ${optionsHTML}
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+    if (window.lucide) lucide.createIcons();
   }
 
   // Add a question ID to mastered list
@@ -442,6 +536,7 @@
 
   function startQuizSession(mode = 'UNLEARNED_ONLY') {
     let sourcePool = [];
+    let sessionQuestions = [];
 
     if (mode === 'WRONG_ONLY') {
       if (APP_STATE.wrongQuestions.length === 0) {
@@ -449,6 +544,7 @@
         return;
       }
       sourcePool = [...APP_STATE.wrongQuestions];
+      sessionQuestions = shuffleArray(sourcePool).slice(0, Math.min(20, sourcePool.length));
     } else if (mode === 'UNLEARNED_ONLY') {
       if (APP_STATE.questionBank.length === 0) {
         showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
@@ -462,18 +558,18 @@
         alert('🎉 CHÚC MỪNG BẠN!\n\nBạn đã hoàn thành dứt điểm 100% tất cả các câu hỏi trong bộ đề này.\n\nNếu muốn học lại từ đầu, hãy bấm nút "Reset Tiến Độ".');
         return;
       }
+      // Max 20 questions per round for unlearned mode
+      sessionQuestions = shuffleArray(sourcePool).slice(0, Math.min(20, sourcePool.length));
     } else {
-      // NORMAL / ALL_RANDOM
+      // NORMAL / ALL_RANDOM - Practice ALL questions in dataset
       if (APP_STATE.questionBank.length === 0) {
         showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
         return;
       }
       sourcePool = [...APP_STATE.questionBank];
+      // Practice ALL questions in the bank
+      sessionQuestions = shuffleArray(sourcePool);
     }
-
-    // Pick random questions (max 20)
-    const shuffledPool = shuffleArray(sourcePool);
-    const sessionQuestions = shuffledPool.slice(0, Math.min(20, shuffledPool.length));
 
     // Deep clone and shuffle options A, B, C, D for each question
     const processedQuestions = sessionQuestions.map(q => {
@@ -501,7 +597,7 @@
     } else if (mode === 'UNLEARNED_ONLY') {
       DOM.quizModeLabel.textContent = `Học Câu Chưa Thuộc (Còn ${sourcePool.length} câu)`;
     } else {
-      DOM.quizModeLabel.textContent = 'Luyện Tập Ngẫu Nhiên (Tất Cả)';
+      DOM.quizModeLabel.textContent = `Luyện Tập Tất Cả (${sessionQuestions.length} Câu)`;
     }
     
     showView(DOM.viewQuiz);
@@ -774,6 +870,10 @@
     // Bank Actions Buttons
     DOM.btnStartUnlearned.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
     DOM.btnStartQuiz.addEventListener('click', () => startQuizSession('NORMAL'));
+    DOM.btnViewAllQ.addEventListener('click', () => {
+      renderDetailQuestions('', 'all');
+      showView(DOM.viewDetail);
+    });
     DOM.btnStartWrong.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
     DOM.btnResetMastery.addEventListener('click', () => {
       if (confirm('Bạn có muốn đặt lại tiến độ? Tất cả câu hỏi sẽ được đưa về trạng thái "Chưa thuộc".')) {
@@ -784,6 +884,30 @@
       if (confirm('Bạn có chắc muốn xóa bộ câu hỏi hiện tại?')) {
         clearQuestionBank();
       }
+    });
+
+    // Detail View Event Listeners
+    if (DOM.btnDetailBack) {
+      DOM.btnDetailBack.addEventListener('click', () => showView(DOM.viewUpload));
+    }
+    if (DOM.detailSearchInput) {
+      DOM.detailSearchInput.addEventListener('input', (e) => {
+        const activePill = document.querySelector('.filter-pill.active');
+        const filterStatus = activePill ? activePill.getAttribute('data-filter') : 'all';
+        renderDetailQuestions(e.target.value, filterStatus);
+      });
+    }
+
+    // Filter Pills Event Listeners
+    const filterPills = document.querySelectorAll('.filter-pill');
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filterStatus = pill.getAttribute('data-filter');
+        const query = DOM.detailSearchInput ? DOM.detailSearchInput.value : '';
+        renderDetailQuestions(query, filterStatus);
+      });
     });
 
     // Quiz Controls

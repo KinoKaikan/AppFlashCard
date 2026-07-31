@@ -110,7 +110,10 @@
             <i data-lucide="zap"></i> Học 20 Câu Chưa Thuộc (<span id="unlearned-count-btn">0</span>)
           </button>
           <button class="btn btn-secondary" id="btn-start-quiz">
-            <i data-lucide="shuffle"></i> Luyện Tập Tất Cả (Ngẫu Nhiên)
+            <i data-lucide="shuffle"></i> Luyện Tập Tất Cả (<span id="total-bank-btn-count">480</span> câu)
+          </button>
+          <button class="btn btn-outline" id="btn-view-all-q">
+            <i data-lucide="list"></i> Xem Danh Sách & Đáp Án
           </button>
           <button class="btn btn-secondary" id="btn-start-wrong" style="display: none;">
             <i data-lucide="bookmark-check"></i> Luyện Tập Câu Sai (<span id="wrong-count-btn">0</span>)
@@ -122,6 +125,39 @@
             <i data-lucide="trash-2"></i> Xóa Bộ Đề
           </button>
         </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 5: DETAIL LIST VIEW (Xem Tất Cả Câu Hỏi & Đáp Án)
+         ========================================================================= -->
+    <section id="view-detail" class="view">
+      <div class="wrong-header">
+        <div>
+          <button class="btn-quit" id="btn-detail-back" style="margin-bottom: 8px;">
+            <i data-lucide="arrow-left"></i> Quay lại Màn hình chính
+          </button>
+          <h2>Chi Tiết Bộ Đề & Đáp Án</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Xem danh sách toàn bộ câu hỏi, lựa chọn nhiễu và đáp án đúng.</p>
+        </div>
+      </div>
+
+      <!-- Search & Filters Bar -->
+      <div class="detail-filter-bar">
+        <div class="search-input-wrapper">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="detail-search-input" placeholder="Tìm kiếm nội dung câu hỏi..." class="search-input">
+        </div>
+        <div class="filter-pills">
+          <button class="filter-pill active" data-filter="all">Tất cả (<span id="filter-count-all">0</span>)</button>
+          <button class="filter-pill" data-filter="unlearned">Chưa thuộc (<span id="filter-count-unlearned">0</span>)</button>
+          <button class="filter-pill" data-filter="mastered">Đã thuộc (<span id="filter-count-mastered">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Detail Questions List Container -->
+      <div class="wrong-list" id="detail-questions-container" style="margin-top: 20px;">
+        <!-- Dynamically rendered detailed questions -->
       </div>
     </section>
 
