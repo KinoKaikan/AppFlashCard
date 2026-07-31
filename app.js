@@ -18,6 +18,7 @@
     BANK_FILENAME: 'qm_bank_filename',
     WRONG_QUESTIONS: 'qm_wrong_questions',
     MASTERED_QUESTIONS: 'qm_mastered_questions',
+    FLASHCARD_INDEX: 'qm_flashcard_index',
     THEME: 'qm_theme'
   };
 
@@ -26,10 +27,11 @@
     bankFilename: '',
     wrongQuestions: [],      // Array of questions in "Cần học lại"
     masteredQuestionIds: [], // Array of question IDs successfully remembered ("Đã thuộc")
+    flashcardIndex: 0,       // Current card index in 3D Flashcard mode (independent progress)
     
     // Active session state
     currentSession: {
-      mode: 'UNLEARNED_ONLY', // 'UNLEARNED_ONLY', 'NORMAL', 'WRONG_ONLY'
+      mode: 'UNLEARNED_ONLY',
       questions: [],
       currentIndex: 0,
       userAnswers: [],
@@ -48,6 +50,7 @@
       viewSummary: document.getElementById('view-summary'),
       viewWrong: document.getElementById('view-wrong'),
       viewDetail: document.getElementById('view-detail'),
+      viewFlashcard: document.getElementById('view-flashcard'),
 
       // Theme Toggle
       themeToggleBtn: document.getElementById('theme-toggle-btn'),
@@ -73,6 +76,7 @@
       masteredPercentText: document.getElementById('mastered-percent-text'),
       masteryProgressFill: document.getElementById('mastery-progress-fill'),
 
+      btnStartFlashcard: document.getElementById('btn-start-flashcard'),
       btnStartUnlearned: document.getElementById('btn-start-unlearned'),
       unlearnedCountBtn: document.getElementById('unlearned-count-btn'),
       btnStartQuiz: document.getElementById('btn-start-quiz'),
@@ -81,6 +85,18 @@
       wrongCountBtn: document.getElementById('wrong-count-btn'),
       btnResetMastery: document.getElementById('btn-reset-mastery'),
       btnClearBank: document.getElementById('btn-clear-bank'),
+
+      // Flashcard View DOM
+      btnFcQuit: document.getElementById('btn-fc-quit'),
+      fcProgressFill: document.getElementById('fc-progress-fill'),
+      fcProgressText: document.getElementById('fc-progress-text'),
+      flashcardCard: document.getElementById('flashcard-card'),
+      fcFrontText: document.getElementById('fc-front-text'),
+      fcBackText: document.getElementById('fc-back-text'),
+      btnFcPrev: document.getElementById('btn-fc-prev'),
+      btnFcFlip: document.getElementById('btn-fc-flip'),
+      btnFcNext: document.getElementById('btn-fc-next'),
+      btnFcReset: document.getElementById('btn-fc-reset'),
 
       // Detail View DOM
       btnDetailBack: document.getElementById('btn-detail-back'),
@@ -159,7 +175,8 @@
       document.getElementById('view-quiz'),
       document.getElementById('view-summary'),
       document.getElementById('view-wrong'),
-      document.getElementById('view-detail')
+      document.getElementById('view-detail'),
+      document.getElementById('view-flashcard')
     ];
 
     allViews.forEach(v => {
@@ -810,6 +827,101 @@
   }
 
   // =========================================================================
+  // 3D FLASHCARD ENGINE (Card Flip & Independent Progress)
+  // =========================================================================
+
+  function startFlashcardSession() {
+    if (APP_STATE.questionBank.length === 0) {
+      showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
+      return;
+    }
+
+    const savedIndex = localStorage.getItem(STORAGE_KEYS.FLASHCARD_INDEX);
+    if (savedIndex !== null) {
+      APP_STATE.flashcardIndex = parseInt(savedIndex, 10) || 0;
+      if (APP_STATE.flashcardIndex >= APP_STATE.questionBank.length) {
+        APP_STATE.flashcardIndex = 0;
+      }
+    } else {
+      APP_STATE.flashcardIndex = 0;
+    }
+
+    showView(document.getElementById('view-flashcard'));
+    renderFlashcard();
+  }
+
+  function renderFlashcard() {
+    const bank = APP_STATE.questionBank;
+    const total = bank.length;
+    if (total === 0) return;
+
+    if (APP_STATE.flashcardIndex < 0) APP_STATE.flashcardIndex = 0;
+    if (APP_STATE.flashcardIndex >= total) APP_STATE.flashcardIndex = total - 1;
+
+    const idx = APP_STATE.flashcardIndex;
+    const currentQ = bank[idx];
+
+    const cardEl = document.getElementById('flashcard-card');
+    if (cardEl) {
+      cardEl.classList.remove('flipped');
+    }
+
+    const frontTextEl = document.getElementById('fc-front-text');
+    if (frontTextEl) {
+      frontTextEl.textContent = currentQ.questionText;
+    }
+
+    const backTextEl = document.getElementById('fc-back-text');
+    if (backTextEl) {
+      const correctOpt = currentQ.options.find(o => o.isCorrect) || currentQ.options[0];
+      backTextEl.textContent = correctOpt ? correctOpt.text : 'N/A';
+    }
+
+    const progressFill = document.getElementById('fc-progress-fill');
+    const progressText = document.getElementById('fc-progress-text');
+    const percent = Math.round(((idx + 1) / total) * 100);
+
+    if (progressFill) progressFill.style.width = `${percent}%`;
+    if (progressText) progressText.textContent = `${idx + 1} / ${total}`;
+
+    const prevBtn = document.getElementById('btn-fc-prev');
+    const nextBtn = document.getElementById('btn-fc-next');
+    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (nextBtn) nextBtn.disabled = idx === total - 1;
+  }
+
+  function flipFlashcard() {
+    const cardEl = document.getElementById('flashcard-card');
+    if (cardEl) {
+      cardEl.classList.toggle('flipped');
+    }
+  }
+
+  function nextFlashcard() {
+    const total = APP_STATE.questionBank.length;
+    if (APP_STATE.flashcardIndex < total - 1) {
+      APP_STATE.flashcardIndex++;
+      localStorage.setItem(STORAGE_KEYS.FLASHCARD_INDEX, APP_STATE.flashcardIndex);
+      renderFlashcard();
+    }
+  }
+
+  function prevFlashcard() {
+    if (APP_STATE.flashcardIndex > 0) {
+      APP_STATE.flashcardIndex--;
+      localStorage.setItem(STORAGE_KEYS.FLASHCARD_INDEX, APP_STATE.flashcardIndex);
+      renderFlashcard();
+    }
+  }
+
+  function resetFlashcardProgress() {
+    APP_STATE.flashcardIndex = 0;
+    localStorage.setItem(STORAGE_KEYS.FLASHCARD_INDEX, 0);
+    renderFlashcard();
+    showToast('Đã quay về Thẻ số 1!', 'rotate-ccw');
+  }
+
+  // =========================================================================
   // EVENT LISTENERS & INITIALIZATION
   // =========================================================================
 
@@ -869,6 +981,7 @@
     if (DOM.btnLoadSample) DOM.btnLoadSample.addEventListener('click', loadSampleFile);
 
     // Bank Action Buttons
+    if (DOM.btnStartFlashcard) DOM.btnStartFlashcard.addEventListener('click', startFlashcardSession);
     if (DOM.btnStartUnlearned) DOM.btnStartUnlearned.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
     if (DOM.btnStartQuiz) DOM.btnStartQuiz.addEventListener('click', () => startQuizSession('NORMAL'));
     if (DOM.btnViewAllQ) DOM.btnViewAllQ.addEventListener('click', openDetailAnswersView);
@@ -887,6 +1000,29 @@
         }
       });
     }
+
+    // Flashcard View Controls
+    if (DOM.btnFcQuit) DOM.btnFcQuit.addEventListener('click', () => showView(DOM.viewUpload));
+    if (DOM.flashcardCard) DOM.flashcardCard.addEventListener('click', flipFlashcard);
+    if (DOM.btnFcPrev) DOM.btnFcPrev.addEventListener('click', prevFlashcard);
+    if (DOM.btnFcNext) DOM.btnFcNext.addEventListener('click', nextFlashcard);
+    if (DOM.btnFcFlip) DOM.btnFcFlip.addEventListener('click', flipFlashcard);
+    if (DOM.btnFcReset) DOM.btnFcReset.addEventListener('click', resetFlashcardProgress);
+
+    // Keyboard Navigation Support for Flashcard mode
+    document.addEventListener('keydown', (e) => {
+      const flashcardView = document.getElementById('view-flashcard');
+      if (flashcardView && flashcardView.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+          prevFlashcard();
+        } else if (e.key === 'ArrowRight') {
+          nextFlashcard();
+        } else if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          flipFlashcard();
+        }
+      }
+    });
 
     // Detail View Event Listeners
     if (DOM.btnDetailBack) {
@@ -971,7 +1107,12 @@
       removeWrong: removeWrongQuestion,
       openDetail: openDetailAnswersView,
       startAll: () => startQuizSession('NORMAL'),
-      startUnlearned: () => startQuizSession('UNLEARNED_ONLY')
+      startUnlearned: () => startQuizSession('UNLEARNED_ONLY'),
+      startFlashcard: startFlashcardSession,
+      flipFlashcard: flipFlashcard,
+      nextFlashcard: nextFlashcard,
+      prevFlashcard: prevFlashcard,
+      resetFlashcardProgress: resetFlashcardProgress
     };
 
     if (window.lucide) {

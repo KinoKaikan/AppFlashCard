@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234255ff'/><text x='50' y='72' font-size='65' font-weight='bold' text-anchor='middle' fill='white' font-family='sans-serif'>Q</text></svg>">
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=2.0">
+  <link rel="stylesheet" href="styles.css?v=3.1">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,7 +17,7 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Sample Pre-parsed Data for CORS-free file:// protocol loading -->
-  <script src="sampleData.js?v=2.0"></script>
+  <script src="sampleData.js?v=3.1"></script>
 </head>
 <body>
 
@@ -106,23 +106,89 @@
         </div>
 
         <div class="bank-actions">
-          <button class="btn btn-primary" id="btn-start-unlearned" onclick="QuizApp.startUnlearned()">
+          <button class="btn btn-primary" id="btn-start-flashcard" style="background: linear-gradient(135deg, #6366f1, #4255ff); box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);">
+            <i data-lucide="layers"></i> Học Flashcard Lật Thẻ (480 Thẻ)
+          </button>
+          <button class="btn btn-secondary" id="btn-start-unlearned">
             <i data-lucide="zap"></i> Học 20 Câu Chưa Thuộc (<span id="unlearned-count-btn">0</span>)
           </button>
-          <button class="btn btn-secondary" id="btn-start-quiz" onclick="QuizApp.startAll()">
+          <button class="btn btn-secondary" id="btn-start-quiz">
             <i data-lucide="shuffle"></i> Luyện Tập Tất Cả (<span id="total-bank-btn-count">480</span> câu)
           </button>
-          <button class="btn btn-outline" id="btn-view-all-q" onclick="QuizApp.openDetail()">
+          <button class="btn btn-outline" id="btn-view-all-q">
             <i data-lucide="list"></i> Xem Danh Sách & Đáp Án
           </button>
           <button class="btn btn-secondary" id="btn-start-wrong" style="display: none;">
             <i data-lucide="bookmark-check"></i> Luyện Tập Câu Sai (<span id="wrong-count-btn">0</span>)
           </button>
           <button class="btn btn-outline" id="btn-reset-mastery" title="Đặt lại tiến độ đã thuộc về 0">
-            <i data-lucide="rotate-ccw"></i> Reset Tiến Độ
+            <i data-lucide="rotate-ccw"></i> Reset Tiến Độ Trắc Nghiệm
           </button>
           <button class="btn btn-outline" id="btn-clear-bank">
             <i data-lucide="trash-2"></i> Xóa Bộ Đề
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 6: 3D FLASHCARD FLIP VIEW (Lật Thẻ Xem Đáp Án Đúng)
+         ========================================================================= -->
+    <section id="view-flashcard" class="view">
+      <div class="quiz-header">
+        <div class="quiz-top-bar">
+          <button class="btn-quit" id="btn-fc-quit">
+            <i data-lucide="arrow-left"></i> Quay lại Màn hình chính
+          </button>
+          <span class="quiz-mode-tag" style="background: rgba(99, 102, 241, 0.15); color: #6366f1;">Chế Độ Flashcard Lật Thẻ</span>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fc-progress-fill" style="background: linear-gradient(90deg, #6366f1, #a855f7);"></div>
+          </div>
+          <div class="progress-text" id="fc-progress-text">1 / 480</div>
+        </div>
+      </div>
+
+      <!-- 3D Card Area -->
+      <div class="flashcard-container">
+        <div class="flashcard-wrapper" id="flashcard-card">
+          <div class="flashcard-inner">
+            <!-- Front Face: Question Only -->
+            <div class="flashcard-front">
+              <div class="fc-hint">
+                <i data-lucide="mouse-pointer-click"></i> Nhấn vào thẻ để lật xem đáp án đúng
+              </div>
+              <h2 class="fc-question-text" id="fc-front-text">
+                Nội dung câu hỏi Flashcard...
+              </h2>
+            </div>
+            <!-- Back Face: Correct Answer Only -->
+            <div class="flashcard-back">
+              <div class="fc-hint" style="color: var(--success);">
+                <i data-lucide="check-circle-2"></i> Đáp án đúng (Chính xác)
+              </div>
+              <div class="fc-answer-box" id="fc-back-text">
+                Nội dung đáp án đúng...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="fc-controls">
+          <button class="btn btn-secondary" id="btn-fc-prev">
+            <i data-lucide="chevron-left"></i> Thẻ Trước
+          </button>
+          <button class="btn btn-primary" id="btn-fc-flip" style="background: #6366f1;">
+            <i data-lucide="rotate-cw"></i> Lật Thẻ
+          </button>
+          <button class="btn btn-secondary" id="btn-fc-next">
+            Thẻ Tiếp Theo <i data-lucide="chevron-right"></i>
+          </button>
+          <button class="btn btn-outline" id="btn-fc-reset" title="Bắt đầu lại từ thẻ số 1">
+            <i data-lucide="rotate-ccw"></i> Về Thẻ 1
           </button>
         </div>
       </div>
@@ -287,7 +353,7 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Application Logic JS -->
-  <script src="app.js?v=2.0"></script>
+  <script src="app.js?v=3.1"></script>
 
 </body>
 </html>
