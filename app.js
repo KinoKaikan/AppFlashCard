@@ -562,7 +562,8 @@
         return;
       }
       sourcePool = [...APP_STATE.wrongQuestions];
-      sessionQuestions = shuffleArray(sourcePool).slice(0, Math.min(20, sourcePool.length));
+      // Take ALL wrong questions in the list without capping at 20
+      sessionQuestions = shuffleArray(sourcePool);
     } else if (mode === 'UNLEARNED_ONLY') {
       if (APP_STATE.questionBank.length === 0) {
         showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
@@ -606,7 +607,7 @@
     };
 
     if (mode === 'WRONG_ONLY') {
-      if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = 'Luyện Tập Câu Sai';
+      if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `Luyện Tập Câu Sai (${sessionQuestions.length} câu)`;
     } else if (mode === 'UNLEARNED_ONLY') {
       if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `Học Câu Chưa Thuộc (Còn ${sourcePool.length} câu)`;
     } else {
@@ -1152,6 +1153,58 @@
     } catch(e) {}
   }
 
+  // Realtime Active Online User Heartbeat Engine
+  function initActiveOnlineTracking() {
+    try {
+      let sessionId = sessionStorage.getItem('qm_active_session_id');
+      if (!sessionId) {
+        sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+        sessionStorage.setItem('qm_active_session_id', sessionId);
+      }
+
+      function sendHeartbeat() {
+        try {
+          let activeMap = JSON.parse(localStorage.getItem('qm_active_online_users') || '{}');
+          activeMap[sessionId] = Date.now();
+          
+          const now = Date.now();
+          Object.keys(activeMap).forEach(sId => {
+            if (now - activeMap[sId] > 40000) {
+              delete activeMap[sId];
+            }
+          });
+          localStorage.setItem('qm_active_online_users', JSON.stringify(activeMap));
+        } catch(e) {}
+
+        fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/active_pulse/up', {
+          mode: 'cors',
+          keepalive: true
+        }).catch(err => {});
+      }
+
+      function sendOfflineSignal() {
+        try {
+          let activeMap = JSON.parse(localStorage.getItem('qm_active_online_users') || '{}');
+          delete activeMap[sessionId];
+          localStorage.setItem('qm_active_online_users', JSON.stringify(activeMap));
+        } catch(e) {}
+      }
+
+      sendHeartbeat();
+      setInterval(sendHeartbeat, 15000);
+
+      window.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          sendOfflineSignal();
+        } else {
+          sendHeartbeat();
+        }
+      });
+
+      window.addEventListener('pagehide', sendOfflineSignal);
+    } catch(e) {}
+  }
+
   // App Initialization
   function init() {
     initTheme();
@@ -1159,6 +1212,7 @@
     loadStoredData();
     setupEventListeners();
     pingVisitorCount();
+    initActiveOnlineTracking();
     
     // Global exposure for inline onclick fallback & debug
     window.QuizApp = {

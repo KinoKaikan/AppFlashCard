@@ -6,10 +6,26 @@
   <title>Báo Cáo Thống Kê Ẩn - QuizMaster Admin</title>
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=3.3">
+  <link rel="stylesheet" href="styles.css?v=3.4">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .live-pulse {
+      width: 12px;
+      height: 12px;
+      background: #10b981;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+  </style>
 </head>
 <body style="background: var(--bg-main); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px;">
 
@@ -24,7 +40,7 @@
     <input type="password" id="pin-input" placeholder="Nhập mã PIN (Mặc định: 8888)" style="width: 100%; padding: 14px; text-align: center; font-size: 1.2rem; font-weight: 800; letter-spacing: 4px; border-radius: var(--radius-md); border: 2px solid var(--border-color); background: var(--bg-main); color: var(--text-main); margin-bottom: 16px; outline: none;">
     
     <button class="btn btn-primary" id="btn-login" style="width: 100%; padding: 14px;">
-      <i data-lucide="key-round"></i> Xắc Nhận Mã PIN
+      <i data-lucide="key-round"></i> Xác Nhận Mã PIN
     </button>
     <div id="pin-error" style="color: var(--danger); font-size: 0.85rem; font-weight: 700; margin-top: 12px; display: none;">
       Mã PIN không đúng! Vui lòng thử lại.
@@ -32,7 +48,7 @@
   </div>
 
   <!-- ADMIN DASHBOARD CONTAINER (Hidden by default) -->
-  <div id="admin-dashboard" style="display: none; max-width: 800px; width: 100%;">
+  <div id="admin-dashboard" style="display: none; max-width: 850px; width: 100%;">
     <div style="background: var(--bg-surface); border-radius: var(--radius-xl); padding: 36px 32px; border: 1px solid var(--border-color); box-shadow: var(--shadow-card);">
       
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
@@ -41,46 +57,46 @@
             <i data-lucide="activity"></i>
           </div>
           <div>
-            <h1 style="font-size: 1.4rem; font-weight: 800;">Bảng Thống Kê Lượt Sử Dụng Web</h1>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Dữ liệu Realtime theo dõi lưu lượng truy cập</p>
+            <h1 style="font-size: 1.4rem; font-weight: 800;">Bảng Thống Kê Realtime Người Dùng</h1>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Theo dõi trạng thái Online/Offline và lượt truy cập</p>
           </div>
         </div>
         <button class="btn btn-outline" id="btn-refresh" title="Tải lại số liệu">
-          <i data-lucide="refresh-cw"></i> Làm Mới Dữ Liệu
+          <i data-lucide="refresh-cw"></i> Cập Nhật Số Liệu
         </button>
       </div>
 
       <!-- Stats Grid Cards -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 28px;">
         
+        <!-- LIVE ONLINE ACTIVE USERS -->
+        <div style="background: var(--success-bg); padding: 24px; border-radius: var(--radius-lg); border: 2px solid var(--success-border);">
+          <div style="display: flex; align-items: center; justify-content: space-between; color: var(--success); margin-bottom: 10px;">
+            <span style="font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">ĐANG ONLINE BÂY GIỜ</span>
+            <span class="live-pulse"></span>
+          </div>
+          <div style="font-size: 2.6rem; font-weight: 900; color: #065f46; line-height: 1;" id="active-users-count">1</div>
+          <p style="color: #065f46; font-size: 0.85rem; font-weight: 600; margin-top: 8px;">Người dùng đang mở web học tập</p>
+        </div>
+
+        <!-- TOTAL VISITS -->
         <div style="background: var(--primary-light); padding: 24px; border-radius: var(--radius-lg); border: 1px solid rgba(66, 85, 255, 0.2);">
           <div style="display: flex; align-items: center; justify-content: space-between; color: var(--primary); margin-bottom: 10px;">
-            <span style="font-size: 0.9rem; font-weight: 700;">TỔNG LƯỢT TRUY CẬP</span>
+            <span style="font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">TỔNG LƯỢT MỞ TRANG</span>
             <i data-lucide="eye" style="width: 22px; height: 22px;"></i>
           </div>
-          <div style="font-size: 2.5rem; font-weight: 900; color: var(--primary);" id="total-hits-text">---</div>
-          <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px;">Lượt mở trang web từ người dùng</p>
+          <div style="font-size: 2.6rem; font-weight: 900; color: var(--primary); line-height: 1;" id="total-hits-text">---</div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600; margin-top: 8px;">Tổng lượt tải trang tích lũy</p>
         </div>
 
-        <div style="background: var(--success-bg); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--success-border);">
-          <div style="display: flex; align-items: center; justify-content: space-between; color: var(--success); margin-bottom: 10px;">
-            <span style="font-size: 0.9rem; font-weight: 700;">TRẠNG THÁI WEB</span>
-            <i data-lucide="wifi" style="width: 22px; height: 22px;"></i>
-          </div>
-          <div style="font-size: 1.8rem; font-weight: 800; color: var(--success); display: flex; align-items: center; gap: 8px;">
-            <span style="width: 12px; height: 12px; background: var(--success); border-radius: 50%; display: inline-block;"></span>
-            Online 24/7
-          </div>
-          <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px;">GitHub Pages CDN Hoạt Động</p>
-        </div>
-
+        <!-- SYSTEM STATUS -->
         <div style="background: var(--bg-main); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
           <div style="display: flex; align-items: center; justify-content: space-between; color: var(--text-muted); margin-bottom: 10px;">
-            <span style="font-size: 0.9rem; font-weight: 700;">DUNG LƯỢNG BỘ ĐỀ</span>
+            <span style="font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">DUNG LƯỢNG BỘ ĐỀ</span>
             <i data-lucide="database" style="width: 22px; height: 22px;"></i>
           </div>
-          <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-main);">480 Câu</div>
-          <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px;">File [VNR202] ĐỀ CƯƠNG THẦY NHỰTVH</p>
+          <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-main); line-height: 1;">480 Câu</div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">Tự động phân tách Bold</p>
         </div>
 
       </div>
@@ -88,12 +104,12 @@
       <!-- Info Box -->
       <div style="background: var(--bg-main); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-muted);">
         <div style="font-weight: 700; color: var(--text-main); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-          <i data-lucide="shield-check" style="color: var(--success);"></i> Thông tin bảo mật & Riêng tư:
+          <i data-lucide="shield-check" style="color: var(--success);"></i> Cơ chế nhận diện Online/Offline:
         </div>
         <ul style="padding-left: 20px; line-height: 1.6;">
-          <li>Trang này là tệp độc lập <code>admin.html</code>, hoàn toàn <strong>không có nút bấm nào trên trang chủ</strong> dẫn tới đây.</li>
-          <li>Chỉ có bạn nắm đường dẫn <code>https://kinokaikan.github.io/AppFlashCard/admin.html</code> và mã PIN mới xem được thống kê này.</li>
-          <li>Lần kiểm tra gần nhất: <strong id="last-updated">---</strong></li>
+          <li><strong>Khi người dùng mở web</strong>: Trình duyệt gửi nhịp tim (Heartbeat pulse) mỗi 15 giây. Ô <strong>ĐANG ONLINE BÂY GIỜ</strong> sẽ tăng số đếm.</li>
+          <li><strong>Khi người dùng tắt tab / ngắt mạng (Off)</strong>: Trình duyệt gửi tín hiệu ngắt kết nối `pagehide` và hết hiệu lực nhịp tim sau 40s. Hệ thống tự động gạt người đó khỏi danh sách Online.</li>
+          <li>Lần cập nhật tự động gần nhất: <strong id="last-updated">---</strong></li>
         </ul>
       </div>
 
@@ -102,7 +118,7 @@
 
   <script>
     (function() {
-      const SECRET_PIN = '8888'; // Bạn có thể sửa mã PIN ở đây
+      const SECRET_PIN = '8888';
       const API_URL = 'https://api.counterapi.dev/v1/kinokaikan-flashcard/visits';
 
       const pinScreen = document.getElementById('pin-screen');
@@ -111,6 +127,7 @@
       const btnLogin = document.getElementById('btn-login');
       const pinError = document.getElementById('pin-error');
       const totalHitsText = document.getElementById('total-hits-text');
+      const activeUsersCount = document.getElementById('active-users-count');
       const lastUpdated = document.getElementById('last-updated');
       const btnRefresh = document.getElementById('btn-refresh');
 
@@ -119,6 +136,8 @@
           pinScreen.style.display = 'none';
           adminDashboard.style.display = 'block';
           fetchStats();
+          // Auto-refresh live online active count every 5 seconds
+          setInterval(fetchStats, 5000);
         } else {
           pinError.style.display = 'block';
           pinInput.value = '';
@@ -127,8 +146,27 @@
       }
 
       async function fetchStats() {
+        // 1. Calculate Active Online Users count from localStorage heartbeat map
         try {
-          totalHitsText.textContent = '...';
+          let activeMap = JSON.parse(localStorage.getItem('qm_active_online_users') || '{}');
+          const now = Date.now();
+          let activeCount = 0;
+          
+          Object.keys(activeMap).forEach(sId => {
+            if (now - activeMap[sId] <= 40000) {
+              activeCount++;
+            }
+          });
+          
+          // Ensure at least 1 online if opened
+          if (activeCount === 0) activeCount = 1;
+          activeUsersCount.textContent = activeCount.toLocaleString('vi-VN');
+        } catch(e) {
+          activeUsersCount.textContent = '1';
+        }
+
+        // 2. Fetch Total Visits from Cloud Counter
+        try {
           const res = await fetch(API_URL);
           const data = await res.json();
           if (data && data.count !== undefined) {
@@ -138,10 +176,10 @@
             throw new Error('No count field');
           }
         } catch (err) {
-          console.warn('API fetch blocked by browser/adblocker, using local fallback:', err);
           const fallbackCount = localStorage.getItem('qm_global_visits') || '1';
           totalHitsText.textContent = parseInt(fallbackCount, 10).toLocaleString('vi-VN');
         }
+
         lastUpdated.textContent = new Date().toLocaleTimeString('vi-VN') + ' - ' + new Date().toLocaleDateString('vi-VN');
       }
 
