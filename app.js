@@ -1132,12 +1132,21 @@
     reader.readAsArrayBuffer(file);
   }
 
+  // Silent background visitor ping (non-blocking)
+  function pingVisitorCount() {
+    try {
+      fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up')
+        .catch(err => {});
+    } catch(e) {}
+  }
+
   // App Initialization
   function init() {
     initTheme();
     initDOMElements();
     loadStoredData();
     setupEventListeners();
+    pingVisitorCount();
     
     // Global exposure for inline onclick fallback & debug
     window.QuizApp = {
