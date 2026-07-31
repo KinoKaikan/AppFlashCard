@@ -228,7 +228,30 @@
       const savedMastered = localStorage.getItem(STORAGE_KEYS.MASTERED_QUESTIONS);
 
       if (savedBank) {
-        APP_STATE.questionBank = JSON.parse(savedBank);
+        let loadedBank = JSON.parse(savedBank);
+
+        // Auto-patch missing category properties from window.SAMPLE_QUESTIONS
+        if (window.SAMPLE_QUESTIONS && window.SAMPLE_QUESTIONS.length > 0) {
+          const sampleMap = {};
+          window.SAMPLE_QUESTIONS.forEach(sq => {
+            if (sq.id) sampleMap[sq.id] = sq.category;
+            if (sq.questionText) sampleMap[sq.questionText.trim()] = sq.category;
+          });
+
+          let patched = false;
+          loadedBank.forEach(q => {
+            if (!q.category) {
+              q.category = sampleMap[q.id] || sampleMap[q.questionText ? q.questionText.trim() : ''] || 'CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1';
+              patched = true;
+            }
+          });
+
+          if (patched) {
+            localStorage.setItem(STORAGE_KEYS.QUESTION_BANK, JSON.stringify(loadedBank));
+          }
+        }
+
+        APP_STATE.questionBank = loadedBank;
         APP_STATE.bankFilename = savedFilename || 'Bộ đề cương đã nạp';
       } else if (window.SAMPLE_QUESTIONS && window.SAMPLE_QUESTIONS.length > 0) {
         // Auto-load built-in sample if available
@@ -1277,23 +1300,29 @@
     reader.readAsArrayBuffer(file);
   }
 
+  let isCloudBlocked = false;
+
   // Background visitor ping with local fallback backup & mobile keepalive
   function pingVisitorCount() {
     try {
       let currentLocal = parseInt(localStorage.getItem('qm_global_visits') || '0', 10) + 1;
       localStorage.setItem('qm_global_visits', currentLocal.toString());
 
-      fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up', {
-        mode: 'cors',
-        keepalive: true
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data && data.count) {
-            localStorage.setItem('qm_global_visits', data.count.toString());
-          }
+      if (!isCloudBlocked) {
+        fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up', {
+          mode: 'cors',
+          keepalive: true
         })
-        .catch(err => {});
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.count) {
+              localStorage.setItem('qm_global_visits', data.count.toString());
+            }
+          })
+          .catch(() => {
+            isCloudBlocked = true;
+          });
+      }
     } catch(e) {}
   }
 
@@ -1320,10 +1349,14 @@
           localStorage.setItem('qm_active_online_users', JSON.stringify(activeMap));
         } catch(e) {}
 
-        fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/active_pulse/up', {
-          mode: 'cors',
-          keepalive: true
-        }).catch(err => {});
+        if (!isCloudBlocked) {
+          fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/active_pulse/up', {
+            mode: 'cors',
+            keepalive: true
+          }).catch(() => {
+            isCloudBlocked = true;
+          });
+        }
       }
 
       function sendOfflineSignal() {
