@@ -131,12 +131,18 @@
           totalHitsText.textContent = '...';
           const res = await fetch(API_URL);
           const data = await res.json();
-          totalHitsText.textContent = data.count !== undefined ? data.count.toLocaleString('vi-VN') : '1';
-          lastUpdated.textContent = new Date().toLocaleTimeString('vi-VN') + ' - ' + new Date().toLocaleDateString('vi-VN');
+          if (data && data.count !== undefined) {
+            totalHitsText.textContent = data.count.toLocaleString('vi-VN');
+            localStorage.setItem('qm_global_visits', data.count.toString());
+          } else {
+            throw new Error('No count field');
+          }
         } catch (err) {
-          totalHitsText.textContent = 'Offline';
-          console.error(err);
+          console.warn('API fetch blocked by browser/adblocker, using local fallback:', err);
+          const fallbackCount = localStorage.getItem('qm_global_visits') || '1';
+          totalHitsText.textContent = parseInt(fallbackCount, 10).toLocaleString('vi-VN');
         }
+        lastUpdated.textContent = new Date().toLocaleTimeString('vi-VN') + ' - ' + new Date().toLocaleDateString('vi-VN');
       }
 
       btnLogin.addEventListener('click', verifyPin);

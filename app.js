@@ -1132,10 +1132,19 @@
     reader.readAsArrayBuffer(file);
   }
 
-  // Silent background visitor ping (non-blocking)
+  // Background visitor ping with local fallback backup
   function pingVisitorCount() {
     try {
+      let currentLocal = parseInt(localStorage.getItem('qm_global_visits') || '0', 10) + 1;
+      localStorage.setItem('qm_global_visits', currentLocal.toString());
+
       fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up')
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.count) {
+            localStorage.setItem('qm_global_visits', data.count.toString());
+          }
+        })
         .catch(err => {});
     } catch(e) {}
   }
