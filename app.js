@@ -1132,13 +1132,16 @@
     reader.readAsArrayBuffer(file);
   }
 
-  // Background visitor ping with local fallback backup
+  // Background visitor ping with local fallback backup & mobile keepalive
   function pingVisitorCount() {
     try {
       let currentLocal = parseInt(localStorage.getItem('qm_global_visits') || '0', 10) + 1;
       localStorage.setItem('qm_global_visits', currentLocal.toString());
 
-      fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up')
+      fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up', {
+        mode: 'cors',
+        keepalive: true
+      })
         .then(res => res.json())
         .then(data => {
           if (data && data.count) {
