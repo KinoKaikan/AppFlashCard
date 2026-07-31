@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcard & Trắc Nghiệm Quizlet - Ôn Tập Thông Minh</title>
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234255ff'/><text x='50' y='72' font-size='65' font-weight='bold' text-anchor='middle' fill='white' font-family='sans-serif'>Q</text></svg>">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Mammoth.js (Docx Parser) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Sample Pre-parsed Data for CORS-free file:// protocol loading -->
+  <script src="sampleData.js"></script>
+</head>
+<body>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo" id="nav-logo-btn">
+        <div class="logo-icon">Q</div>
+        <span>QuizMaster</span>
+      </a>
+      <div class="nav-actions">
+        <button class="btn btn-outline" id="btn-nav-wrong" style="display: none;">
+          <i data-lucide="bookmark"></i>
+          <span>Cần học lại (<span id="nav-wrong-count">0</span>)</span>
+        </button>
+        <button class="theme-toggle" id="theme-toggle-btn" title="Đổi chế độ Sáng/Tối">
+          <i data-lucide="moon" id="theme-icon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main>
+
+    <!-- =========================================================================
+         VIEW 1: UPLOAD VIEW (File Upload & Bank Dashboard)
+         ========================================================================= -->
+    <section id="view-upload" class="view active">
+      <div class="hero-section">
+        <h1 class="hero-title">Ôn Tập Trắc Nghiệm Từ File Word</h1>
+        <p class="hero-subtitle">Tải lên file đề cương <strong>.docx</strong>. Hệ thống tự động nhận diện đáp án <strong>Bold (Tô đậm)</strong> và ẩn định dạng khi học.</p>
+      </div>
+
+      <!-- File Upload Dropzone -->
+      <div class="upload-card" id="drop-zone">
+        <div class="upload-icon-wrapper">
+          <i data-lucide="file-up"></i>
+        </div>
+        <h3>Kéo & thả file Word (.docx) vào đây</h3>
+        <p>Hoặc nhấp để chọn file từ máy tính của bạn</p>
+        <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+          <i data-lucide="upload"></i> Chọn File .DOCX
+        </button>
+        <input type="file" id="file-input" class="file-input" accept=".docx">
+      </div>
+
+      <!-- Auto Detect Default Local File Button -->
+      <div class="sample-load-box">
+        <div class="sample-info">
+          <div class="sample-icon">
+            <i data-lucide="file-text"></i>
+          </div>
+          <div>
+            <div style="font-weight: 700;">File đề cương phát hiện sẵn</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">[VNR202] ĐỀ CƯƠNG THẦY NHỰTVH.docx</div>
+          </div>
+        </div>
+        <button class="btn btn-secondary" id="btn-load-sample">
+          <i data-lucide="folder-open"></i> Nạp File Mẫu Sẵn Có
+        </button>
+      </div>
+
+      <!-- Current Question Bank Card (Shows if dataset exists in storage) -->
+      <div class="bank-info-card" id="bank-info-card" style="display: none;">
+        <div class="bank-header">
+          <div class="bank-title">
+            <i data-lucide="database" style="color: var(--primary);"></i>
+            <span>Bộ câu hỏi: <strong id="bank-filename">Đề cương</strong></span>
+          </div>
+          <span class="badge" id="bank-count-badge">0 câu</span>
+        </div>
+
+        <!-- Mastery Overall Progress Bar -->
+        <div class="mastery-progress-box">
+          <div class="mastery-info-row">
+            <span class="mastery-label"><i data-lucide="award" style="color: var(--warning);"></i> Tiến độ hoàn thành bộ đề:</span>
+            <span class="mastery-stats-text"><strong id="mastered-count-text">0</strong> / <span id="total-bank-text">480</span> câu đã thuộc (<span id="mastered-percent-text">0%</span>)</span>
+          </div>
+          <div class="progress-bar-bg" style="height: 12px; margin-top: 8px;">
+            <div class="progress-bar-fill" id="mastery-progress-fill" style="width: 0%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+          </div>
+        </div>
+
+        <div class="bank-actions">
+          <button class="btn btn-primary" id="btn-start-unlearned">
+            <i data-lucide="zap"></i> Học 20 Câu Chưa Thuộc (<span id="unlearned-count-btn">0</span>)
+          </button>
+          <button class="btn btn-secondary" id="btn-start-quiz">
+            <i data-lucide="shuffle"></i> Luyện Tập Tất Cả (Ngẫu Nhiên)
+          </button>
+          <button class="btn btn-secondary" id="btn-start-wrong" style="display: none;">
+            <i data-lucide="bookmark-check"></i> Luyện Tập Câu Sai (<span id="wrong-count-btn">0</span>)
+          </button>
+          <button class="btn btn-outline" id="btn-reset-mastery" title="Đặt lại tiến độ đã thuộc về 0">
+            <i data-lucide="rotate-ccw"></i> Reset Tiến Độ
+          </button>
+          <button class="btn btn-outline" id="btn-clear-bank">
+            <i data-lucide="trash-2"></i> Xóa Bộ Đề
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 2: QUIZ VIEW (Interactive Practice Session)
+         ========================================================================= -->
+    <section id="view-quiz" class="view">
+      <div class="quiz-header">
+        <div class="quiz-top-bar">
+          <button class="btn-quit" id="btn-quiz-quit">
+            <i data-lucide="arrow-left"></i> Thoát phiên học
+          </button>
+          <span class="quiz-mode-tag" id="quiz-mode-label">Luyện Tập Ngẫu Nhiên</span>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="quiz-progress-fill"></div>
+          </div>
+          <div class="progress-text" id="quiz-progress-text">1 / 20</div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="question-card">
+        <div class="question-meta">
+          <span>Câu hỏi <span id="current-q-index">1</span></span>
+          <button class="btn-quit" id="btn-flag-q" title="Đánh dấu câu hỏi này">
+            <i data-lucide="bookmark" id="flag-icon"></i>
+          </button>
+        </div>
+        
+        <h2 class="question-text" id="q-text-content">
+          Nội dung câu hỏi sẽ hiển thị ở đây...
+        </h2>
+
+        <!-- Options Container -->
+        <div class="options-grid" id="options-container">
+          <!-- Dynamically populated options -->
+        </div>
+      </div>
+
+      <!-- Quiz Footer Controls -->
+      <div class="quiz-footer">
+        <div class="feedback-msg" id="feedback-msg">
+          <!-- Instant feedback icons & text -->
+        </div>
+        <button class="btn btn-primary" id="btn-next-q" disabled>
+          <span>Câu Tiếp Theo</span> <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 3: SUMMARY VIEW (Session Results)
+         ========================================================================= -->
+    <section id="view-summary" class="view">
+      <div class="summary-card">
+        <div class="summary-header">
+          <h2 class="summary-title" id="summary-title">Kết Quả Phiên Học</h2>
+          <p style="color: var(--text-muted);" id="summary-sub">Bạn đã hoàn thành phiên luyện tập trắc nghiệm!</p>
+        </div>
+
+        <div class="summary-score-dial" id="summary-dial" style="--percentage: 80;">
+          <div class="summary-score-inner">
+            <span class="summary-percent" id="summary-percent">80%</span>
+            <span class="summary-subtext">Chính xác</span>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-val" id="stat-total">20</div>
+            <div class="stat-label">Tổng số câu</div>
+          </div>
+          <div class="stat-box success-box">
+            <div class="stat-val" id="stat-correct">16</div>
+            <div class="stat-label">Trả lời ĐÚNG</div>
+          </div>
+          <div class="stat-box danger-box">
+            <div class="stat-val" id="stat-wrong">4</div>
+            <div class="stat-label">Trả lời SAI</div>
+          </div>
+        </div>
+
+        <div class="summary-actions">
+          <button class="btn btn-primary" id="btn-summary-restart">
+            <i data-lucide="rotate-ccw"></i> Học Lượt Mới (20 Câu Ngẫu Nhiên)
+          </button>
+          <button class="btn btn-secondary" id="btn-summary-wrong" style="display: none;">
+            <i data-lucide="bookmark-check"></i> Chỉ Luyện Tập Câu Sai (<span id="summary-wrong-count">0</span>)
+          </button>
+          <button class="btn btn-outline" id="btn-summary-home">
+            <i data-lucide="home"></i> Về Màn Hình Chính
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 4: WRONG ANSWERS VIEW (Cần Học Lại)
+         ========================================================================= -->
+    <section id="view-wrong" class="view">
+      <div class="wrong-header">
+        <div>
+          <h2>Danh Sách "Cần Học Lại"</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Các câu hỏi bạn trả lời sai được lưu vết để luyện tập cho đến khi thuộc.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-primary" id="btn-wrong-practice-now">
+            <i data-lucide="play"></i> Luyện Tập Ngay
+          </button>
+          <button class="btn btn-danger" id="btn-clear-all-wrong">
+            <i data-lucide="trash-2"></i> Xóa Tất Cả
+          </button>
+        </div>
+      </div>
+
+      <div class="wrong-list" id="wrong-list-container">
+        <!-- Dynamically rendered wrong questions -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Application Logic JS -->
+  <script src="app.js"></script>
+
+</body>
+</html>

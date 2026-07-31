@@ -1,0 +1,19 @@
+{
+  "name": "quizlet-flashcard-app",
+  "version": "1.0.0",
+  "description": "Offline Quizlet-Style Flashcard & Quiz Web App with DOCX Bold Detection",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve .",
+    "start": "npx -y serve ."
+  },
+  "keywords": [
+    "flashcard",
+    "quizlet",
+    "quiz",
+    "docx",
+    "offline"
+  ],
+  "author": "",
+  "license": "ISC"
+}
