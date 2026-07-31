@@ -619,6 +619,7 @@
 
   function renderCurrentQuestion() {
     const session = APP_STATE.currentSession;
+    session.isAnswered = false; // reset answer lock for new question
     const currentQ = session.questions[session.currentIndex];
     const totalQ = session.questions.length;
 
@@ -663,10 +664,16 @@
 
   function handleOptionSelect(selectedIndex) {
     const session = APP_STATE.currentSession;
+    if (session.isAnswered) return; // Prevent selecting multiple times!
+    session.isAnswered = true;
+
     const currentQ = session.questions[session.currentIndex];
 
     const optionEls = DOM.optionsContainer ? DOM.optionsContainer.querySelectorAll('.option-item') : [];
-    optionEls.forEach(el => el.classList.add('disabled'));
+    optionEls.forEach(el => {
+      el.classList.add('disabled');
+      el.style.pointerEvents = 'none'; // Hard lock pointer clicks
+    });
 
     const isCorrect = selectedIndex === currentQ.correctIndex;
 

@@ -54,6 +54,27 @@
   --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
+/* Dark Mode Overrides for High Contrast Option Selection */
+[data-theme="dark"] .option-item.correct {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.25) !important;
+}
+
+[data-theme="dark"] .option-item.correct .option-content {
+  color: #6ee7b7 !important;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .option-item.incorrect {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.25) !important;
+}
+
+[data-theme="dark"] .option-item.incorrect .option-content {
+  color: #fca5a5 !important;
+  font-weight: 700;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -806,6 +827,10 @@ main {
   color: #065f46;
 }
 
+.option-item.correct .option-content {
+  color: #065f46;
+}
+
 .option-item.correct .option-label {
   background: var(--success) !important;
   border-color: var(--success) !important;
@@ -817,6 +842,10 @@ main {
   background: var(--danger-bg) !important;
   color: #991b1b;
   animation: shake 0.4s ease;
+}
+
+.option-item.incorrect .option-content {
+  color: #991b1b;
 }
 
 .option-item.incorrect .option-label {
