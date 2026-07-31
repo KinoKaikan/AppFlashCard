@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234255ff'/><text x='50' y='72' font-size='65' font-weight='bold' text-anchor='middle' fill='white' font-family='sans-serif'>Q</text></svg>">
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.0">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,7 +17,7 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Sample Pre-parsed Data for CORS-free file:// protocol loading -->
-  <script src="sampleData.js"></script>
+  <script src="sampleData.js?v=2.0"></script>
 </head>
 <body>
 
@@ -106,13 +106,13 @@
         </div>
 
         <div class="bank-actions">
-          <button class="btn btn-primary" id="btn-start-unlearned">
+          <button class="btn btn-primary" id="btn-start-unlearned" onclick="QuizApp.startUnlearned()">
             <i data-lucide="zap"></i> Học 20 Câu Chưa Thuộc (<span id="unlearned-count-btn">0</span>)
           </button>
-          <button class="btn btn-secondary" id="btn-start-quiz">
+          <button class="btn btn-secondary" id="btn-start-quiz" onclick="QuizApp.startAll()">
             <i data-lucide="shuffle"></i> Luyện Tập Tất Cả (<span id="total-bank-btn-count">480</span> câu)
           </button>
-          <button class="btn btn-outline" id="btn-view-all-q">
+          <button class="btn btn-outline" id="btn-view-all-q" onclick="QuizApp.openDetail()">
             <i data-lucide="list"></i> Xem Danh Sách & Đáp Án
           </button>
           <button class="btn btn-secondary" id="btn-start-wrong" style="display: none;">
@@ -287,7 +287,7 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Application Logic JS -->
-  <script src="app.js"></script>
+  <script src="app.js?v=2.0"></script>
 
 </body>
 </html>

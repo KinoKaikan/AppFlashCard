@@ -5,17 +5,14 @@
  * - DOCX parsing via Mammoth.js
  * - Automatic Bold formatting detection for correct answers
  * - Uniform typography rendering (strips bold when displaying options)
- * - 20 Random Questions Quiz Mode + Option Shuffling
- * - Wrong Answer Collection ("Cần học lại") with localStorage persistence
- * - Interactive Quiz Session, Immediate Feedback, Progress Bar, Summary & Confetti
+ * - Progressive Elimination / Mastery Tracking (localStorage persistence)
+ * - Practice All Questions (480 Questions) Mode & 20 Unlearned Questions Mode
+ * - View All Questions & Answers Detail Screen with Search & Filter
  */
 
 (function () {
   'use strict';
 
-  // =========================================================================
-  // CONSTANTS & STATE MANAGEMENT
-  // =========================================================================
   const STORAGE_KEYS = {
     QUESTION_BANK: 'qm_question_bank',
     BANK_FILENAME: 'qm_bank_filename',
@@ -40,97 +37,99 @@
     }
   };
 
-  // =========================================================================
-  // DOM ELEMENTS
-  // =========================================================================
-  const DOM = {
-    // Views
-    viewUpload: document.getElementById('view-upload'),
-    viewQuiz: document.getElementById('view-quiz'),
-    viewSummary: document.getElementById('view-summary'),
-    viewWrong: document.getElementById('view-wrong'),
-    viewDetail: document.getElementById('view-detail'),
+  // DOM element references (populated in initDOMElements)
+  let DOM = {};
 
-    // Theme Toggle
-    themeToggleBtn: document.getElementById('theme-toggle-btn'),
-    themeIcon: document.getElementById('theme-icon'),
+  function initDOMElements() {
+    DOM = {
+      // Views
+      viewUpload: document.getElementById('view-upload'),
+      viewQuiz: document.getElementById('view-quiz'),
+      viewSummary: document.getElementById('view-summary'),
+      viewWrong: document.getElementById('view-wrong'),
+      viewDetail: document.getElementById('view-detail'),
 
-    // Nav & Badges
-    navLogoBtn: document.getElementById('nav-logo-btn'),
-    btnNavWrong: document.getElementById('btn-nav-wrong'),
-    navWrongCount: document.getElementById('nav-wrong-count'),
+      // Theme Toggle
+      themeToggleBtn: document.getElementById('theme-toggle-btn'),
+      themeIcon: document.getElementById('theme-icon'),
 
-    // Upload View
-    dropZone: document.getElementById('drop-zone'),
-    fileInput: document.getElementById('file-input'),
-    btnLoadSample: document.getElementById('btn-load-sample'),
-    bankInfoCard: document.getElementById('bank-info-card'),
-    bankFilename: document.getElementById('bank-filename'),
-    bankCountBadge: document.getElementById('bank-count-badge'),
-    totalBankBtnCount: document.getElementById('total-bank-btn-count'),
-    
-    // Mastery Progress DOM
-    masteredCountText: document.getElementById('mastered-count-text'),
-    totalBankText: document.getElementById('total-bank-text'),
-    masteredPercentText: document.getElementById('mastered-percent-text'),
-    masteryProgressFill: document.getElementById('mastery-progress-fill'),
+      // Nav & Badges
+      navLogoBtn: document.getElementById('nav-logo-btn'),
+      btnNavWrong: document.getElementById('btn-nav-wrong'),
+      navWrongCount: document.getElementById('nav-wrong-count'),
 
-    btnStartUnlearned: document.getElementById('btn-start-unlearned'),
-    unlearnedCountBtn: document.getElementById('unlearned-count-btn'),
-    btnStartQuiz: document.getElementById('btn-start-quiz'),
-    btnViewAllQ: document.getElementById('btn-view-all-q'),
-    btnStartWrong: document.getElementById('btn-start-wrong'),
-    wrongCountBtn: document.getElementById('wrong-count-btn'),
-    btnResetMastery: document.getElementById('btn-reset-mastery'),
-    btnClearBank: document.getElementById('btn-clear-bank'),
+      // Upload View
+      dropZone: document.getElementById('drop-zone'),
+      fileInput: document.getElementById('file-input'),
+      btnLoadSample: document.getElementById('btn-load-sample'),
+      bankInfoCard: document.getElementById('bank-info-card'),
+      bankFilename: document.getElementById('bank-filename'),
+      bankCountBadge: document.getElementById('bank-count-badge'),
+      totalBankBtnCount: document.getElementById('total-bank-btn-count'),
+      
+      // Mastery Progress DOM
+      masteredCountText: document.getElementById('mastered-count-text'),
+      totalBankText: document.getElementById('total-bank-text'),
+      masteredPercentText: document.getElementById('mastered-percent-text'),
+      masteryProgressFill: document.getElementById('mastery-progress-fill'),
 
-    // Detail View DOM
-    btnDetailBack: document.getElementById('btn-detail-back'),
-    detailSearchInput: document.getElementById('detail-search-input'),
-    filterCountAll: document.getElementById('filter-count-all'),
-    filterCountUnlearned: document.getElementById('filter-count-unlearned'),
-    filterCountMastered: document.getElementById('filter-count-mastered'),
-    detailQuestionsContainer: document.getElementById('detail-questions-container'),
+      btnStartUnlearned: document.getElementById('btn-start-unlearned'),
+      unlearnedCountBtn: document.getElementById('unlearned-count-btn'),
+      btnStartQuiz: document.getElementById('btn-start-quiz'),
+      btnViewAllQ: document.getElementById('btn-view-all-q'),
+      btnStartWrong: document.getElementById('btn-start-wrong'),
+      wrongCountBtn: document.getElementById('wrong-count-btn'),
+      btnResetMastery: document.getElementById('btn-reset-mastery'),
+      btnClearBank: document.getElementById('btn-clear-bank'),
 
-    // Quiz View
-    btnQuizQuit: document.getElementById('btn-quiz-quit'),
-    quizModeLabel: document.getElementById('quiz-mode-label'),
-    quizProgressFill: document.getElementById('quiz-progress-fill'),
-    quizProgressText: document.getElementById('quiz-progress-text'),
-    currentQIndex: document.getElementById('current-q-index'),
-    qTextContent: document.getElementById('q-text-content'),
-    optionsContainer: document.getElementById('options-container'),
-    feedbackMsg: document.getElementById('feedback-msg'),
-    btnNextQ: document.getElementById('btn-next-q'),
-    btnFlagQ: document.getElementById('btn-flag-q'),
-    flagIcon: document.getElementById('flag-icon'),
+      // Detail View DOM
+      btnDetailBack: document.getElementById('btn-detail-back'),
+      detailSearchInput: document.getElementById('detail-search-input'),
+      filterCountAll: document.getElementById('filter-count-all'),
+      filterCountUnlearned: document.getElementById('filter-count-unlearned'),
+      filterCountMastered: document.getElementById('filter-count-mastered'),
+      detailQuestionsContainer: document.getElementById('detail-questions-container'),
 
-    // Summary View
-    summaryDial: document.getElementById('summary-dial'),
-    summaryPercent: document.getElementById('summary-percent'),
-    statTotal: document.getElementById('stat-total'),
-    statCorrect: document.getElementById('stat-correct'),
-    statWrong: document.getElementById('stat-wrong'),
-    btnSummaryRestart: document.getElementById('btn-summary-restart'),
-    btnSummaryWrong: document.getElementById('btn-summary-wrong'),
-    summaryWrongCount: document.getElementById('summary-wrong-count'),
-    btnSummaryHome: document.getElementById('btn-summary-home'),
+      // Quiz View
+      btnQuizQuit: document.getElementById('btn-quiz-quit'),
+      quizModeLabel: document.getElementById('quiz-mode-label'),
+      quizProgressFill: document.getElementById('quiz-progress-fill'),
+      quizProgressText: document.getElementById('quiz-progress-text'),
+      currentQIndex: document.getElementById('current-q-index'),
+      qTextContent: document.getElementById('q-text-content'),
+      optionsContainer: document.getElementById('options-container'),
+      feedbackMsg: document.getElementById('feedback-msg'),
+      btnNextQ: document.getElementById('btn-next-q'),
+      btnFlagQ: document.getElementById('btn-flag-q'),
+      flagIcon: document.getElementById('flag-icon'),
 
-    // Wrong Answers View
-    btnWrongPracticeNow: document.getElementById('btn-wrong-practice-now'),
-    btnClearAllWrong: document.getElementById('btn-clear-all-wrong'),
-    wrongListContainer: document.getElementById('wrong-list-container'),
+      // Summary View
+      summaryDial: document.getElementById('summary-dial'),
+      summaryPercent: document.getElementById('summary-percent'),
+      statTotal: document.getElementById('stat-total'),
+      statCorrect: document.getElementById('stat-correct'),
+      statWrong: document.getElementById('stat-wrong'),
+      btnSummaryRestart: document.getElementById('btn-summary-restart'),
+      btnSummaryWrong: document.getElementById('btn-summary-wrong'),
+      summaryWrongCount: document.getElementById('summary-wrong-count'),
+      btnSummaryHome: document.getElementById('btn-summary-home'),
 
-    // Toast Container
-    toastContainer: document.getElementById('toast-container')
-  };
+      // Wrong Answers View
+      btnWrongPracticeNow: document.getElementById('btn-wrong-practice-now'),
+      btnClearAllWrong: document.getElementById('btn-clear-all-wrong'),
+      wrongListContainer: document.getElementById('wrong-list-container'),
+
+      // Toast Container
+      toastContainer: document.getElementById('toast-container')
+    };
+  }
 
   // =========================================================================
   // UTILITY FUNCTIONS
   // =========================================================================
 
-  // Show Toast Notification
   function showToast(message, icon = 'info') {
+    if (!DOM.toastContainer) return;
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `<i data-lucide="${icon}"></i> <span>${message}</span>`;
@@ -145,7 +144,6 @@
     }, 3000);
   }
 
-  // Fisher-Yates Array Shuffle (Immutable clone)
   function shuffleArray(array) {
     const clone = [...array];
     for (let i = clone.length - 1; i > 0; i--) {
@@ -155,17 +153,26 @@
     return clone;
   }
 
-  // Switch View
   function showView(viewElement) {
-    [DOM.viewUpload, DOM.viewQuiz, DOM.viewSummary, DOM.viewWrong, DOM.viewDetail].forEach(v => {
+    const allViews = [
+      document.getElementById('view-upload'),
+      document.getElementById('view-quiz'),
+      document.getElementById('view-summary'),
+      document.getElementById('view-wrong'),
+      document.getElementById('view-detail')
+    ];
+
+    allViews.forEach(v => {
       if (v) v.classList.remove('active');
     });
-    if (viewElement) viewElement.classList.add('active');
+
+    if (viewElement) {
+      viewElement.classList.add('active');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (window.lucide) lucide.createIcons();
   }
 
-  // Theme Management
   function initTheme() {
     const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -181,8 +188,9 @@
   }
 
   function updateThemeIcon(theme) {
-    if (DOM.themeIcon) {
-      DOM.themeIcon.setAttribute('data-lucide', theme === 'dark' ? 'sun' : 'moon');
+    const icon = document.getElementById('theme-icon');
+    if (icon) {
+      icon.setAttribute('data-lucide', theme === 'dark' ? 'sun' : 'moon');
       if (window.lucide) lucide.createIcons();
     }
   }
@@ -200,6 +208,12 @@
       if (savedBank) {
         APP_STATE.questionBank = JSON.parse(savedBank);
         APP_STATE.bankFilename = savedFilename || 'Bộ đề cương đã nạp';
+      } else if (window.SAMPLE_QUESTIONS && window.SAMPLE_QUESTIONS.length > 0) {
+        // Auto-load built-in sample if available
+        APP_STATE.questionBank = window.SAMPLE_QUESTIONS;
+        APP_STATE.bankFilename = '[VNR202] ĐỀ CƯƠNG THẦY NHỰTVH.docx';
+        localStorage.setItem(STORAGE_KEYS.QUESTION_BANK, JSON.stringify(window.SAMPLE_QUESTIONS));
+        localStorage.setItem(STORAGE_KEYS.BANK_FILENAME, APP_STATE.bankFilename);
       }
 
       if (savedWrong) {
@@ -262,40 +276,46 @@
     const unlearnedSize = Math.max(0, bankSize - masteredSize);
 
     // Nav Wrong button
-    if (wrongSize > 0) {
-      DOM.btnNavWrong.style.display = 'inline-flex';
-      DOM.navWrongCount.textContent = wrongSize;
-    } else {
-      DOM.btnNavWrong.style.display = 'none';
+    if (DOM.btnNavWrong) {
+      if (wrongSize > 0) {
+        DOM.btnNavWrong.style.display = 'inline-flex';
+        if (DOM.navWrongCount) DOM.navWrongCount.textContent = wrongSize;
+      } else {
+        DOM.btnNavWrong.style.display = 'none';
+      }
     }
 
     // Upload View Card & Mastery Bar
-    if (bankSize > 0) {
-      DOM.bankInfoCard.style.display = 'block';
-      DOM.bankFilename.textContent = APP_STATE.bankFilename;
-      DOM.bankCountBadge.textContent = `${bankSize} câu`;
-      if (DOM.totalBankBtnCount) DOM.totalBankBtnCount.textContent = bankSize;
-      
-      DOM.masteredCountText.textContent = masteredSize;
-      DOM.totalBankText.textContent = bankSize;
-      const percent = Math.round((masteredSize / bankSize) * 100);
-      DOM.masteredPercentText.textContent = `${percent}%`;
-      DOM.masteryProgressFill.style.width = `${percent}%`;
+    if (DOM.bankInfoCard) {
+      if (bankSize > 0) {
+        DOM.bankInfoCard.style.display = 'block';
+        if (DOM.bankFilename) DOM.bankFilename.textContent = APP_STATE.bankFilename;
+        if (DOM.bankCountBadge) DOM.bankCountBadge.textContent = `${bankSize} câu`;
+        if (DOM.totalBankBtnCount) DOM.totalBankBtnCount.textContent = bankSize;
+        
+        if (DOM.masteredCountText) DOM.masteredCountText.textContent = masteredSize;
+        if (DOM.totalBankText) DOM.totalBankText.textContent = bankSize;
+        const percent = Math.round((masteredSize / bankSize) * 100);
+        if (DOM.masteredPercentText) DOM.masteredPercentText.textContent = `${percent}%`;
+        if (DOM.masteryProgressFill) DOM.masteryProgressFill.style.width = `${percent}%`;
 
-      DOM.unlearnedCountBtn.textContent = unlearnedSize;
+        if (DOM.unlearnedCountBtn) DOM.unlearnedCountBtn.textContent = unlearnedSize;
 
-      if (DOM.filterCountAll) DOM.filterCountAll.textContent = bankSize;
-      if (DOM.filterCountUnlearned) DOM.filterCountUnlearned.textContent = unlearnedSize;
-      if (DOM.filterCountMastered) DOM.filterCountMastered.textContent = masteredSize;
+        if (DOM.filterCountAll) DOM.filterCountAll.textContent = bankSize;
+        if (DOM.filterCountUnlearned) DOM.filterCountUnlearned.textContent = unlearnedSize;
+        if (DOM.filterCountMastered) DOM.filterCountMastered.textContent = masteredSize;
 
-      if (wrongSize > 0) {
-        DOM.btnStartWrong.style.display = 'inline-flex';
-        DOM.wrongCountBtn.textContent = wrongSize;
+        if (DOM.btnStartWrong) {
+          if (wrongSize > 0) {
+            DOM.btnStartWrong.style.display = 'inline-flex';
+            if (DOM.wrongCountBtn) DOM.wrongCountBtn.textContent = wrongSize;
+          } else {
+            DOM.btnStartWrong.style.display = 'none';
+          }
+        }
       } else {
-        DOM.btnStartWrong.style.display = 'none';
+        DOM.bankInfoCard.style.display = 'none';
       }
-    } else {
-      DOM.bankInfoCard.style.display = 'none';
     }
   }
 
@@ -303,7 +323,7 @@
   // DETAIL QUESTIONS & ANSWERS VIEW ENGINE
   // =========================================================================
   function renderDetailQuestions(searchText = '', filterStatus = 'all') {
-    const container = DOM.detailQuestionsContainer;
+    const container = document.getElementById('detail-questions-container');
     if (!container) return;
 
     container.innerHTML = '';
@@ -377,7 +397,6 @@
     if (window.lucide) lucide.createIcons();
   }
 
-  // Add a question ID to mastered list
   function addMasteredQuestion(qId) {
     if (!APP_STATE.masteredQuestionIds.includes(qId)) {
       APP_STATE.masteredQuestionIds.push(qId);
@@ -385,13 +404,11 @@
     }
   }
 
-  // Remove a question ID from mastered list (if user got it wrong later)
   function removeMasteredQuestion(qId) {
     APP_STATE.masteredQuestionIds = APP_STATE.masteredQuestionIds.filter(id => id !== qId);
     saveMasteredQuestions();
   }
 
-  // Add a question to wrong list if not present
   function addWrongQuestion(qObj) {
     const exists = APP_STATE.wrongQuestions.some(w => w.id === qObj.id);
     if (!exists) {
@@ -400,7 +417,6 @@
     }
   }
 
-  // Remove a question from wrong list
   function removeWrongQuestion(qId) {
     APP_STATE.wrongQuestions = APP_STATE.wrongQuestions.filter(w => w.id !== qId);
     saveWrongQuestions();
@@ -408,13 +424,8 @@
   }
 
   // =========================================================================
-  // DOCX PARSER ENGINE (Mammoth.js Integration & Regex Bold Detection)
+  // DOCX PARSER ENGINE
   // =========================================================================
-
-  /**
-   * Reads ArrayBuffer of DOCX file, converts to HTML via Mammoth,
-   * then extracts Questions and Choices, identifying Bold elements as correct answers.
-   */
   async function parseDocxFile(arrayBuffer, filename) {
     try {
       showToast('Đang phân tích file .docx...', 'loader');
@@ -423,36 +434,30 @@
         throw new Error('Thư viện Mammoth.js chưa được tải!');
       }
 
-      // Convert DOCX to HTML preserving bold tags
       const result = await window.mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
       const htmlText = result.value;
 
-      // Parse HTML with DOMParser
       const parser = new DOMParser();
       const doc = parser.parseFromString(htmlText, 'text/html');
 
       const questions = [];
       let currentQ = null;
 
-      // Regex patterns
       const qPattern = /^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i;
       const optPattern = /^([A-D])[\.\/\)]\s*/i;
 
-      // Query all block elements
       const elements = doc.querySelectorAll('p, h1, h2, h3, h4, div, li');
 
       elements.forEach((el) => {
         const fullText = el.textContent ? el.textContent.trim() : '';
         if (!fullText) return;
 
-        // Detect if element contains bold tags (<strong> or <b>)
         const hasBoldTag = Boolean(el.querySelector('strong, b'));
 
         const matchQ = qPattern.test(fullText);
         const matchOpt = optPattern.exec(fullText);
 
         if (matchQ) {
-          // If a current question exists, push it before creating a new one
           if (currentQ && currentQ.options.length > 0) {
             questions.push(currentQ);
           }
@@ -466,7 +471,6 @@
           };
         } else if (matchOpt && currentQ) {
           const optionLabel = matchOpt[1].toUpperCase();
-          // Clean text: strip option prefix (e.g. 'A. ')
           const cleanOptionText = fullText.replace(/^([A-D])[\.\/\)]\s*/i, '').trim();
 
           const isCorrect = hasBoldTag;
@@ -485,7 +489,6 @@
         }
       });
 
-      // Push final question
       if (currentQ && currentQ.options.length > 0) {
         questions.push(currentQ);
       }
@@ -494,7 +497,6 @@
         throw new Error('Không tìm thấy định dạng câu hỏi hợp lệ trong file!');
       }
 
-      // Verify correct answers detection count
       const validCount = questions.filter(q => q.correctIndex !== -1).length;
       
       saveQuestionBank(questions, filename);
@@ -507,7 +509,6 @@
     }
   }
 
-  // Load sample file directly (supports both local file:// protocol and http server)
   async function loadSampleFile() {
     try {
       if (window.SAMPLE_QUESTIONS && window.SAMPLE_QUESTIONS.length > 0) {
@@ -526,12 +527,12 @@
       await parseDocxFile(buffer, '[VNR202] ĐỀ CƯƠNG THẦY NHỰTVH.docx');
     } catch (err) {
       console.warn('Fetch sample failed, requesting file selection:', err);
-      DOM.fileInput.click();
+      if (DOM.fileInput) DOM.fileInput.click();
     }
   }
 
   // =========================================================================
-  // QUIZ ENGINE (20 Random Questions, Option Shuffle, Feedback, Progress)
+  // QUIZ ENGINE
   // =========================================================================
 
   function startQuizSession(mode = 'UNLEARNED_ONLY') {
@@ -550,7 +551,6 @@
         showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
         return;
       }
-      // Filter questions NOT YET mastered
       sourcePool = APP_STATE.questionBank.filter(q => !APP_STATE.masteredQuestionIds.includes(q.id));
 
       if (sourcePool.length === 0) {
@@ -558,20 +558,17 @@
         alert('🎉 CHÚC MỪNG BẠN!\n\nBạn đã hoàn thành dứt điểm 100% tất cả các câu hỏi trong bộ đề này.\n\nNếu muốn học lại từ đầu, hãy bấm nút "Reset Tiến Độ".');
         return;
       }
-      // Max 20 questions per round for unlearned mode
       sessionQuestions = shuffleArray(sourcePool).slice(0, Math.min(20, sourcePool.length));
     } else {
-      // NORMAL / ALL_RANDOM - Practice ALL questions in dataset
+      // NORMAL / ALL - Practice ALL questions in dataset (e.g. 480 questions)
       if (APP_STATE.questionBank.length === 0) {
         showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
         return;
       }
       sourcePool = [...APP_STATE.questionBank];
-      // Practice ALL questions in the bank
       sessionQuestions = shuffleArray(sourcePool);
     }
 
-    // Deep clone and shuffle options A, B, C, D for each question
     const processedQuestions = sessionQuestions.map(q => {
       const shuffledOpts = shuffleArray(q.options);
       const newCorrectIndex = shuffledOpts.findIndex(o => o.isCorrect);
@@ -583,7 +580,6 @@
       };
     });
 
-    // Reset session state
     APP_STATE.currentSession = {
       mode: mode,
       questions: processedQuestions,
@@ -593,11 +589,11 @@
     };
 
     if (mode === 'WRONG_ONLY') {
-      DOM.quizModeLabel.textContent = 'Luyện Tập Câu Sai';
+      if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = 'Luyện Tập Câu Sai';
     } else if (mode === 'UNLEARNED_ONLY') {
-      DOM.quizModeLabel.textContent = `Học Câu Chưa Thuộc (Còn ${sourcePool.length} câu)`;
+      if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `Học Câu Chưa Thuộc (Còn ${sourcePool.length} câu)`;
     } else {
-      DOM.quizModeLabel.textContent = `Luyện Tập Tất Cả (${sessionQuestions.length} Câu)`;
+      if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `Luyện Tập Tất Cả (${sessionQuestions.length} Câu)`;
     }
     
     showView(DOM.viewQuiz);
@@ -609,88 +605,84 @@
     const currentQ = session.questions[session.currentIndex];
     const totalQ = session.questions.length;
 
-    // Progress Bar & Counter
     const percent = Math.round(((session.currentIndex + 1) / totalQ) * 100);
-    DOM.quizProgressFill.style.width = `${percent}%`;
-    DOM.quizProgressText.textContent = `${session.currentIndex + 1} / ${totalQ}`;
-    DOM.currentQIndex.textContent = `${session.currentIndex + 1}`;
+    if (DOM.quizProgressFill) DOM.quizProgressFill.style.width = `${percent}%`;
+    if (DOM.quizProgressText) DOM.quizProgressText.textContent = `${session.currentIndex + 1} / ${totalQ}`;
+    if (DOM.currentQIndex) DOM.currentQIndex.textContent = `${session.currentIndex + 1}`;
 
-    // Flag Icon state
     const isWrongSaved = APP_STATE.wrongQuestions.some(w => w.id === currentQ.id);
-    DOM.flagIcon.style.color = isWrongSaved ? 'var(--warning)' : 'inherit';
+    if (DOM.flagIcon) DOM.flagIcon.style.color = isWrongSaved ? 'var(--warning)' : 'inherit';
 
-    // Question Text (uniform styling)
-    DOM.qTextContent.textContent = currentQ.questionText;
+    if (DOM.qTextContent) DOM.qTextContent.textContent = currentQ.questionText;
 
-    // Options Rendering
-    DOM.optionsContainer.innerHTML = '';
-    DOM.feedbackMsg.className = 'feedback-msg';
-    DOM.feedbackMsg.innerHTML = '';
-    DOM.btnNextQ.disabled = true;
+    if (DOM.optionsContainer) {
+      DOM.optionsContainer.innerHTML = '';
+      const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-    // Labels generator A, B, C, D
-    const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
+      currentQ.options.forEach((opt, idx) => {
+        const optEl = document.createElement('div');
+        optEl.className = 'option-item';
+        optEl.setAttribute('data-index', idx);
 
-    currentQ.options.forEach((opt, idx) => {
-      const optEl = document.createElement('div');
-      optEl.className = 'option-item';
-      optEl.setAttribute('data-index', idx);
+        const labelLetter = labels[idx] || (idx + 1);
 
-      const labelLetter = labels[idx] || (idx + 1);
+        optEl.innerHTML = `
+          <div class="option-label">${labelLetter}</div>
+          <div class="option-content">${escapeHTML(opt.text)}</div>
+        `;
 
-      optEl.innerHTML = `
-        <div class="option-label">${labelLetter}</div>
-        <div class="option-content">${escapeHTML(opt.text)}</div>
-      `;
+        optEl.addEventListener('click', () => handleOptionSelect(idx));
+        DOM.optionsContainer.appendChild(optEl);
+      });
+    }
 
-      optEl.addEventListener('click', () => handleOptionSelect(idx));
-      DOM.optionsContainer.appendChild(optEl);
-    });
+    if (DOM.feedbackMsg) {
+      DOM.feedbackMsg.className = 'feedback-msg';
+      DOM.feedbackMsg.innerHTML = '';
+    }
+
+    if (DOM.btnNextQ) DOM.btnNextQ.disabled = true;
   }
 
   function handleOptionSelect(selectedIndex) {
     const session = APP_STATE.currentSession;
     const currentQ = session.questions[session.currentIndex];
 
-    // Disable all options after selection
-    const optionEls = DOM.optionsContainer.querySelectorAll('.option-item');
+    const optionEls = DOM.optionsContainer ? DOM.optionsContainer.querySelectorAll('.option-item') : [];
     optionEls.forEach(el => el.classList.add('disabled'));
 
     const isCorrect = selectedIndex === currentQ.correctIndex;
 
     if (isCorrect) {
       session.score++;
-      optionEls[selectedIndex].classList.add('correct');
-      DOM.feedbackMsg.className = 'feedback-msg show correct-msg';
-      DOM.feedbackMsg.innerHTML = `<i data-lucide="check-circle"></i> <span>Chính xác! 🎉 (Đã thuộc câu này)</span>`;
+      if (optionEls[selectedIndex]) optionEls[selectedIndex].classList.add('correct');
+      if (DOM.feedbackMsg) {
+        DOM.feedbackMsg.className = 'feedback-msg show correct-msg';
+        DOM.feedbackMsg.innerHTML = `<i data-lucide="check-circle"></i> <span>Chính xác! 🎉 (Đã thuộc câu này)</span>`;
+      }
 
-      // Mark as Mastered (Loại bỏ câu này khỏi danh sách chưa thuộc)
       addMasteredQuestion(currentQ.id);
 
-      // If user had this in wrong list and got it right, remove it from wrong list
       if (session.mode === 'WRONG_ONLY') {
         removeWrongQuestion(currentQ.id);
       }
     } else {
-      optionEls[selectedIndex].classList.add('incorrect');
-      // Highlight correct option
+      if (optionEls[selectedIndex]) optionEls[selectedIndex].classList.add('incorrect');
       if (currentQ.correctIndex !== -1 && optionEls[currentQ.correctIndex]) {
         optionEls[currentQ.correctIndex].classList.add('correct');
       }
 
-      DOM.feedbackMsg.className = 'feedback-msg show incorrect-msg';
-      DOM.feedbackMsg.innerHTML = `<i data-lucide="x-circle"></i> <span>Chưa đúng! Đáp án đúng đã được hiển thị.</span>`;
+      if (DOM.feedbackMsg) {
+        DOM.feedbackMsg.className = 'feedback-msg show incorrect-msg';
+        DOM.feedbackMsg.innerHTML = `<i data-lucide="x-circle"></i> <span>Chưa đúng! Đáp án đúng đã được hiển thị.</span>`;
+      }
 
-      // Remove from mastered if previously marked mastered
       removeMasteredQuestion(currentQ.id);
-
-      // Automatically add wrong question to "Cần học lại"
       addWrongQuestion(currentQ);
     }
 
     if (window.lucide) lucide.createIcons();
 
-    // Record answer
     session.userAnswers.push({
       questionId: currentQ.id,
       selectedIndex,
@@ -698,8 +690,7 @@
       correctIndex: currentQ.correctIndex
     });
 
-    // Enable next button
-    DOM.btnNextQ.disabled = false;
+    if (DOM.btnNextQ) DOM.btnNextQ.disabled = false;
   }
 
   function nextQuestion() {
@@ -712,7 +703,6 @@
     }
   }
 
-  // Escape HTML helper
   function escapeHTML(str) {
     return str.replace(/[&<>'"]/g, 
       tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
@@ -720,7 +710,7 @@
   }
 
   // =========================================================================
-  // SUMMARY SCREEN & CONFETTI
+  // SUMMARY SCREEN
   // =========================================================================
 
   function showSummaryScreen() {
@@ -730,24 +720,25 @@
     const wrong = total - correct;
     const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-    DOM.summaryPercent.textContent = `${percentage}%`;
-    DOM.summaryDial.style.setProperty('--percentage', percentage);
+    if (DOM.summaryPercent) DOM.summaryPercent.textContent = `${percentage}%`;
+    if (DOM.summaryDial) DOM.summaryDial.style.setProperty('--percentage', percentage);
 
-    DOM.statTotal.textContent = total;
-    DOM.statCorrect.textContent = correct;
-    DOM.statWrong.textContent = wrong;
+    if (DOM.statTotal) DOM.statTotal.textContent = total;
+    if (DOM.statCorrect) DOM.statCorrect.textContent = correct;
+    if (DOM.statWrong) DOM.statWrong.textContent = wrong;
 
     const wrongCount = APP_STATE.wrongQuestions.length;
-    if (wrongCount > 0) {
-      DOM.btnSummaryWrong.style.display = 'inline-flex';
-      DOM.summaryWrongCount.textContent = wrongCount;
-    } else {
-      DOM.btnSummaryWrong.style.display = 'none';
+    if (DOM.btnSummaryWrong) {
+      if (wrongCount > 0) {
+        DOM.btnSummaryWrong.style.display = 'inline-flex';
+        if (DOM.summaryWrongCount) DOM.summaryWrongCount.textContent = wrongCount;
+      } else {
+        DOM.btnSummaryWrong.style.display = 'none';
+      }
     }
 
     showView(DOM.viewSummary);
 
-    // Trigger confetti if high score!
     if (percentage >= 80 && window.confetti) {
       window.confetti({
         particleCount: 100,
@@ -758,11 +749,13 @@
   }
 
   // =========================================================================
-  // WRONG ANSWERS VIEW ("Cần Học Lại")
+  // WRONG ANSWERS VIEW
   // =========================================================================
 
   function renderWrongList() {
     const wrongList = APP_STATE.wrongQuestions;
+    if (!DOM.wrongListContainer) return;
+
     DOM.wrongListContainer.innerHTML = '';
 
     if (wrongList.length === 0) {
@@ -773,12 +766,12 @@
           <p style="color: var(--text-muted); margin-top: 8px;">Tuyệt vời! Bạn không có câu hỏi nào bị trả lời sai gần đây.</p>
         </div>
       `;
-      DOM.btnWrongPracticeNow.disabled = true;
+      if (DOM.btnWrongPracticeNow) DOM.btnWrongPracticeNow.disabled = true;
       if (window.lucide) lucide.createIcons();
       return;
     }
 
-    DOM.btnWrongPracticeNow.disabled = false;
+    if (DOM.btnWrongPracticeNow) DOM.btnWrongPracticeNow.disabled = false;
 
     wrongList.forEach((q, idx) => {
       const card = document.createElement('div');
@@ -811,80 +804,89 @@
     showView(DOM.viewWrong);
   }
 
+  function openDetailAnswersView() {
+    renderDetailQuestions('', 'all');
+    showView(document.getElementById('view-detail'));
+  }
+
   // =========================================================================
   // EVENT LISTENERS & INITIALIZATION
   // =========================================================================
 
   function setupEventListeners() {
-    // Theme Toggle
-    DOM.themeToggleBtn.addEventListener('click', toggleTheme);
+    if (DOM.themeToggleBtn) DOM.themeToggleBtn.addEventListener('click', toggleTheme);
 
-    // Nav Logo & Home
-    DOM.navLogoBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      showView(DOM.viewUpload);
-    });
-    DOM.btnSummaryHome.addEventListener('click', () => showView(DOM.viewUpload));
-    DOM.btnQuizQuit.addEventListener('click', () => {
-      if (confirm('Bạn có chắc muốn thoát phiên học hiện tại?')) {
+    if (DOM.navLogoBtn) {
+      DOM.navLogoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         showView(DOM.viewUpload);
-      }
-    });
+      });
+    }
+    if (DOM.btnSummaryHome) DOM.btnSummaryHome.addEventListener('click', () => showView(DOM.viewUpload));
+    if (DOM.btnQuizQuit) {
+      DOM.btnQuizQuit.addEventListener('click', () => {
+        if (confirm('Bạn có chắc muốn thoát phiên học hiện tại?')) {
+          showView(DOM.viewUpload);
+        }
+      });
+    }
 
-    // Nav Wrong Answers Button
-    DOM.btnNavWrong.addEventListener('click', openWrongAnswersView);
+    if (DOM.btnNavWrong) DOM.btnNavWrong.addEventListener('click', openWrongAnswersView);
 
-    // Drag and Drop Upload
     const dropZone = DOM.dropZone;
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropZone.classList.add('dragover');
-      }, false);
-    });
+    if (dropZone) {
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.add('dragover');
+        }, false);
+      });
 
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-      }, false);
-    });
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('dragover');
+        }, false);
+      });
 
-    dropZone.addEventListener('drop', (e) => {
-      const dt = e.dataTransfer;
-      const files = dt.files;
-      if (files.length > 0) {
-        handleFileSelect(files[0]);
-      }
-    });
+      dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length > 0) {
+          handleFileSelect(files[0]);
+        }
+      });
+    }
 
-    DOM.fileInput.addEventListener('change', (e) => {
-      if (e.target.files.length > 0) {
-        handleFileSelect(e.target.files[0]);
-      }
-    });
+    if (DOM.fileInput) {
+      DOM.fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          handleFileSelect(e.target.files[0]);
+        }
+      });
+    }
 
-    // Load Sample Button
-    DOM.btnLoadSample.addEventListener('click', loadSampleFile);
+    if (DOM.btnLoadSample) DOM.btnLoadSample.addEventListener('click', loadSampleFile);
 
-    // Bank Actions Buttons
-    DOM.btnStartUnlearned.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
-    DOM.btnStartQuiz.addEventListener('click', () => startQuizSession('NORMAL'));
-    DOM.btnViewAllQ.addEventListener('click', () => {
-      renderDetailQuestions('', 'all');
-      showView(DOM.viewDetail);
-    });
-    DOM.btnStartWrong.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
-    DOM.btnResetMastery.addEventListener('click', () => {
-      if (confirm('Bạn có muốn đặt lại tiến độ? Tất cả câu hỏi sẽ được đưa về trạng thái "Chưa thuộc".')) {
-        resetMasteryProgress();
-      }
-    });
-    DOM.btnClearBank.addEventListener('click', () => {
-      if (confirm('Bạn có chắc muốn xóa bộ câu hỏi hiện tại?')) {
-        clearQuestionBank();
-      }
-    });
+    // Bank Action Buttons
+    if (DOM.btnStartUnlearned) DOM.btnStartUnlearned.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
+    if (DOM.btnStartQuiz) DOM.btnStartQuiz.addEventListener('click', () => startQuizSession('NORMAL'));
+    if (DOM.btnViewAllQ) DOM.btnViewAllQ.addEventListener('click', openDetailAnswersView);
+    if (DOM.btnStartWrong) DOM.btnStartWrong.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
+    if (DOM.btnResetMastery) {
+      DOM.btnResetMastery.addEventListener('click', () => {
+        if (confirm('Bạn có muốn đặt lại tiến độ? Tất cả câu hỏi sẽ được đưa về trạng thái "Chưa thuộc".')) {
+          resetMasteryProgress();
+        }
+      });
+    }
+    if (DOM.btnClearBank) {
+      DOM.btnClearBank.addEventListener('click', () => {
+        if (confirm('Bạn có chắc muốn xóa bộ câu hỏi hiện tại?')) {
+          clearQuestionBank();
+        }
+      });
+    }
 
     // Detail View Event Listeners
     if (DOM.btnDetailBack) {
@@ -898,7 +900,6 @@
       });
     }
 
-    // Filter Pills Event Listeners
     const filterPills = document.querySelectorAll('.filter-pill');
     filterPills.forEach(pill => {
       pill.addEventListener('click', () => {
@@ -911,35 +912,37 @@
     });
 
     // Quiz Controls
-    DOM.btnNextQ.addEventListener('click', nextQuestion);
-    DOM.btnFlagQ.addEventListener('click', () => {
-      const currentQ = APP_STATE.currentSession.questions[APP_STATE.currentSession.currentIndex];
-      const isWrongSaved = APP_STATE.wrongQuestions.some(w => w.id === currentQ.id);
-      if (isWrongSaved) {
-        removeWrongQuestion(currentQ.id);
-        DOM.flagIcon.style.color = 'inherit';
-        showToast('Đã bỏ đánh dấu câu hỏi này.', 'bookmark');
-      } else {
-        addWrongQuestion(currentQ);
-        DOM.flagIcon.style.color = 'var(--warning)';
-        showToast('Đã đánh dấu câu hỏi vào "Cần học lại".', 'bookmark-check');
-      }
-    });
+    if (DOM.btnNextQ) DOM.btnNextQ.addEventListener('click', nextQuestion);
+    if (DOM.btnFlagQ) {
+      DOM.btnFlagQ.addEventListener('click', () => {
+        const currentQ = APP_STATE.currentSession.questions[APP_STATE.currentSession.currentIndex];
+        const isWrongSaved = APP_STATE.wrongQuestions.some(w => w.id === currentQ.id);
+        if (isWrongSaved) {
+          removeWrongQuestion(currentQ.id);
+          if (DOM.flagIcon) DOM.flagIcon.style.color = 'inherit';
+          showToast('Đã bỏ đánh dấu câu hỏi này.', 'bookmark');
+        } else {
+          addWrongQuestion(currentQ);
+          if (DOM.flagIcon) DOM.flagIcon.style.color = 'var(--warning)';
+          showToast('Đã đánh dấu câu hỏi vào "Cần học lại".', 'bookmark-check');
+        }
+      });
+    }
 
-    // Summary Actions
-    DOM.btnSummaryRestart.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
-    DOM.btnSummaryWrong.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
+    if (DOM.btnSummaryRestart) DOM.btnSummaryRestart.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
+    if (DOM.btnSummaryWrong) DOM.btnSummaryWrong.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
 
-    // Wrong View Actions
-    DOM.btnWrongPracticeNow.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
-    DOM.btnClearAllWrong.addEventListener('click', () => {
-      if (confirm('Bạn có chắc muốn xóa toàn bộ danh sách Cần học lại?')) {
-        APP_STATE.wrongQuestions = [];
-        saveWrongQuestions();
-        renderWrongList();
-        showToast('Đã xóa tất cả câu hỏi sai.', 'trash-2');
-      }
-    });
+    if (DOM.btnWrongPracticeNow) DOM.btnWrongPracticeNow.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
+    if (DOM.btnClearAllWrong) {
+      DOM.btnClearAllWrong.addEventListener('click', () => {
+        if (confirm('Bạn có chắc muốn xóa toàn bộ danh sách Cần học lại?')) {
+          APP_STATE.wrongQuestions = [];
+          saveWrongQuestions();
+          renderWrongList();
+          showToast('Đã xóa tất cả câu hỏi sai.', 'trash-2');
+        }
+      });
+    }
   }
 
   function handleFileSelect(file) {
@@ -959,12 +962,16 @@
   // App Initialization
   function init() {
     initTheme();
+    initDOMElements();
     loadStoredData();
     setupEventListeners();
     
-    // Global exposure for inline onclick handlers
+    // Global exposure for inline onclick fallback & debug
     window.QuizApp = {
-      removeWrong: removeWrongQuestion
+      removeWrong: removeWrongQuestion,
+      openDetail: openDetailAnswersView,
+      startAll: () => startQuizSession('NORMAL'),
+      startUnlearned: () => startQuizSession('UNLEARNED_ONLY')
     };
 
     if (window.lucide) {
