@@ -77,6 +77,10 @@
       masteryProgressFill: document.getElementById('mastery-progress-fill'),
 
       btnStartFlashcard: document.getElementById('btn-start-flashcard'),
+      btnOpenCategories: document.getElementById('btn-open-categories'),
+      categoriesCountBtn: document.getElementById('categories-count-btn'),
+      btnCategoriesQuit: document.getElementById('btn-categories-quit'),
+      categoriesGrid: document.getElementById('categories-grid'),
       btnStartUnlearned: document.getElementById('btn-start-unlearned'),
       unlearnedCountBtn: document.getElementById('unlearned-count-btn'),
       btnStartQuiz: document.getElementById('btn-start-quiz'),
@@ -176,7 +180,8 @@
       document.getElementById('view-summary'),
       document.getElementById('view-wrong'),
       document.getElementById('view-detail'),
-      document.getElementById('view-flashcard')
+      document.getElementById('view-flashcard'),
+      document.getElementById('view-categories')
     ];
 
     allViews.forEach(v => {
@@ -399,7 +404,7 @@
 
       card.innerHTML = `
         <div class="wrong-item-header">
-          <span>Câu ${q.originalNum || idx + 1}</span>
+          <span>Câu ${q.originalNum || idx + 1} ${q.category ? `<small style="margin-left: 8px; color: var(--primary); font-size: 0.8rem; background: var(--primary-light); padding: 2px 8px; border-radius: 6px;">${escapeHTML(q.category)}</small>` : ''}</span>
           <span class="badge" style="${badgeStyle}">${badgeText}</span>
         </div>
         <div class="wrong-item-q">${escapeHTML(q.questionText)}</div>
@@ -443,6 +448,96 @@
   // =========================================================================
   // DOCX PARSER ENGINE
   // =========================================================================
+  // CATEGORY / CHAPTER SELECTION ENGINE
+  // =========================================================================
+
+  function renderCategoryList() {
+    const grid = document.getElementById('categories-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    if (APP_STATE.questionBank.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state" style="grid-column: 1 / -1;">
+          <div class="empty-icon"><i data-lucide="book-x"></i></div>
+          <h3>Chưa có dữ liệu câu hỏi!</h3>
+          <p style="color: var(--text-muted); margin-top: 8px;">Vui lòng nạp file câu hỏi để học theo chương.</p>
+        </div>
+      `;
+      if (window.lucide) lucide.createIcons();
+      return;
+    }
+
+    const catMap = {};
+    APP_STATE.questionBank.forEach(q => {
+      const catName = q.category || 'Chưa phân loại';
+      if (!catMap[catName]) {
+        catMap[catName] = [];
+      }
+      catMap[catName].push(q);
+    });
+
+    const catNames = Object.keys(catMap);
+    if (DOM.categoriesCountBtn) DOM.categoriesCountBtn.textContent = `${catNames.length} Phần`;
+
+    catNames.forEach((catName, idx) => {
+      const questionsInCat = catMap[catName];
+      const totalCount = questionsInCat.length;
+      const masteredCount = questionsInCat.filter(q => APP_STATE.masteredQuestionIds.includes(q.id)).length;
+      const percent = Math.round((masteredCount / totalCount) * 100);
+
+      const card = document.createElement('div');
+      card.className = 'category-card';
+
+      card.innerHTML = `
+        <div>
+          <div class="category-meta">
+            <span style="font-weight: 700; color: #10b981;">Phần ${idx + 1}</span>
+            <span><strong style="color: var(--text-main);">${masteredCount}</strong> / ${totalCount} câu</span>
+          </div>
+          <h3 class="category-title">${escapeHTML(catName)}</h3>
+          
+          <div class="category-progress-bar">
+            <div class="category-progress-fill" style="width: ${percent}%;"></div>
+          </div>
+        </div>
+
+        <div class="category-actions">
+          <button class="btn btn-primary btn-start-cat-quiz" data-cat="${escapeHTML(catName)}" style="background: linear-gradient(135deg, #10b981, #059669);">
+            <i data-lucide="shuffle"></i> Trắc Nghiệm (${totalCount} câu)
+          </button>
+          <button class="btn btn-secondary btn-start-cat-fc" data-cat="${escapeHTML(catName)}">
+            <i data-lucide="layers"></i> Flashcard (${totalCount} thẻ)
+          </button>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    grid.querySelectorAll('.btn-start-cat-quiz').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const cat = e.currentTarget.getAttribute('data-cat');
+        startQuizSession('CATEGORY', cat);
+      });
+    });
+
+    grid.querySelectorAll('.btn-start-cat-fc').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const cat = e.currentTarget.getAttribute('data-cat');
+        startFlashcardSession(cat);
+      });
+    });
+
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function openCategoriesView() {
+    renderCategoryList();
+    showView(document.getElementById('view-categories'));
+  }
+
+  // =========================================================================
   async function parseDocxFile(arrayBuffer, filename) {
     try {
       showToast('Đang phân tích file .docx...', 'loader');
@@ -459,9 +554,31 @@
 
       const questions = [];
       let currentQ = null;
+      let currentCategory = 'CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1';
+
+      const validHeaderTitles = new Set([
+        'CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1',
+        'CHƯƠNG 2 VÀ CHƯƠNG 3',
+        'SAU 1954',
+        'CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH',
+        'CHƯƠNG 3',
+        'ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)',
+        'PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ',
+        'PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)',
+        'PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)',
+        'PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)',
+        'PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)'
+      ]);
+
+      function isCategoryHeader(text) {
+        const clean = text.trim().toUpperCase();
+        if (validHeaderTitles.has(clean)) return true;
+        const headerRegex = /^(PHẦN\s*\d+|CHƯƠNG\s*\d+|THỜI KỲ|SAU 1954|CHIẾN TRANH CỤC BỘ)/i;
+        return headerRegex.test(text.trim()) && text.trim().length < 90;
+      }
 
       const qPattern = /^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i;
-      const optPattern = /^([A-D])[\.\/\)]\s*/i;
+      const optPattern = /^([A-F])[\.\/\)]\s*/i;
 
       const elements = doc.querySelectorAll('p, h1, h2, h3, h4, div, li');
 
@@ -474,7 +591,11 @@
         const matchQ = qPattern.test(fullText);
         const matchOpt = optPattern.exec(fullText);
 
-        if (matchQ) {
+        if (!matchQ && !matchOpt) {
+          if (isCategoryHeader(fullText)) {
+            currentCategory = fullText;
+          }
+        } else if (matchQ) {
           if (currentQ && currentQ.options.length > 0) {
             questions.push(currentQ);
           }
@@ -483,12 +604,13 @@
             id: 'q_' + (questions.length + 1) + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
             originalNum: questions.length + 1,
             questionText: fullText,
+            category: currentCategory,
             options: [],
             correctIndex: -1
           };
         } else if (matchOpt && currentQ) {
           const optionLabel = matchOpt[1].toUpperCase();
-          const cleanOptionText = fullText.replace(/^([A-D])[\.\/\)]\s*/i, '').trim();
+          const cleanOptionText = fullText.replace(/^([A-F])[\.\/\)]\s*/i, '').trim();
 
           const isCorrect = hasBoldTag;
 
@@ -552,11 +674,22 @@
   // QUIZ ENGINE
   // =========================================================================
 
-  function startQuizSession(mode = 'UNLEARNED_ONLY') {
+  function startQuizSession(mode = 'UNLEARNED_ONLY', targetCategory = '') {
     let sourcePool = [];
     let sessionQuestions = [];
 
-    if (mode === 'WRONG_ONLY') {
+    if (mode === 'CATEGORY') {
+      if (APP_STATE.questionBank.length === 0) {
+        showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
+        return;
+      }
+      sourcePool = APP_STATE.questionBank.filter(q => q.category === targetCategory);
+      if (sourcePool.length === 0) {
+        showToast('Không tìm thấy câu hỏi thuộc phần này!', 'alert-circle');
+        return;
+      }
+      sessionQuestions = shuffleArray(sourcePool);
+    } else if (mode === 'WRONG_ONLY') {
       if (APP_STATE.wrongQuestions.length === 0) {
         showToast('Danh sách "Cần học lại" đang trống!', 'alert-circle');
         return;
@@ -606,7 +739,9 @@
       score: 0
     };
 
-    if (mode === 'WRONG_ONLY') {
+    if (mode === 'CATEGORY') {
+      if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `${targetCategory} (${sessionQuestions.length} câu)`;
+    } else if (mode === 'WRONG_ONLY') {
       if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `Luyện Tập Câu Sai (${sessionQuestions.length} câu)`;
     } else if (mode === 'UNLEARNED_ONLY') {
       if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `Học Câu Chưa Thuộc (Còn ${sourcePool.length} câu)`;
@@ -838,16 +973,22 @@
   // 3D FLASHCARD ENGINE (Card Flip & Independent Progress)
   // =========================================================================
 
-  function startFlashcardSession() {
+  function startFlashcardSession(targetCategory = '') {
     if (APP_STATE.questionBank.length === 0) {
       showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
       return;
     }
 
+    if (typeof targetCategory === 'string' && targetCategory) {
+      APP_STATE.activeFlashcardBank = APP_STATE.questionBank.filter(q => q.category === targetCategory);
+    } else {
+      APP_STATE.activeFlashcardBank = APP_STATE.questionBank;
+    }
+
     const savedIndex = localStorage.getItem(STORAGE_KEYS.FLASHCARD_INDEX);
-    if (savedIndex !== null) {
+    if (savedIndex !== null && (!targetCategory || typeof targetCategory !== 'string')) {
       APP_STATE.flashcardIndex = parseInt(savedIndex, 10) || 0;
-      if (APP_STATE.flashcardIndex >= APP_STATE.questionBank.length) {
+      if (APP_STATE.flashcardIndex >= APP_STATE.activeFlashcardBank.length) {
         APP_STATE.flashcardIndex = 0;
       }
     } else {
@@ -859,7 +1000,7 @@
   }
 
   function renderFlashcard() {
-    const bank = APP_STATE.questionBank;
+    const bank = APP_STATE.activeFlashcardBank || APP_STATE.questionBank;
     const total = bank.length;
     if (total === 0) return;
 
@@ -936,7 +1077,8 @@
   }
 
   function nextFlashcard() {
-    const total = APP_STATE.questionBank.length;
+    const bank = APP_STATE.activeFlashcardBank || APP_STATE.questionBank;
+    const total = bank.length;
     if (APP_STATE.flashcardIndex < total - 1) {
       APP_STATE.flashcardIndex++;
       localStorage.setItem(STORAGE_KEYS.FLASHCARD_INDEX, APP_STATE.flashcardIndex);
@@ -1019,7 +1161,9 @@
     if (DOM.btnLoadSample) DOM.btnLoadSample.addEventListener('click', loadSampleFile);
 
     // Bank Action Buttons
-    if (DOM.btnStartFlashcard) DOM.btnStartFlashcard.addEventListener('click', startFlashcardSession);
+    if (DOM.btnOpenCategories) DOM.btnOpenCategories.addEventListener('click', openCategoriesView);
+    if (DOM.btnCategoriesQuit) DOM.btnCategoriesQuit.addEventListener('click', () => showView(DOM.viewUpload));
+    if (DOM.btnStartFlashcard) DOM.btnStartFlashcard.addEventListener('click', () => startFlashcardSession());
     if (DOM.btnStartUnlearned) DOM.btnStartUnlearned.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
     if (DOM.btnStartQuiz) DOM.btnStartQuiz.addEventListener('click', () => startQuizSession('NORMAL'));
     if (DOM.btnViewAllQ) DOM.btnViewAllQ.addEventListener('click', openDetailAnswersView);

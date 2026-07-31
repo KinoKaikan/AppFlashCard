@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234255ff'/><text x='50' y='72' font-size='65' font-weight='bold' text-anchor='middle' fill='white' font-family='sans-serif'>Q</text></svg>">
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=3.4">
+  <link rel="stylesheet" href="styles.css?v=3.5">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,7 +17,7 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Sample Pre-parsed Data for CORS-free file:// protocol loading -->
-  <script src="sampleData.js?v=3.4"></script>
+  <script src="sampleData.js?v=3.5"></script>
 </head>
 <body>
 
@@ -106,6 +106,10 @@
         </div>
 
         <div class="bank-actions">
+          <button class="btn btn-primary" id="btn-open-categories" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);">
+            <i data-lucide="book-open"></i>
+            <span>Học Theo Phần / Theo Chương (<strong id="categories-count-btn">10 Phần</strong>)</span>
+          </button>
           <button class="btn btn-primary" id="btn-start-flashcard" style="background: linear-gradient(135deg, #6366f1, #4255ff); box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);">
             <i data-lucide="layers"></i>
             <span>Học Flashcard Lật Thẻ (480 Thẻ)</span>
@@ -135,6 +139,29 @@
             <span>Xóa Bộ Đề</span>
           </button>
         </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 7: CATEGORY / CHAPTER SELECTION VIEW (Học Theo Phần / Chương)
+         ========================================================================= -->
+    <section id="view-categories" class="view">
+      <div class="quiz-header">
+        <div class="quiz-top-bar">
+          <button class="btn-quit" id="btn-categories-quit">
+            <i data-lucide="arrow-left"></i> Quay lại Màn hình chính
+          </button>
+          <span class="quiz-mode-tag" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">Danh Sách Các Phần & Chương Học</span>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <h2 style="font-size: 1.5rem; font-weight: 800;">Chọn Phần Hoặc Chương Bài Học Để Ôn Tập</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Hệ thống chia sẵn 480 câu hỏi theo đúng các chương và thời kỳ lịch sử.</p>
+        </div>
+      </div>
+
+      <div class="categories-grid" id="categories-grid">
+        <!-- Rendered dynamically by JavaScript -->
       </div>
     </section>
 
@@ -360,7 +387,7 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Application Logic JS -->
-  <script src="app.js?v=3.4"></script>
+  <script src="app.js?v=3.5"></script>
 
 </body>
 </html>

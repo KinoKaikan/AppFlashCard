@@ -3,6 +3,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_1",
     "originalNum": 1,
     "questionText": "Câu 1: Đối tượng nghiên cứu môn học Lịch sử Cộng sản Việt Nam là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -31,6 +32,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_2",
     "originalNum": 2,
     "questionText": "Câu 2: Chức năng của khoa học Lịch sử Đảng gồm:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -59,6 +61,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_3",
     "originalNum": 3,
     "questionText": "Câu 3: Từ sau nửa thế kỷ 19, chủ nghĩa tư bản phương Tây chuyển từ giai đoạn:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -87,6 +90,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_4",
     "originalNum": 4,
     "questionText": "Câu 4: Phong trào giải phóng dân tộc ở các nước … đầu thế kỷ 20 phát triển rộng khắp, tác động mạnh mẽ đến phong trào yêu nước Việt Nam. Trong dấu “…” là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -115,6 +119,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_5",
     "originalNum": 5,
     "questionText": "Câu 5: Sự tác động của … đã làm biến đổi sâu sắc tình hình thế giới. Trong dấu “…” là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -143,6 +148,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_6",
     "originalNum": 6,
     "questionText": "Câu 6: Tháng 3/1919 có sự kiện nào ra đời?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -171,6 +177,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_7",
     "originalNum": 7,
     "questionText": "Câu 7: Tình hình thế giới từ nửa sau thế kỷ 19 đã ảnh hưởng như thế nào tới sự ra đời của Đảng Cộng sản Việt Nam?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -199,6 +206,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_8",
     "originalNum": 8,
     "questionText": "Câu 8: Pháp nổ súng tấn công Đà Nẵng vào thời gian nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -227,6 +235,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_9",
     "originalNum": 9,
     "questionText": "Câu 9: Cuộc khai thác thuộc địa lần thứ nhất của thực dân Pháp vào năm?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -255,6 +264,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_10",
     "originalNum": 10,
     "questionText": "Câu 10: Cuộc khai thác thuộc địa lần thứ hai của thực dân Pháp vào năm?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -283,6 +293,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_11",
     "originalNum": 11,
     "questionText": "Câu 11: Về kinh tế, thực dân Pháp kết hợp phương thức bóc lột như thế nào ở Việt Nam?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -311,6 +322,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_12",
     "originalNum": 12,
     "questionText": "Câu 12: Về chính trị, thực dân Pháp thi hành chính sách chuyên chế với bộ máy nặng nề, mọi quyền hành đều thâu tóm bởi:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -339,6 +351,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_13",
     "originalNum": 13,
     "questionText": "Câu 13: Thực dân Pháp thực hiện chính sách chia để trị nhằm:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -367,6 +380,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_14",
     "originalNum": 14,
     "questionText": "Câu 14: Về văn hóa, thực dân Pháp thực hiện chính sách:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -395,6 +409,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_15",
     "originalNum": 15,
     "questionText": "Câu 15: Xã hội Việt Nam dưới thời Pháp thuộc tồn tại mấy giai cấp?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -423,6 +438,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_16",
     "originalNum": 16,
     "questionText": "Câu 16: Tại sao giai cấp nông dân lại mâu thuẫn với đế quốc và phong kiến?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -451,6 +467,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_17",
     "originalNum": 17,
     "questionText": "Câu 17: Giai cấp nào là lực lượng to lớn nhất, mạnh mẽ nhất?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -479,6 +496,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_18",
     "originalNum": 18,
     "questionText": "Câu 18: Giai cấp nào phải chịu sự áp bức, bóc lột của 3 tầng lớp là đế quốc, phong kiến và tư sản bản xứ.",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -507,6 +525,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_19",
     "originalNum": 19,
     "questionText": "Câu 19: Năm 1920, Quốc tế Cộng sản đã thông qua Sơ thảo lần thứ nhất Luận Cương về vấn đề … và vấn đề … của Lênin. Từ còn thiếu là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -535,6 +554,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_20",
     "originalNum": 20,
     "questionText": "Câu 20: Đầu thế kỷ 20, mâu thuẫn cơ bản, chủ yếu trong xã hội Việt Nam là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -563,6 +583,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_21",
     "originalNum": 21,
     "questionText": "Câu 21: Phong trào Cần Vương 1885 – 1896 và phong trào Yên Thế 1884 – 1913 theo khuynh hướng nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -591,6 +612,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_22",
     "originalNum": 22,
     "questionText": "Câu 22: Phong trào Cần Vương 1885 – 1896 do ai phát động?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -619,6 +641,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_23",
     "originalNum": 23,
     "questionText": "Câu 23: Đầu thế kỷ 20, Phan Bội Châu chủ trương tập hợp lực lượng và tiến hành theo phương pháp:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -647,6 +670,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_24",
     "originalNum": 24,
     "questionText": "Câu 24: Đầu thế kỷ 20, Phan Châu Trinh chủ trương tiến hành theo phương pháp:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -675,6 +699,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_25",
     "originalNum": 25,
     "questionText": "Câu 25: Ai đã nói: Trong thế giới bây giờ chỉ có cách mạng Nga là đã thành công và thành công đến nơi, nghĩa là dân chúng được hưởng cái hạnh phúc tự do, bình đẳng thật.",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -703,6 +728,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_26",
     "originalNum": 26,
     "questionText": "Câu 26: Nguyễn Tấn Thành lấy tên là Nguyễn Ái Quốc vào năm nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -731,6 +757,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_27",
     "originalNum": 27,
     "questionText": "Câu 27: Chủ tịch Hồ Chí Minh lấy tên Nguyễn Tất Thành vào năm:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -759,6 +786,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_28",
     "originalNum": 28,
     "questionText": "Câu 28: Tháng 6/1923, Nguyễn Ái Quốc tới Liên Xô và làm việc tại:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -787,6 +815,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_29",
     "originalNum": 29,
     "questionText": "Câu 29: Tác phẩm nào được coi là tác phẩm chính trị đầu tiên của cách mạng Việt Nam?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -815,6 +844,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_30",
     "originalNum": 30,
     "questionText": "Câu 30: Năm 1926, Hội Việt Nam Cách mạng Thanh niên đã thể hiện:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -843,6 +873,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_31",
     "originalNum": 31,
     "questionText": "Câu 31: Tổ chức nào là tiền thân dẫn đến sự ra đời của Đảng Cộng sản Việt Nam?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -871,6 +902,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_32",
     "originalNum": 32,
     "questionText": "Câu 32: Theo Nguyễn Ái Quốc: Cách mạng là việc chung của cả dân chúng chứ không phải là việc của …, từ còn thiếu là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -899,6 +931,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_33",
     "originalNum": 33,
     "questionText": "Câu 33: Cách mệnh trước hết phải có đảng cách mệnh, để trong thì vận động và tổ chức dân chúng, ngoài thì liên lạc với dân tộc bị áp bức và vô sản giai cấp mọi nơi. Đảng có vững cách mạng mới thành công cũng như người cầm lái có vững thuyền mới chạy. Nguyễn Ái Quốc nói tới vấn đề gì?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -927,6 +960,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_34",
     "originalNum": 34,
     "questionText": "Câu 34: Hệ thống tổ chức của Hội Việt Nam cách mạng Thanh niên có mấy cấp?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -955,6 +989,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_35",
     "originalNum": 35,
     "questionText": "Câu 35: 5 cấp của Hội Việt Nam cách mạng Thanh niên là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -983,6 +1018,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_36",
     "originalNum": 36,
     "questionText": "Câu 36: Con đường GPDT theo khuynh hướng chính trị vô sản được Nguyễn Ái Quốc lựa chọn vào năm?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1011,6 +1047,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_37",
     "originalNum": 37,
     "questionText": "Câu 37: Nguyễn Ái Quốc viết tác phẩm Đường cách mệnh vào năm nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1039,6 +1076,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_38",
     "originalNum": 38,
     "questionText": "Câu 38: Tác phẩm Đường cách mệnh là cuốn sách … của cách mạng Việt Nam. Từ còn thiếu là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1067,6 +1105,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_39",
     "originalNum": 39,
     "questionText": "Câu 39: Tổ chức cộng sản nào được ra đời đầu tiên ở Việt Nam?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1095,6 +1134,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_40",
     "originalNum": 40,
     "questionText": "Câu 40: Đông Dương Cộng sản Đảng ra đời vào:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1123,6 +1163,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_41",
     "originalNum": 41,
     "questionText": "Câu 41: Đông Dương cộng sản liên đoàn chính thức gia nhập ĐCS Việt Nam vào thời gian nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1151,6 +1192,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_42",
     "originalNum": 42,
     "questionText": "Câu 42: Xuất phát từ đâu mà Nguyễn Ái Quốc triệu tập chủ trì hội nghị thành lập Đảng năm 1930?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1179,6 +1221,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_43",
     "originalNum": 43,
     "questionText": "Câu 43: Tại Hội nghị hợp nhất do Nguyễn Ái Quốc chủ trì năm 1930 có mấy đại biểu?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1207,6 +1250,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_44",
     "originalNum": 44,
     "questionText": "Câu 44: Sau Hội nghị thành lập Đảng, Ban chấp hành Trung ương lâm thời được thành lập do ai đứng đầu?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1235,6 +1279,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_45",
     "originalNum": 45,
     "questionText": "Câu 45: Hội nghị thành lập Đảng năm 1930 thảo luận và thống nhất tên là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1263,6 +1308,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_46",
     "originalNum": 46,
     "questionText": "Câu 46: Hội nghị thành lập ĐCSVN năm 1930 thảo luận và thông qua mấy văn kiện?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1291,6 +1337,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_47",
     "originalNum": 47,
     "questionText": "Câu 47: Chánh cương vắn tắt, Sách lược vắn tắt, Chương trình tóm tắt và Điều lệ vắn tắt của ĐCS Việt Nam hợp thành nội dung gì?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1319,6 +1366,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_48",
     "originalNum": 48,
     "questionText": "Câu 48: Sự ra đời của Đảng Cộng sản Việt Nam là sự kết hợp của:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1347,6 +1395,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_49",
     "originalNum": 49,
     "questionText": "Câu 49: (Phương án đúng nhất). Chủ nghĩa Mác Lênin cùng với phong trào công nhân và phong trào yêu nước đã tạo nên:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1375,6 +1424,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_50",
     "originalNum": 50,
     "questionText": "Câu 50: Đâu là sự sáng tạo của Hồ Chí Minh trong việc ra đời của Đảng Cộng sản Việt Nam?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1403,6 +1453,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_51",
     "originalNum": 51,
     "questionText": "Câu 51: Từ xã hội phong kiến nước ta trở thành xã hội thuộc địa nửa phong kiến có mấy giai cấp tồn tại?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1431,6 +1482,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_52",
     "originalNum": 52,
     "questionText": "Câu 52: Dưới chế độ phong kiến xã hội Việt Nam tồn tại những giai cấp nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1459,6 +1511,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_53",
     "originalNum": 53,
     "questionText": "Câu 53: Dưới chế độ thuộc địa xã hội Việt Nam tồn tại những giai cấp chủ yếu nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1487,6 +1540,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_54",
     "originalNum": 54,
     "questionText": "Câu 54: Năm 1927, Nguyễn Ái Quốc xuất bản tác phẩm nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1510,6 +1564,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_55",
     "originalNum": 55,
     "questionText": "Câu 55: Bảo Đại trị vị đất nước từ năm 1926 – 1945 có tên thật là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1533,6 +1588,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_56",
     "originalNum": 56,
     "questionText": "Câu 56: Chủ nghĩa tư bản đã có 2 cuộc khủng hoảng kinh tế vào những năm nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1561,6 +1617,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_57",
     "originalNum": 57,
     "questionText": "Câu 57: Năm 1930 – 1931 được gọi là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1589,6 +1646,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_58",
     "originalNum": 58,
     "questionText": "Câu 58: Năm 1936 – 1939 được gọi là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1617,6 +1675,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_59",
     "originalNum": 59,
     "questionText": "Câu 59: Năm 1939 – 1945 được gọi là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1645,6 +1704,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_60",
     "originalNum": 60,
     "questionText": "Câu 60: Việc đổi tên Đảng Cộng sản Việt Nam thành Đảng Cộng sản Đông Dương là do:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1673,6 +1733,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_61",
     "originalNum": 61,
     "questionText": "Câu 61: Văn kiện nào của Đảng đặt nhiệm vụ chống đế quốc lên hàng đầu?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1701,6 +1762,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_62",
     "originalNum": 62,
     "questionText": "Câu 62: Luận cương tháng 10/1930 xác định phương hướng của cách mạng: Lúc đầu là một cuộc cách mạng … có tính chất phản đế và thổ địa, sau đó phát triển …đấu tranh tiến thẳng lên chủ nghĩa xã hội. Dấu “…” là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1729,6 +1791,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_63",
     "originalNum": 63,
     "questionText": "Câu 63: Lực lượng lãnh đạo cách mạng là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1757,6 +1820,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_64",
     "originalNum": 64,
     "questionText": "Câu 65: Phương pháp cách mạng là võ trang bạo động và phải theo khuôn phép …, từ còn thiếu là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1785,6 +1849,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_65",
     "originalNum": 65,
     "questionText": "Câu 66: Vấn đề thổ địa là cái cốt của cách mạng tư sản dân quyền được nhấn mạnh trong văn kiện nào của Đảng?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1813,6 +1878,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_66",
     "originalNum": 66,
     "questionText": "Câu 67: Nguyên nhân chủ yếu có ý nghĩa quyết định sự bùng nổ và phát triển của cao trào cách mạng Việt Nam năm 1930 là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1841,6 +1907,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_67",
     "originalNum": 67,
     "questionText": "Câu 68: Đồng chí Trần Phú là … đầu tiên của Đảng. Từ còn thiếu?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1869,6 +1936,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_68",
     "originalNum": 68,
     "questionText": "Câu 69: Trong lịch sử, Tổng bí thư Đảng Cộng sản Việt Nam trẻ tuổi nhất là ai?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1897,6 +1965,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_69",
     "originalNum": 69,
     "questionText": "Câu 70: Tổng bí thư ĐCS Việt Nam giữ nhiều nhiệm kỳ nhất là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1925,6 +1994,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_70",
     "originalNum": 70,
     "questionText": "Câu 71: Tổng bí thư ĐCS Việt Nam cao tuổi nhất được đại hội Đảng bầu là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1953,6 +2023,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_71",
     "originalNum": 71,
     "questionText": "Câu 72: Tổng bí thư ĐCS Việt Nam kinh qua nhiều chức vụ nhất là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -1981,6 +2052,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_72",
     "originalNum": 72,
     "questionText": "Câu 73: Chủ tịch Hồ Chí Minh làm chủ tịch Đảng thời gian từ:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2009,6 +2081,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_73",
     "originalNum": 73,
     "questionText": "Câu 74: Thời gian nào, tên Đảng Lao động Việt Nam đổi thành Đảng Cộng sản Việt Nam?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2037,6 +2110,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_74",
     "originalNum": 74,
     "questionText": "Câu 75: Ai đã nói: Hãy giữ vững chí khí chiến đấu?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2065,6 +2139,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_75",
     "originalNum": 75,
     "questionText": "Câu 76: Ai đã nói: Con đường của thanh niên chỉ có thể là con đường cách mạng?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2093,6 +2168,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_76",
     "originalNum": 76,
     "questionText": "Câu 77: Ngày 6/6/1931, lãnh tụ Nguyễn Ái Quốc bị ai bắt, ở đâu?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2121,6 +2197,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_77",
     "originalNum": 77,
     "questionText": "Câu 78: Vừa mới ra đời, Đảng đã phát động được một phong trào cách mạng rộng lớn đó là phong trào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2149,6 +2226,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_78",
     "originalNum": 78,
     "questionText": "Câu 79: Chương trình hành động của Đảng Cộng sản Đông Dương đề ra nhiệm vụ đặc biệt là gì?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2177,6 +2255,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_79",
     "originalNum": 79,
     "questionText": "Câu 80: Tháng 3/1935, Đại hội đại biểu lần thứ nhất của Đảng họp tại Ma Cao – Trung Quốc, Bầu Tổng bí thư là ai?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2205,6 +2284,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_80",
     "originalNum": 80,
     "questionText": "Câu 81: Giới sử học Việt Nam ví cuộc diễn tập lần hai của Đảng là phong trào:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2233,6 +2313,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_81",
     "originalNum": 81,
     "questionText": "Câu 82: Đối tượng của phong trào dân chủ 1936 – 1939 là đối tượng?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2261,6 +2342,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_82",
     "originalNum": 82,
     "questionText": "Câu 83: Đảng ta đã chủ trương tập hợp những lực lượng nào trong phong trào dân chủ 1936 – 1939?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2289,6 +2371,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_83",
     "originalNum": 83,
     "questionText": "Câu 84: Tháng 7/1936, Ban chấp hành Trung ương Đảng họp và chủ trương thành lập:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2317,6 +2400,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_84",
     "originalNum": 84,
     "questionText": "Câu 85: Năm 1939, cuốn sách Tự chỉ trích là của tác giả nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2345,6 +2429,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_85",
     "originalNum": 85,
     "questionText": "Câu 86: Mục tiêu cụ thể trước mắt của phong trào dân chủ 1936 – 1939 là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2373,6 +2458,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_86",
     "originalNum": 86,
     "questionText": "Câu 87: Hình thức tổ chức và đấu tranh trong thời kỳ 1936 – 1939 là:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2401,6 +2487,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_87",
     "originalNum": 87,
     "questionText": "Câu 88: Phong trào giải phóng dân tộc 1939 – 1945 diễn ra trong bối cảnh?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2429,6 +2516,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_88",
     "originalNum": 88,
     "questionText": "Câu 89: Năm 1940, thực dân Pháp đầu hàng và câu kết với Nhật, nhân dân Đông Dương phải chịu cảnh:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2457,6 +2545,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_89",
     "originalNum": 89,
     "questionText": "Câu 90: Ngày 28/9/1939, Toàn quyền Đông Dương ra nghị định đặt Đảng Cộng sản Đông Dương:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2485,6 +2574,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_90",
     "originalNum": 90,
     "questionText": "Câu 91: Hội nghị Trung ương 8, tháng 5/1941 xác định:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2513,6 +2603,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_91",
     "originalNum": 91,
     "questionText": "Câu 92: Hội nghị Trung ương 8 tháng 5/1941 xác định: Cách mạng ở từng nước Đông Dương thực hiện chính sách:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2541,6 +2632,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_92",
     "originalNum": 92,
     "questionText": "Câu 93: Hội nghị Trung ương 8, tháng 5/1941 xác định chuẩn bị … là nhiệm vụ trung tâm của Đảng. Từ còn thiếu là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2569,6 +2661,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_93",
     "originalNum": 93,
     "questionText": "Câu 94: Năm 1942, lãnh tụ Nguyễn Ái Quốc cho ra đời tác phẩm nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2597,6 +2690,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_94",
     "originalNum": 94,
     "questionText": "Câu 95: Nhật đảo chính Pháp độc chiếm Đông Dương vào thời gian nào?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2625,6 +2719,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_95",
     "originalNum": 95,
     "questionText": "Câu 96: Ngày 12/3/1945, Ban thường vụ Trung ương Đảng ra chỉ thị:",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2653,6 +2748,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_96",
     "originalNum": 96,
     "questionText": "Câu 97: Tháng 5/1945, thành lập?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2681,6 +2777,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_97",
     "originalNum": 97,
     "questionText": "Câu 98: Một hình ảnh nhà nước Việt Nam thu nhỏ trong kháng chiến chống thực dân đế quốc năm 1945 là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2709,6 +2806,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_98",
     "originalNum": 98,
     "questionText": "Câu 99: Cao trào kháng Nhật cứu nước là cuộc khởi nghĩa … và chiến tranh …, từ còn thiếu là?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2737,6 +2835,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_99",
     "originalNum": 99,
     "questionText": "Câu 100: Hội Nghị Trung ương lần thứ mấy có ý nghĩa quyết định thắng lợi của Cách mạng Tháng Tám năm 1945?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2765,6 +2864,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_100",
     "originalNum": 100,
     "questionText": "Câu 101: Năm 1945, địa danh nào được coi là một Nhà nước Việt Nam thu nhỏ?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2793,6 +2893,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_101",
     "originalNum": 101,
     "questionText": "Câu 102: Chủ Tịch Hồ Chí Minh đọc Bản Tuyên ngôn độc lập ngày 2/9/1945 vào lúc mấy giờ?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2821,6 +2922,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_102",
     "originalNum": 102,
     "questionText": "Câu 103: Phong trào cách mạng nào ảnh hưởng trực tiếp đến sự thành công của Cách mạng Tháng Tám 1945?",
+    "category": "CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1",
     "options": [
       {
         "label": "A",
@@ -2849,6 +2951,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_103",
     "originalNum": 103,
     "questionText": "Câu 104: Tình hình cách mạng Việt Nam sau cách mạng Tháng 8/1945 như thế nào? (phương án đúng nhất)",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -2877,6 +2980,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_104",
     "originalNum": 104,
     "questionText": "Câu 105: Đảng ta xác định kẻ thù chính, trực tiếp của cách mạng nước ta sau năm 1945 là:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -2905,6 +3009,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_105",
     "originalNum": 105,
     "questionText": "Câu 106: Ngày 3/9/1945, Chủ tịch Hồ Chí Minh xác định nhiệm vụ lớn trước mắt là:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -2933,6 +3038,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_106",
     "originalNum": 106,
     "questionText": "Câu 107: Tháng 11/1945, Chỉ thị kháng chiến kiến quốc xác định:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -2961,6 +3067,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_107",
     "originalNum": 107,
     "questionText": "Câu 108: Lần đầu tiên, lá cờ đỏ sao vàng xuất hiện ở cuộc:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -2989,6 +3096,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_108",
     "originalNum": 108,
     "questionText": "Câu 109: Năm 1946, Chủ tịch Hồ Chí Minh đã tặng đồng bào Nam Bộ danh hiệu:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3017,6 +3125,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_109",
     "originalNum": 109,
     "questionText": "Câu 110: Ngày 11/11/1945, Đảng chủ trương và tuyên bố nội dung gì?",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3045,6 +3154,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_110",
     "originalNum": 110,
     "questionText": "Câu 111: Hồ Chí Minh nói: Một dân tộc dốt là một dân tộc …",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3073,6 +3183,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_111",
     "originalNum": 111,
     "questionText": "Câu 112: Từ tháng 9/1945 – 3/1946 Đảng, Chính phủ chủ trương:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3101,6 +3212,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_112",
     "originalNum": 112,
     "questionText": "Câu 113: Từ tháng 3/1946 – 12/1946 Đảng, Chính phủ chủ trương:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3129,6 +3241,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_113",
     "originalNum": 113,
     "questionText": "Câu 114: Hiệp định sơ bộ ngày 6/3/1946. Chính phủ Pháp chỉ công nhận Việt Nam là một …",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3157,6 +3270,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_114",
     "originalNum": 114,
     "questionText": "Câu 115: Ngày 14/9/1946, Chủ tịch Hồ Chí Minh đã ký với đại diện chính phủ Pháp:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3185,6 +3299,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_115",
     "originalNum": 115,
     "questionText": "Câu 116: Giai đoạn cách mạng 1945 – 1946, Đảng ta đã phát huy sức mạnh khối đại đoàn kết dân tộc và biết:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3213,6 +3328,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_116",
     "originalNum": 116,
     "questionText": "Câu 117: Xây dựng và bảo vệ chính quyền cách mạng năm 1945 - 1946, Đảng ta thực hiện tốt nguyên tắc:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3241,6 +3357,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_117",
     "originalNum": 117,
     "questionText": "Câu 118: Trong kháng chiến chống Pháp giai đoạn 1946 – 1950, Đảng ta xác định: Là cuộc chiến tranh nhân dân, toàn dân, toàn diện, lâu dài dựa vào sức mình là chính. Được hiểu là:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3269,6 +3386,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_118",
     "originalNum": 118,
     "questionText": "Câu 119: Thu đông năm 1947, quân và dân ta giành thắng lợi ở:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3297,6 +3415,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_119",
     "originalNum": 119,
     "questionText": "Câu 120: Võ Nguyên Giáp được phong hàm đại tướng vào:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3325,6 +3444,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_120",
     "originalNum": 120,
     "questionText": "Câu 121: Tháng 11/1949, Chủ tịch Hồ Chí Minh ký ban hành:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3353,6 +3473,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_121",
     "originalNum": 121,
     "questionText": "Câu 122: Đại hội Đảng lần thứ mấy quyết định đưa Đảng ra hoạt động công khai?",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3381,6 +3502,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_122",
     "originalNum": 122,
     "questionText": "Câu 123: Việc Đảng ta lấy tên: Đảng lao động Việt Nam được đại hội Đảng lần thứ mấy quyết định?",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3409,6 +3531,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_123",
     "originalNum": 123,
     "questionText": "Câu 124: Tính dân chủ nhân dân, một phần thuộc địa, một phần nửa phong kiến được hiểu là:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3437,6 +3560,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_124",
     "originalNum": 124,
     "questionText": "Câu 125: Tính chất của xã hội Việt Nam trong chính cương của Đảng lao động Việt Nam xác định:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3465,6 +3589,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_125",
     "originalNum": 125,
     "questionText": "Câu 126: Đối tượng đấu tranh chính của Việt Nam giai đoạn 1951 – 1954 là:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3493,6 +3618,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_126",
     "originalNum": 126,
     "questionText": "Câu 127: Nhiệm vụ của cách mạng mà Đảng ta xác định tại Đại hội Đảng 2 – 1951 đó là:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3521,6 +3647,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_127",
     "originalNum": 127,
     "questionText": "Câu 128: Con đường đi lên CNXH của Việt Nam được đại hội Đảng 2-1951 nêu trong chính cương phải trải qua:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3549,6 +3676,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_128",
     "originalNum": 128,
     "questionText": "Câu 129: Tháng 11/1953, Trung ương Đảng tiến hành công việc gì?",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3577,6 +3705,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_129",
     "originalNum": 129,
     "questionText": "Câu 130: Chiến dịch Điện Biên Phủ nghệ thuật quân sự Việt Nam là:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3605,6 +3734,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_130",
     "originalNum": 130,
     "questionText": "Câu 131: Chiến thắng Điện Biên Phủ năm 1954 giành thắng lợi, Hiệp định Giơnevơ được ký kết, tuy nhiên thắng lợi đó không trọn vẹn của Việt Nam bởi vì:",
+    "category": "CHƯƠNG 2 VÀ CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -3633,6 +3763,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_131",
     "originalNum": 131,
     "questionText": "Câu 132: Miền Bắc đi lên chủ nghĩa xã hội từ năm nào?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3661,6 +3792,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_132",
     "originalNum": 132,
     "questionText": "Câu 133: Năm 1954, cách mạng miền Bắc tiến hành:",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3689,6 +3821,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_133",
     "originalNum": 133,
     "questionText": "Câu 134: Hội nghị lần thứ 6 tháng 7/1954, Trung ương Đảng chỉ rõ: Hiện nay đế quốc Mỹ là kẻ thù chính của nhân dân … và nó đang trở thành kẻ thù chính và trực tiếp của nhân dân … cho nên mọi việc của ta đều nhằm chống đế quốc Mỹ. Từ còn thiếu?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3717,6 +3850,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_134",
     "originalNum": 134,
     "questionText": "Câu 135: Nghị quyết Bộ chính trị tháng 9/1954 xác định: Cách mạng miền Nam chuyển từ đấu tranh … sang đấu tranh … từ còn thiếu là?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3745,6 +3879,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_135",
     "originalNum": 135,
     "questionText": "Câu 136: Năm 1956, Đề cương cách mạng Việt Nam ở miền Nam xác định: (phương án đúng nhất)",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3773,6 +3908,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_136",
     "originalNum": 136,
     "questionText": "Câu 137: … Là bước nhảy vọt có ý nghĩa quyết định để chuyển cách mạng miền Nam từ thế giữ gìn lực lượng sang thế tiến công, là của thắng lợi nào?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3801,6 +3937,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_137",
     "originalNum": 137,
     "questionText": "Câu 138: Xây dựng chủ nghĩa xã hội ở miền Bắc và đấu tranh hòa bình thống nhất nước nhà. Là chủ đề của đại hội Đảng lần thứ mấy?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3829,6 +3966,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_138",
     "originalNum": 138,
     "questionText": "Câu 139: Đại hội Đảng lần thứ mấy thông qua đường lối kháng chiến chống Mỹ cứu nước?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3857,6 +3995,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_139",
     "originalNum": 139,
     "questionText": "Câu 140: Chiến lược chiến tranh đặc biệt được Mỹ thực hiện từ năm nào?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3885,6 +4024,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_140",
     "originalNum": 140,
     "questionText": "Câu 141: Chiến tranh đặc biệt là Mỹ sử dụng:",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3913,6 +4053,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_141",
     "originalNum": 141,
     "questionText": "Câu 142: Chiến lược chiến tranh đặc biệt Mỹ triển khai là:",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3941,6 +4082,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_142",
     "originalNum": 142,
     "questionText": "Câu 143: Chiến thắng nào quyết định phá sản chiến lược chiến tranh đặc biệt của Mỹ?",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3969,6 +4111,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_143",
     "originalNum": 143,
     "questionText": "Câu 144: Năm 1965, cách mạng miền Nam đã sáng tạo ra một hình thức tác chiến độc đáo đó là: Phương châm tác chiến độc đáo là 2 chân.",
+    "category": "SAU 1954",
     "options": [
       {
         "label": "A",
@@ -3992,6 +4135,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_144",
     "originalNum": 144,
     "questionText": "Câu 145: Chiến lược chiến tranh cục bộ được Mỹ triển khai từ năm:",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4020,6 +4164,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_145",
     "originalNum": 145,
     "questionText": "Câu 146: Đưa quân đội viễn chinh Mỹ và quân các nước đồng minh của Mỹ vào trực tiếp tham chiến. Được Mỹ sử dụng trong chiến lược nào?",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4048,6 +4193,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_146",
     "originalNum": 146,
     "questionText": "Câu 147: Tháng 12/1965, Trung ương Đảng đề ra Đường lối kháng chiến chống Mỹ trên cả nước là:",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4076,6 +4222,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_147",
     "originalNum": 147,
     "questionText": "Câu 148: Dám đánh Mỹ sẽ tìm ra cách đánh Mỹ. Là câu nói của ai?",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4104,6 +4251,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_148",
     "originalNum": 148,
     "questionText": "Câu 149: Trận giành thắng lợi vang dội đầu tiên của cách mạng miền Nam củng cố tinh thần và quyết tâm đánh giặc Mỹ trên toàn chiến trường là trận đánh nào?",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4132,6 +4280,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_149",
     "originalNum": 149,
     "questionText": "Câu 150: Chân lý: Không có gì quí hơn độc lập tự do được Hồ Chí Minh nói vào thời gian nào?",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4160,6 +4309,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_150",
     "originalNum": 150,
     "questionText": "Câu 151: Mục đích của chiến lược chiến tranh cục bộ là:",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4188,6 +4338,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_151",
     "originalNum": 151,
     "questionText": "Câu 152: Hội nghị Trung ương Đảng lần thứ 13, khóa 3 tháng 1/1967 Xác định:",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4216,6 +4367,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_152",
     "originalNum": 152,
     "questionText": "Câu 153: Trong cuộc tiến công và nổi dậy Tết Mậu Thân 1968, lực lượng nào có vai trò rất quan trọng?",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4244,6 +4396,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_153",
     "originalNum": 153,
     "questionText": "Câu 154: Chiến lược Việt Nam hóa chiến tranh là của:",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4272,6 +4425,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_154",
     "originalNum": 154,
     "questionText": "Câu 155: Chiến thắng nào của quân và dân ta buộc Mỹ phải ngồi đàm phán Hiệp định Pari tháng 1/1973?",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4300,6 +4454,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_155",
     "originalNum": 155,
     "questionText": "Câu 156: Nhiệm vụ: Đánh cho Mỹ cút là nhờ vào chiến thắng nào của quân và dân ta?",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4328,6 +4483,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_156",
     "originalNum": 156,
     "questionText": "Câu 157: 21 năm Mỹ xâm lược Việt Nam và đã sử dụng:",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4356,6 +4512,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_157",
     "originalNum": 157,
     "questionText": "Câu 158: Bài học trong kháng chiến chống đế quốc Mỹ xâm lược là:",
+    "category": "CHIẾN TRANH CỤC BỘ VÀ VIỆT NAM HÓA CHIẾN TRANH",
     "options": [
       {
         "label": "A",
@@ -4384,6 +4541,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_158",
     "originalNum": 158,
     "questionText": "Câu 159: Sau năm 1975, đất nước hòa bình, độc lập, thống nhất, Đảng ta đặt ra nhiệm vụ:",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4412,6 +4570,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_159",
     "originalNum": 159,
     "questionText": "Câu 160: Hội nghị Hiệp thương chính trị 2 đoàn đại biểu Nam – Bắc tháng 11/1975 khẳng định:",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4440,6 +4599,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_160",
     "originalNum": 160,
     "questionText": "Câu 161: Từ tên nước là Việt Nam dân chủ cộng hòa thành nước Cộng hòa xã hội chủ nghĩa Việt Nam, được Quốc hội nước Việt Nam quyết định đổi tên nước từ năm nào?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4468,6 +4628,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_161",
     "originalNum": 161,
     "questionText": "Câu 162: Đại hội Đảng lần thứ mấy quyết định đổi tên từ Đảng Lao động Việt Nam thành Đảng Cộng sản Việt Nam?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4496,6 +4657,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_162",
     "originalNum": 162,
     "questionText": "Câu 163: Đại hội Đảng lần thứ 4 xác định mấy cuộc cách mạng?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4524,6 +4686,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_163",
     "originalNum": 163,
     "questionText": "Câu 164: Đại hội Đảng lần thứ mấy xác định phải ưu tiên phát triển công nghiệp nặng?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4552,6 +4715,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_164",
     "originalNum": 164,
     "questionText": "Câu 165: Hội nghị Trung Ương 6 tháng 8/1979 xác định sản xuất phải được …",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4580,6 +4744,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_165",
     "originalNum": 165,
     "questionText": "Câu 166: Chỉ thị 100-CT/TW tháng 1/1981 về khoán sản phẩm trong hợp tác xã còn được gọi là:",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4608,6 +4773,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_166",
     "originalNum": 166,
     "questionText": "Câu 167: Trung Quốc tấn công toàn tuyến biên giới phía bắc nước ta vào thời gian nào?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4636,6 +4802,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_167",
     "originalNum": 167,
     "questionText": "Câu 168: Trước cuộc tấn công xâm lược của Trung Quốc, ngày 5/3/1979, Chủ tịch Tôn Đức Thắng đã ra lệnh gì?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4664,6 +4831,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_168",
     "originalNum": 168,
     "questionText": "Câu 169: Đại hội Đảng lần thứ 5 xác định nội dung gì?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4692,6 +4860,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_169",
     "originalNum": 169,
     "questionText": "Câu 170: Đại hội Đảng lần thứ mấy coi nông nghiệp là mặt trận hàng đầu?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4720,6 +4889,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_170",
     "originalNum": 170,
     "questionText": "Câu 171: Hội nghị Trung ương 5 tháng 8/1986 xác định những bước đột phá là:",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4748,6 +4918,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_171",
     "originalNum": 171,
     "questionText": "Câu 172: Hội nghị Trung ương 5 tháng 8/1986 xác định đột phá về cơ cấu sản xuất là:",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4776,6 +4947,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_172",
     "originalNum": 172,
     "questionText": "Câu 173: Đại hội Đảng lần thứ mấy nhận thức đúng của thời kỳ quá độ lên CNXH ở nước ta là nền kinh tế nhiều thành phần?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4804,6 +4976,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_173",
     "originalNum": 173,
     "questionText": "Câu 174: Đại hội Đảng lần thứ mấy cho rằng cơ chế quản lý kinh tế theo nguyên tắc, quy luật kinh tế XHCN, đồng thời sử dụng đúng đắn các quy luật quan hệ hàng hóa – tiền tệ?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4832,6 +5005,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_174",
     "originalNum": 174,
     "questionText": "Câu 175: Từ năm 1979 – 1986, Đảng ta nhận thức và chỉ đạo mấy bước đột phá để tạo nền tảng xây dựng đất nước?",
+    "category": "CHƯƠNG 3",
     "options": [
       {
         "label": "A",
@@ -4860,6 +5034,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_175",
     "originalNum": 175,
     "questionText": "Câu 176: Đại hội Đảng lần thứ mấy quyết tâm thực hiện đường lối đổi mới toàn diện đất nước?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -4888,6 +5063,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_176",
     "originalNum": 176,
     "questionText": "Câu 177: Đại hội Đảng lần thứ mấy lần đầu tiên đại hội đã nhìn thẳng vào sự thật, đánh giá đúng sự thật, nói rõ sự thật?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -4916,6 +5092,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_177",
     "originalNum": 177,
     "questionText": "Câu 178: Bài học mà Đại hội Đảng 6/1986 đưa ra là Đảng phải quán triệt tư tưởng lấy:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -4944,6 +5121,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_178",
     "originalNum": 178,
     "questionText": "Câu 179: Đại hội Đảng 6/1986 xác định phải thực hiện nhất quán chính sách:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -4972,6 +5150,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_179",
     "originalNum": 179,
     "questionText": "Câu 180: Đại hội Đảng lần thứ mấy xác định bình thường hóa quan hệ với Trung Quốc?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5000,6 +5179,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_180",
     "originalNum": 180,
     "questionText": "Câu 181: Lần đầu tiên Đại hội Đảng 6/1986 đưa ra đổi mới tư duy để thực hiện:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5028,6 +5208,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_181",
     "originalNum": 181,
     "questionText": "Câu 182: Đảng xác định phát huy quyền làm chủ tập thể của nhân dân, thực hiện dân biết, dân bàn, dân làm, dân kiểm tra. Được Đại hội Đảng lần thứ mấy sử dụng?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5056,6 +5237,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_182",
     "originalNum": 182,
     "questionText": "Câu 183: Nghị quyết số 10-NQ/TW tháng 4/1988 về Đổi mới quản lý kinh tế nông nghiệp, gọi tắt là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5084,6 +5266,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_183",
     "originalNum": 183,
     "questionText": "Câu 184: Đại hội Đảng lần thứ mấy lần đầu tiên Luật đầu tư nước ngoài được Quốc hội thông qua?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5112,6 +5295,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_184",
     "originalNum": 184,
     "questionText": "Câu 185: Đại hội Đảng lần thứ mấy công nhận sự tồn tại lâu dài của kinh tế nhiều thành phần?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5140,6 +5324,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_185",
     "originalNum": 185,
     "questionText": "Câu 186: Cột mốc chính thức sử dụng khái niệm hệ thống chính trị?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5168,6 +5353,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_186",
     "originalNum": 186,
     "questionText": "Câu 187: Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội là Đại hội Đảng lần thứ mấy xác định?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5196,6 +5382,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_187",
     "originalNum": 187,
     "questionText": "Câu 188: Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội được Đại hội Đảng 7/1991 xác định có mấy đặc trưng cơ bản?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5224,6 +5411,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_188",
     "originalNum": 188,
     "questionText": "Câu 189: Đại hội Đảng 7/1991 với bài học đó là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5252,6 +5440,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_189",
     "originalNum": 189,
     "questionText": "Câu 190: Đại hội Đảng lần thứ mấy xác định: Lấy chủ nghĩa Mác – Lênin, tư tưởng Hồ Chí Minh giữ vị trí chủ đạo trong đời sống tinh thần xã hội?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5280,6 +5469,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_190",
     "originalNum": 190,
     "questionText": "Câu 191: Đại hội Đảng lần thứ mấy lần đầu tiên Đảng lấy chủ nghĩa Mác – Lênin, tư tưởng Hồ Chí Minh làm nền tảng tư tưởng, kim chỉ nam cho hành động?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5308,6 +5498,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_191",
     "originalNum": 191,
     "questionText": "Câu 192: Đại hội Đảng 7/1991 là đại hội của:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5336,6 +5527,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_192",
     "originalNum": 192,
     "questionText": "Câu 193: Đại hội Đảng lần thứ mấy thông qua Hiến pháp năm 1992?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5364,6 +5556,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_193",
     "originalNum": 193,
     "questionText": "Câu 194: Chủ trương tự đổi mới, tự chỉnh đốn Đảng được nhấn mạnh tiên quyết tại?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5392,6 +5585,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_194",
     "originalNum": 194,
     "questionText": "Câu 195: Tháng 6/1993, Nghị quyết 5-NQ/TW đưa ra chính sách: Nông nghiệp, nông dân, nông thôn còn được gọi là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5420,6 +5614,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_195",
     "originalNum": 195,
     "questionText": "Câu 196: Đại hội Đảng 7/1991 đưa ra mục tiêu là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5448,6 +5643,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_196",
     "originalNum": 196,
     "questionText": "Câu 197: Đại hội Đảng lần thứ mấy lần đầu tiên có Hội nghị giữa nhiệm kỳ của Đảng?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5476,6 +5672,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_197",
     "originalNum": 197,
     "questionText": "Câu 198: Đại hội Đảng 7/1991 xác định những nguy cơ:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5504,6 +5701,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_198",
     "originalNum": 198,
     "questionText": "Câu 199: Đại hội Đảng lần thứ mấy lần đầu tiên trong văn kiện có xây dựng nhà nước Pháp quyền Việt Nam?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5532,6 +5730,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_199",
     "originalNum": 199,
     "questionText": "Câu 200: Đại hội Đảng lần thứ mấy xác định đẩy mạnh công cuộc đổi mới và bước đầu thực hiện công nghiệp hóa, hiện đại hóa đất nước?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5560,6 +5759,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_200",
     "originalNum": 200,
     "questionText": "Câu 201: Đại hội Đảng 8/1996 xác định mục tiêu xây dựng chủ nghĩa xã hội ở Việt Nam là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5588,6 +5788,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_201",
     "originalNum": 201,
     "questionText": "Câu 202: Đại hội Đảng 8/1996 xác định: Công nghiệp hóa, hiện đại hóa là…",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5616,6 +5817,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_202",
     "originalNum": 202,
     "questionText": "Câu 203: Đại hội Đảng lần thứ mấy xác định phát triển giáo dục – đào tạo là hàng đầu và phát triển khoa học công nghệ là nhân tố quyết định?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5644,6 +5846,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_203",
     "originalNum": 203,
     "questionText": "Câu 204: Đại hội Đảng lần thứ mấy xác định tiếp tục thực hiện công nghiệp hóa, hiện đại hóa đất nước?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5672,6 +5875,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_204",
     "originalNum": 204,
     "questionText": "Câu 205: Đại hội Đảng lần thứ mấy xác định: Văn hóa Việt Nam là tiên tiến, đậm đà bản sắc văn hóa dân tộc?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5700,6 +5904,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_205",
     "originalNum": 205,
     "questionText": "Câu 206: Đại hội Đảng 9/2001 xác định:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5728,6 +5933,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_206",
     "originalNum": 206,
     "questionText": "Câu 207: Đảng ta xác định bỏ qua chế độ tư bản chủ nghĩa là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5756,6 +5962,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_207",
     "originalNum": 207,
     "questionText": "Câu 208: Đại hội Đảng 9/2001 xác định mục tiêu tổng quát là: Đưa Việt Nam ra khỏi tình trạng kém phát triển, tạo nền tảng để đến năm 2020, nước ta …",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5784,6 +5991,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_208",
     "originalNum": 208,
     "questionText": "Câu 209: Quan điểm của ĐCS Việt Nam khẳng định: Tư tưởng Hồ Chí Minh là tài sản:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5812,6 +6020,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_209",
     "originalNum": 209,
     "questionText": "Câu 210: Việt Nam là bạn, là đối tác tin cậy của các nước trong cộng đồng quốc tế, phấn đấu vì hòa bình, độc lập và phát triển, được Đại hội lần thứ mấy của Đảng khẳng định?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5840,6 +6049,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_210",
     "originalNum": 210,
     "questionText": "Câu 211: Đại hội Đảng lần thứ mấy coi kinh tế tư nhân có đóng góp quan trọng vào phát triển kinh tế đất nước?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5868,6 +6078,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_211",
     "originalNum": 211,
     "questionText": "Câu 212: Đại hội Đảng lần thứ 10 diễn ra vào năm?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5896,6 +6107,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_212",
     "originalNum": 212,
     "questionText": "Câu 213: Nâng cao năng lực lãnh đạo và sức chiến đấu của Đảng, phát huy sức mạnh toàn dân tộc, đẩy mạnh toàn diện công cuộc đổi mới, sớm đưa nước ta ra khỏi tình trạng kém phát triển. Là chủ đề của Đại hội Đảng lần thứ mấy?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5924,6 +6136,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_213",
     "originalNum": 213,
     "questionText": "Câu 214: Đại hội Đảng lần thứ mấy xác định: Xây dựng, chỉnh đốn Đảng là nhiệm vụ then chốt và cho phép đảng viên làm kinh tế tư nhân?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5952,6 +6165,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_214",
     "originalNum": 214,
     "questionText": "Câu 215: Đại hội Đảng lần thứ mấy khẳng định: Đổi mới phải vì lợi ích của nhân dân, dựa vào dân phát huy vai trò chủ động sáng tạo của nhân dân.",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -5980,6 +6194,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_215",
     "originalNum": 215,
     "questionText": "Câu 216: Đại hội Đảng 10/2006 xác định đặc trưng của chủ nghĩa xã hội là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6008,6 +6223,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_216",
     "originalNum": 216,
     "questionText": "Câu 217: Đại hội Đảng 10/2006 xác định đặc trưng của chủ nghĩa xã hội là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6036,6 +6252,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_217",
     "originalNum": 217,
     "questionText": "Câu 218: Đại hội Đảng lần thứ mấy xác định: Việt Nam là bạn, là đối tác tin cậy của các nước trong cộng đồng quốc tế?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6064,6 +6281,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_218",
     "originalNum": 218,
     "questionText": "Câu 219: Học tập và làm theo tấm gương đạo đức Hồ Chí Minh là của Đại hội Đảng lần thứ mấy xác định?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6092,6 +6310,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_219",
     "originalNum": 219,
     "questionText": "Câu 220: Năm 2008, Việt Nam đã ra khỏi tình trạng nước nghèo, đứng vào nhóm các nước …",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6120,6 +6339,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_220",
     "originalNum": 220,
     "questionText": "Câu 221: Đại hội Đảng lần thứ mấy bổ sung, phát triển Cương lĩnh năm 1991?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6148,6 +6368,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_221",
     "originalNum": 221,
     "questionText": "Câu 222: Đại hội Đảng lần thứ 11 diễn ra vào năm:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6176,6 +6397,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_222",
     "originalNum": 222,
     "questionText": "Câu 223: Cương lĩnh 2011 khẳng định:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6204,6 +6426,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_223",
     "originalNum": 223,
     "questionText": "Câu 224: Đại hội Đảng 11/2011 đề cập đặc trưng phương hướng cơ bản của:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6232,6 +6455,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_224",
     "originalNum": 224,
     "questionText": "Câu 225: Đại hội Đảng 11/2011 đề cập đặc trưng phương hướng cơ bản là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6260,6 +6484,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_225",
     "originalNum": 225,
     "questionText": "Câu 226: Đại hội Đảng 11/2011 xác định phương hướng xây dựng chủ nghĩa xã hội ở nước ta là: Đẩy mạnh công nghiệp hóa, hiện đại hóa đất nước gắn phát triển kinh tế tri thức và:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6288,6 +6513,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_226",
     "originalNum": 226,
     "questionText": "Câu 227: Đại hội Đảng 11/2011 xác định phát triển kinh tế thị trường với nhiều thành phần kinh tế, trong đó xác định kinh tế có vốn đầu tư nước ngoài:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6316,6 +6542,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_227",
     "originalNum": 227,
     "questionText": "Câu 228: Xây dựng đội ngũ nhà kinh doanh có tài, nhà quản lý giỏi có trách nhiệm với xã hội, tâm huyết với đất nước và dân tộc, được Đại hội Đảng lần thứ mấy đề cập?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6344,6 +6571,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_228",
     "originalNum": 228,
     "questionText": "Câu 229: Đại hội Đảng lần thứ mấy đề cập chiến lược phát triển kinh tế xã hội: Phát triển nhanh gắn liền với phát triển bền vững?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6372,6 +6600,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_229",
     "originalNum": 229,
     "questionText": "Câu 230: Đại hội Đảng lần thứ mấy khẳng định: Việt Nam là bạn, là đối tác tin cậy và thành viên có trách nhiệm trong cộng đồng quốc tế.",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6400,6 +6629,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_230",
     "originalNum": 230,
     "questionText": "Câu 231: Đại hội Đảng lần thứ mấy lần đầu tiên đề cập: Một số vấn đề cấp bách về xây dựng Đảng hiện nay?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6428,6 +6658,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_231",
     "originalNum": 231,
     "questionText": "Câu 232: Đại hội Đảng lần thứ mấy đề cập: Đổi mới căn bản, toàn diện giáo dục đào tạo, đáp ứng yêu cầu công nghiệp hóa, hiện đại hóa trong điều kiện kinh tế thị trường định hướng xã hội chủ nghĩa và hội nhập quốc tế.",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6456,6 +6687,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_232",
     "originalNum": 232,
     "questionText": "Câu 233: Đại hội Đảng lần thứ mấy là đại hội của: Đoàn kết – dân chủ - kỷ cương – đổi mới.",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6484,6 +6716,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_233",
     "originalNum": 233,
     "questionText": "Câu 234: Đại hội Đảng lần thứ mấy xác định: Đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới, tích cực, chủ động hội nhập quốc tế.",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6512,6 +6745,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_234",
     "originalNum": 234,
     "questionText": "Câu 235: Đại hội Đảng lần thứ 12 diễn ra vào năm:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6540,6 +6774,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_235",
     "originalNum": 235,
     "questionText": "Câu 236: Đại hội Đảng lần thứ mấy đã tổng kết 30 năm đổi mới 1986 – 2016 và nêu mục tiêu, nhiệm vụ tổng quát phát triển đất nước 5 năm 2016 – 2021?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6568,6 +6803,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_236",
     "originalNum": 236,
     "questionText": "Câu 237: Đại hội Đảng 12 xác định nhiệm vụ trọng tâm là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6596,6 +6832,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_237",
     "originalNum": 237,
     "questionText": "Câu 238: Đại hội Đảng lần thứ mấy chỉ thị: Đẩy mạnh học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6624,6 +6861,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_238",
     "originalNum": 238,
     "questionText": "Câu 239: Đại hội Đảng lần thứ 12/2016 ra Nghị quyết về:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6652,6 +6890,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_239",
     "originalNum": 239,
     "questionText": "Câu 240: Đại hội Đảng lần thứ mấy chủ trương: Thực hiện hiệu quả quá trình hội nhập kinh tế quốc tế?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6680,6 +6919,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_240",
     "originalNum": 240,
     "questionText": "Câu 241: Đại hội Đảng lần thứ mấy chủ trương: Hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6708,6 +6948,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_241",
     "originalNum": 241,
     "questionText": "Câu 242: Đại hội Đảng 12/2016 chủ trương: Hoàn thiện … kinh tế … định hướng xã hội chủ nghĩa. Từ còn thiếu là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6736,6 +6977,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_242",
     "originalNum": 242,
     "questionText": "Câu 243: Đại hội Đảng lần thứ mấy ban hành Quy định về trách nhiệm nêu gương của cán bộ, đảng viên?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6764,6 +7006,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_243",
     "originalNum": 243,
     "questionText": "Câu 244: Đại hội Đảng lần thứ mấy xác định: Tiếp tục đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới, phấn đấu đến giữa thế kỷ 21, nước ta trở thành nước phát triển theo định hướng xã hội chủ nghĩa?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6792,6 +7035,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_244",
     "originalNum": 244,
     "questionText": "Câu 245: Đại hội Đảng 13/2021 xác định: Tiếp tục đẩy mạnh …, đồng bộ công cuộc đổi mới, phấn đấu đến giữa thế kỷ 21, nước ta trở thành … theo định hướng xã hội chủ nghĩa. Từ còn thiếu là?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6820,6 +7064,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_245",
     "originalNum": 245,
     "questionText": "Câu 246: Đại hội Đảng lần thứ 13/2021 đánh giá:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6848,6 +7093,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_246",
     "originalNum": 246,
     "questionText": "Câu 247: Đại hội Đảng lần thứ mấy đánh giá 30 năm thực hiện Cương lĩnh năm 1991?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6876,6 +7122,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_247",
     "originalNum": 247,
     "questionText": "Câu 248: Đại hội Đảng lần thứ 13/2021 xác định: Đến giữa thế kỷ 21, nước ta trở thành …, từ còn thiếu là?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6904,6 +7151,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_248",
     "originalNum": 248,
     "questionText": "Câu 249: Đại hội Đảng lần thứ 13/2021 đề ra mấy nhiệm vụ trọng tâm?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6932,6 +7180,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_249",
     "originalNum": 249,
     "questionText": "Câu 250: Đại hội Đảng lần thứ mấy đề ra nhiệm vụ: Phấn đấu đến năm 2030, xây dựng quân đội nhân dân, công an nhân dân cách mạng, chính quy, tinh nhuệ, hiện đại.",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6960,6 +7209,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_250",
     "originalNum": 250,
     "questionText": "Câu 251: Đại hội Đảng lần thứ 13/2021 đề ra nhiệm vụ: Phấn đấu đến năm 2030, xây dựng quân đội nhân dân, công an nhân dân …, chính quy, tinh nhuệ, …, từ còn thiếu là?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -6988,6 +7238,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_251",
     "originalNum": 251,
     "questionText": "Câu 252: Đại hội Đảng lần thứ 13/2021 xác định những đột phá chiến lược là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7016,6 +7267,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_252",
     "originalNum": 252,
     "questionText": "Câu 253: Đại hội Đảng lần thứ mấy lần đầu tiên ban hành Nghị quyết về quản lý đất đai tạo động lực đưa nước ta phát triển?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7044,6 +7296,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_253",
     "originalNum": 253,
     "questionText": "Câu 254: Đại hội Đảng lần thứ mấy lần đầu tiên ban hành Nghị quyết về Nông nghiệp, nông dân và nông thôn?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7072,6 +7325,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_254",
     "originalNum": 254,
     "questionText": "Câu 255: Đại hội 13 của Đảng đã nhận định vấn đề nông nghiệp, nông dân, nông thôn thì … là chủ thể, là trung tâm của quá trình phát triển. Từ còn thiếu là?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7100,6 +7354,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_255",
     "originalNum": 255,
     "questionText": "Câu 256: Đại hội Đảng lần thứ mấy ban hành Nghị quyết về Đổi mới, phát triển và nâng cao hiệu quả kinh tế tập thể trong giai đoạn mới?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7128,6 +7383,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_256",
     "originalNum": 256,
     "questionText": "Câu 257: Đại hội Đảng lần thứ 13/2021 Xác định: Kinh tế tập thể là thành phần … phải được củng cố và phát triển. Từ còn thiếu là?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7156,6 +7412,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_257",
     "originalNum": 257,
     "questionText": "Câu 258: Đại hội Đảng lần thứ mấy ban hành Nghị quyết về Tăng cường củng cố, xây dựng tổ chức cơ sở đảng và nâng cao chất lượng đội ngũ đảng viên trong giai đoạn mới?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7184,6 +7441,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_258",
     "originalNum": 258,
     "questionText": "Câu 259: Đảng ta xác định: Đội ngũ nào là nhân tố quyết định đến năng lực lãnh đạo, sức chiến đấu của tổ chức cơ sở đảng?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7212,6 +7470,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_259",
     "originalNum": 259,
     "questionText": "Câu 260: Đại hội Đảng lần thứ mấy ban hành phương châm: Dân biết, dân bàn, dân làm, dân kiểm tra, dân giám sát, dân thụ hưởng?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7240,6 +7499,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_260",
     "originalNum": 260,
     "questionText": "Câu 261: Đại hội Đảng lần thứ 13/2021 bổ sung phương châm: Dân biết, dân bàn, dân làm, dân kiểm tra …, từ còn thiếu là:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7268,6 +7528,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_261",
     "originalNum": 261,
     "questionText": "Câu 262: Đất nước ta chưa bao giờ có được tiềm lực, vị thế và uy tín quốc tế như ngày nay, là văn kiện đại hội Đảng lần thứ mấy khẳng định?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7296,6 +7557,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_262",
     "originalNum": 262,
     "questionText": "Câu 263: Đại hội Đảng lần thứ 13/2021 xác định:",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7324,6 +7586,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_263",
     "originalNum": 263,
     "questionText": "Câu 264: Đại hội Đảng lần thứ 13/2021 xác định đến năm 2030 nước ta là nước … có công nghiệp hiện đại, thu nhập …, từ còn thiếu là?",
+    "category": "ĐƯỜNG LỐI ĐỔI MỚI (TỪ ĐẠI HỘI VI)",
     "options": [
       {
         "label": "A",
@@ -7352,6 +7615,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_264",
     "originalNum": 264,
     "questionText": "Câu 1: Tháng 3/1935, ai làm Tổng bí thư của Đảng?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7380,6 +7644,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_265",
     "originalNum": 265,
     "questionText": "Câu 2: Tháng 7/1936, ai làm Tổng bí thư của Đảng?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7408,6 +7673,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_266",
     "originalNum": 266,
     "questionText": "Câu 3: Tháng 3/1938, ai làm Tổng bí thư của Đảng?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7436,6 +7702,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_267",
     "originalNum": 267,
     "questionText": "Câu 4: Tháng 2/1951, ai làm Tổng bí thư của Đảng?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7464,6 +7731,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_268",
     "originalNum": 268,
     "questionText": "Câu 5: Tổng đốc thành Hà Nội lãnh đạo nhân dân kháng chiến chống Pháp xâm lược Bắc Kỳ lần thứ nhất là ai?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7492,6 +7760,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_269",
     "originalNum": 269,
     "questionText": "Câu 6: Tổng đốc thành Hà Nội lãnh đạo nhân dân kháng chiến chống Pháp xâm lược tại Bắc Kỳ lần thứ 2 là ai?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7520,6 +7789,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_270",
     "originalNum": 270,
     "questionText": "Câu 7: Người được giao nhiệm vụ thành lập đội Việt Nam Tuyên truyền giải phóng quân năm 1944 là ai?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7548,6 +7818,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_271",
     "originalNum": 271,
     "questionText": "Câu 8: Chủ trì thành lập Đảng tháng 2/1930 là ai?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7576,6 +7847,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_272",
     "originalNum": 272,
     "questionText": "Câu 9: Ai làm trưởng đoàn đại biểu Việt Nam dự Hội nghị Giơnevơ?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7604,6 +7876,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_273",
     "originalNum": 273,
     "questionText": "Câu 10: Mặt trận Dân tộc giải phóng miền Nam Việt Nam được thành lập do ai làm chủ tịch?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7632,6 +7905,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_274",
     "originalNum": 274,
     "questionText": "Câu 11: Tại Đại hội lần thứ V của Đảng đã bầu chức vụ Tổng Bí thư Đảng là:",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7660,6 +7934,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_275",
     "originalNum": 275,
     "questionText": "Câu 12: Sau đại thắng mùa xuân 1975, đất nước độc lập thống nhất, Chủ tịch nước là:",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7688,6 +7963,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_276",
     "originalNum": 276,
     "questionText": "Câu 13: Nghị quyết Trung ương 4 khóa 8 tháng 12/1997 bầu ai làm Tổng bí thư của Đảng?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7716,6 +7992,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_277",
     "originalNum": 277,
     "questionText": "Câu 14: Người đứng đầu phong trào yêu nước Việt Nam Quang phục hội là?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7744,6 +8021,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_278",
     "originalNum": 278,
     "questionText": "Câu 15: Cuộc khởi nghĩa Yên Bái là của:",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7772,6 +8050,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_279",
     "originalNum": 279,
     "questionText": "Câu 16: Trưởng đoàn đàm phán của Việt Nam tại hội nghị Phôngtemblô năm 1946 là ai?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7800,6 +8079,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_280",
     "originalNum": 280,
     "questionText": "Câu 1: Đại hội đại biểu toàn quốc của Đảng cộng sản Đông Dương vào tháng 3-1935 bầu ai làm Tổng bí thư?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7828,6 +8108,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_281",
     "originalNum": 281,
     "questionText": "Câu 2: Lê Hồng Phong được bầu làm Tổng bí thư tại Đại hội nào của Đảng?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7856,6 +8137,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_282",
     "originalNum": 282,
     "questionText": "Câu 3: Tổng bí thư đầu tiên của nước ta là:",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7884,6 +8166,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_283",
     "originalNum": 283,
     "questionText": "Câu 4: Ai được bầu làm Tổng Bí thư của Đảng tại Đại hội đại biểu lần thứ II (1951)?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7912,6 +8195,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_284",
     "originalNum": 284,
     "questionText": "Câu 5: Trưởng đoàn đại diện cho phái đoàn Chính phủ Việt Nam Dân chủ Cộng hòa tại Hội nghị Giơnevơ là ai?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7940,6 +8224,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_285",
     "originalNum": 285,
     "questionText": "Câu 6: Tác phẩm \"Kháng chiến nhất định thắng lợi” là của ai?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7968,6 +8253,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_286",
     "originalNum": 286,
     "questionText": "Câu 7: Vào tháng 10/1923, Nguyễn Ái Quốc đến Liên Xô tham dự đại hội của:",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -7996,6 +8282,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_287",
     "originalNum": 287,
     "questionText": "Câu 8: Nguyễn Ái Quốc đã thành lập Hội Việt Nam cách mạng thanh niên ở đâu?",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -8024,6 +8311,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_288",
     "originalNum": 288,
     "questionText": "Câu 9: Sự kiện tháng 6-1924 gắn với hoạt động của Nguyễn Ái Quốc ở Liên Xô, đó là:",
+    "category": "PHẦN 1: NHỮNG CÂU HỎI VỀ NHÂN VẬT LỊCH SỬ",
     "options": [
       {
         "label": "A",
@@ -8052,6 +8340,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_289",
     "originalNum": 289,
     "questionText": "Câu 17: Thực dân Pháp chính thức nổ súng xâm lược nước ta vào năm?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8080,6 +8369,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_290",
     "originalNum": 290,
     "questionText": "Câu 18: Đặc điểm cơ bản của tình hình thế giới cuối thế kỷ 19 đầu thế kỷ 20 là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8108,6 +8398,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_291",
     "originalNum": 291,
     "questionText": "Câu 19: Nguyên nhân nào dẫn đến thực dân Pháp nổ súng xâm lược nước ta?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8136,6 +8427,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_292",
     "originalNum": 292,
     "questionText": "Câu 20: Thực dân Pháp tiến hành mấy cuộc khai thác thuộc địa ở Việt Nam?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8164,6 +8456,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_293",
     "originalNum": 293,
     "questionText": "Câu 21: Trong các chính sách thống trị khai thác thuộc địa của thực dân Pháp, chúng đã sử dụng phương thức bóc lột kinh tế nào là cơ bản?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8192,6 +8485,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_294",
     "originalNum": 294,
     "questionText": "Câu 22: Chính sách thuộc địa của Pháp ở Việt Nam và Đông Dương là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8220,6 +8514,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_295",
     "originalNum": 295,
     "questionText": "Câu 23: Chính sách “chia để trị” và “dùng người Việt đánh người Việt, lấy chiến tranh nuôi chiến tranh” là của đế quốc nào áp dụng ở Việt Nam?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8248,6 +8543,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_296",
     "originalNum": 296,
     "questionText": "Câu 24: Chính cương vắn tắt, sách lược vắn tắt được thông qua tại đại hội nào của Đảng?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8276,6 +8572,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_297",
     "originalNum": 297,
     "questionText": "Câu 25: Giai cấp công nhân Việt Nam ra đời vào thời điểm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8304,6 +8601,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_298",
     "originalNum": 298,
     "questionText": "Câu 26: Giai cấp tư sản Việt Nam ra đời vào thời điểm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8332,6 +8630,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_299",
     "originalNum": 299,
     "questionText": "Câu 27: Phong trào yêu nước điển hình theo khuynh hướng phong kiến cuối thế kỷ XIX đầu thế kỷ XX là?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8360,6 +8659,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_300",
     "originalNum": 300,
     "questionText": "Câu 28: Đông Dương Cộng sản Đảng và An Nam Cộng sản Đảng được ra đời từ tổ chức tiền thân nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8388,6 +8688,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_301",
     "originalNum": 301,
     "questionText": "Câu 29: Ba tổ chức Đảng: Đông Dương Cộng sản Đảng; An Nam Cộng sản Đảng và Đông Dương Cộng sản liên đoàn ra đời vào năm?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8416,6 +8717,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_302",
     "originalNum": 302,
     "questionText": "Câu 30: Nguyên nhân Nguyễn Ái Quốc triệu tập và chủ trì Hội nghị thành lập Đảng đầu năm 1930 là do? (phương án đúng nhất)",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8444,6 +8746,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_303",
     "originalNum": 303,
     "questionText": "Câu 31: Luận cương chính trị tháng 10/1930 nói về phương hướng chiến lược của cách mạng Việt Nam sau khi cách mạng tư sản dân quyền thắng lợi sẽ xây dựng:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8472,6 +8775,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_304",
     "originalNum": 304,
     "questionText": "Câu 32: Hội nghị Toàn quốc của Đảng phát động Tổng khởi nghĩa CMT8/1945 diễn ra ở đâu?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8500,6 +8804,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_305",
     "originalNum": 305,
     "questionText": "Câu 33: Khẩu hiệu đấu tranh trong Tổng khởi nghĩa CMT8/1945 là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8528,6 +8833,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_306",
     "originalNum": 306,
     "questionText": "Câu 34: Nguyên tắc chỉ đạo của Đảng trong Tổng khởi nghĩa CMT8/1945 là?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8556,6 +8862,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_307",
     "originalNum": 307,
     "questionText": "Câu 35: Tổng khởi nghĩa CMT8/1945 giành thắng lợi đầu tiên ở địa phương nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8584,6 +8891,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_308",
     "originalNum": 308,
     "questionText": "Câu 36: Tổng khởi nghĩa giành chính quyền trên cả nước tháng 8/1945 diễn ra trong bao nhiêu ngày?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8612,6 +8920,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_309",
     "originalNum": 309,
     "questionText": "Câu 37: Những lực lượng quân đội nước ngoài nào có mặt trên đất nước Việt Nam sau CMT8/1945?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8640,6 +8949,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_310",
     "originalNum": 310,
     "questionText": "Câu 38: Kẻ thù chính của cách mạng Việt Nam sau tháng 8/1945 là?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8668,6 +8978,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_311",
     "originalNum": 311,
     "questionText": "Câu 39: Lý do nào là quan trọng nhất để Đảng ta chủ trương khi thì tạm thời hòa hoãn với Tưởng để chống Pháp, khi thì hòa hoãn với Pháp để chống Tưởng?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8696,6 +9007,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_312",
     "originalNum": 312,
     "questionText": "Câu 40: Hiệp định sơ bộ ngày 6/3/1946 quy định điều nào dưới đây:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8724,6 +9036,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_313",
     "originalNum": 313,
     "questionText": "Câu 41: Sự kiện nào mở đầu cho sự hòa hoãn giữa Việt Nam với Pháp?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8752,6 +9065,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_314",
     "originalNum": 314,
     "questionText": "Câu 41.2: Vì sao Việt Nam ký với Pháp hiệp định sơ bộ ngày 6/3/1946?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8780,6 +9094,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_315",
     "originalNum": 315,
     "questionText": "Câu 41.3: Nội dung nào trong Hiệp định Sơ bộ 6-3-1946 tạo điều kiện cho ta có thời gian để chuẩn bị lực lượng đối phó lâu dài với Pháp?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8808,6 +9123,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_316",
     "originalNum": 316,
     "questionText": "Câu 42: Tại sao Việt Nam phát động cuộc kháng chiến chống Pháp trên toàn quốc?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8836,6 +9152,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_317",
     "originalNum": 317,
     "questionText": "Câu 43: Khi thực dân Pháp quay lại xâm lược Việt Nam lần thứ 2, mở đầu là cuộc chiến đấu của quân và dân ta diễn ra ở đâu?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8864,6 +9181,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_318",
     "originalNum": 318,
     "questionText": "Câu 44: Nhằm khắc phục tình trạng trống rỗng về ngân sách của chính phủ sau CMT8, nhân dân Việt Nam đã hưởng ứng phong trào nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8892,6 +9210,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_319",
     "originalNum": 319,
     "questionText": "Câu 45: Đảng, Chính phủ và Chủ tịch HCM kêu gọi đồng bào thực hiện tuần lễ vàng, quỹ độc lập nhằm mục đích gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8920,6 +9239,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_320",
     "originalNum": 320,
     "questionText": "Câu 46: Phong trào mà Đảng vận động nhân dân thực hiện để xóa nạn đói sau CMT8/1945 là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8948,6 +9268,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_321",
     "originalNum": 321,
     "questionText": "Câu 47: Phong trào bình dân học vụ trong kháng chiến chống Pháp là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -8976,6 +9297,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_322",
     "originalNum": 322,
     "questionText": "Câu 48: Cuộc bầu cử Quốc hội đầu tiên ở Việt Nam vào thời gian nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9004,6 +9326,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_323",
     "originalNum": 323,
     "questionText": "Câu 49: Kết quả lớn nhất trong chiến thắng Điện Biên Phủ 1954 là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9032,6 +9355,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_324",
     "originalNum": 324,
     "questionText": "Câu 50: Hiệp định Giơnevơ về chấm dứt chiến tranh lập lại hòa bình ở Đông Dương được ký kết thời gian nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9060,6 +9384,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_325",
     "originalNum": 325,
     "questionText": "Câu 51: Theo Hiệp định Giơnevơ 1954 về Đông Dương, ở Việt Nam quân đội nhân dân Việt Nam và quân đội viễn chinh Pháp tập kết ở 2 miền Nam – Bắc lấy giới tuyến quân sự tạm thời theo:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9088,6 +9413,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_326",
     "originalNum": 326,
     "questionText": "Câu 52: Thủ đô Hà Nội giải phóng vào:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9116,6 +9442,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_327",
     "originalNum": 327,
     "questionText": "Câu 53: Đổi tên ĐCS Đông Dương thành Đảng Lao động Việt Nam là ở Đại hội Đảng nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9144,6 +9471,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_328",
     "originalNum": 328,
     "questionText": "Câu 54: Mặt trận dân tộc thống nhất được Đảng thành lập và lãnh đạo trong kháng chiến chống Pháp là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9172,6 +9500,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_329",
     "originalNum": 329,
     "questionText": "Câu 10: Tháng 6-1925 gắn với sự ra đời của tổ chức nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9200,6 +9529,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_330",
     "originalNum": 330,
     "questionText": "Câu 11: Hội nghị thành lập Đảng Cộng sản Việt Nam được tổ chức ở đâu?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9228,6 +9558,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_331",
     "originalNum": 331,
     "questionText": "Câu 12: Đại biểu của tổ chức cộng sản nào không tham dự Hội nghị thành lập Đảng đầu năm 1930?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9256,6 +9587,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_332",
     "originalNum": 332,
     "questionText": "Câu 13: Tác động của chương trình khai thác thuộc địa lần thứ hai của Pháp đến kinh tế Việt Nam làm cho:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9284,6 +9616,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_333",
     "originalNum": 333,
     "questionText": "Câu 14: Tính chất của xã hội Việt Nam dưới sự thống trị của thực dân Pháp là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9312,6 +9645,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_334",
     "originalNum": 334,
     "questionText": "Câu 15: Trong các nội dung sau đây, nội dung nào không thuộc luận cương chính trị tháng 10/1930?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9340,6 +9674,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_335",
     "originalNum": 335,
     "questionText": "Câu 16: Sự kiện nào được Nguyễn Ái Quốc đánh giá “là một bước ngoặt vô cùng quan trọng trong lịch sử Cách mạng Việt Nam ta”?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9368,6 +9703,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_336",
     "originalNum": 336,
     "questionText": "Câu 17: Cương lĩnh đầu tiên của Đảng đã xác định mục tiêu chiến lược của cách mạng Việt Nam là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9396,6 +9732,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_337",
     "originalNum": 337,
     "questionText": "Câu 18: Nội dung nào không có trong “Luận cương chính trị” tháng 10 năm 1930?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9424,6 +9761,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_338",
     "originalNum": 338,
     "questionText": "Câu 19: Hình thức đấu tranh chủ yếu trong phong trào 1930-1931 của nhân dân Nghệ - Tĩnh là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9452,6 +9790,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_339",
     "originalNum": 339,
     "questionText": "Câu 20: Mục tiêu cụ thể trước mắt của phong trào vận động dân chủ Đông Dương (1936-1939) là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9480,6 +9819,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_340",
     "originalNum": 340,
     "questionText": "Câu 21: Chiến tranh thế giới thứ II nổ ra vào thời gian nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9508,6 +9848,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_341",
     "originalNum": 341,
     "questionText": "Câu 22: Nội dung nào sai trong Hội nghị Trung ương VIII của Đảng (tháng 5 năm 1941)?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9536,6 +9877,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_342",
     "originalNum": 342,
     "questionText": "Câu 23: Mặt trận Việt Nam độc lập đồng minh được thành lập năm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9564,6 +9906,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_343",
     "originalNum": 343,
     "questionText": "Câu 24: Hội nghị của Ban chấp hành Trung ương nào sau đây nhấn mạnh giải phóng dân tộc là nhiệm vụ bức thiết nhất?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9592,6 +9935,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_344",
     "originalNum": 344,
     "questionText": "Câu 25: Mặt trận dân chủ Đông dương chính thức thành lập vào năm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9620,6 +9964,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_345",
     "originalNum": 345,
     "questionText": "Câu 26: Nguyên nhân nào làm cho phong trào ở Nghệ - Tĩnh lên cao?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9648,6 +9993,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_346",
     "originalNum": 346,
     "questionText": "Câu 27: Nội dung nào chưa đúng trong các bài học lãnh đạo cách mạng của Đảng để dẫn tới cách mạng Tháng Tám 1945 thắng lợi?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9676,6 +10022,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_347",
     "originalNum": 347,
     "questionText": "Câu 28: Phong trào Xô Viết Nghệ Tĩnh được bắt đầu từ ngày tháng năm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9704,6 +10051,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_348",
     "originalNum": 348,
     "questionText": "Câu 29: Bài học “giương cao ngọn cờ độc lập dân tộc, kết hợp đúng đắn hai nhiệm vụ chống đế quốc và chống phong kiến” được Đảng rút ra sau thời gian nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9732,6 +10080,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_349",
     "originalNum": 349,
     "questionText": "Câu 30: Nhân dân ta phải tiến hành tổng khởi nghĩa giành chính quyền trước khi quân Đồng minh vào Đông Dương vì:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9760,6 +10109,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_350",
     "originalNum": 350,
     "questionText": "Câu 31: Lần đầu tiên Ban Chấp hành Trung ương Đảng tại hội nghị lần thứ 8 (5-1941) chủ trương thành lập chính quyền Nhà nước với hình thức gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9788,6 +10138,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_351",
     "originalNum": 351,
     "questionText": "Câu 32: “Đoàn kết, tập hợp lực lượng cách mạng nhằm giải phóng dân tộc” là chủ trương của Đảng trong việc thành lập tổ chức nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9816,6 +10167,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_352",
     "originalNum": 352,
     "questionText": "Câu 33: Chính phủ lâm thời nước Việt Nam dân chủ cộng hòa ra đời từ tổ chức nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9844,6 +10196,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_353",
     "originalNum": 353,
     "questionText": "Câu 34: Ban chấp hành Trung ương Đảng chủ trương thành lập nước Việt Nam dân chủ cộng hoà tại Hội nghị nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9872,6 +10225,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_354",
     "originalNum": 354,
     "questionText": "Câu 35: Chống phát xít, chống chiến tranh đế quốc, chống bọn phản động thuộc địa và tay sai là nhiệm vụ cách mạng được Đảng đề ra trong giai đoạn nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9900,6 +10254,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_355",
     "originalNum": 355,
     "questionText": "Câu 36: Hai khẩu hiệu mà Đảng ta vận dụng trong phong trào cách mạng 1930 - 1931 là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9928,6 +10283,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_356",
     "originalNum": 356,
     "questionText": "Câu 37: Chủ trương điều chỉnh chiến lược cách mạng của Đảng được bắt đầu từ Hội nghị Trung ương nào của khóa I?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9956,6 +10312,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_357",
     "originalNum": 357,
     "questionText": "Câu 38: Cuộc tập dượt thứ nhất của Đảng chuẩn bị cho thắng lợi của cách mạng tháng Tám là giai đoạn:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -9984,6 +10341,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_358",
     "originalNum": 358,
     "questionText": "Câu 39: Chánh cương vắn tắt, Sách lược vắn tắt do Hội nghị thành lập Đảng thông qua đã đặt nhiệm vụ gì lên hàng đầu?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10012,6 +10370,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_359",
     "originalNum": 359,
     "questionText": "Câu 40: Điền vào chỗ trống: Đêm 9/3/1945, Nhật đảo chính Pháp, ngày 12-3-1945, … đã ra Bản Chỉ thị “Nhật Pháp bắn nhau và hành động của chúng ta”",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10040,6 +10399,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_360",
     "originalNum": 360,
     "questionText": "Câu 41: Đảng chủ trương thành lập mặt trận Việt Minh vì mục đích gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10068,6 +10428,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_361",
     "originalNum": 361,
     "questionText": "Câu 42: Quốc tế cộng sản (Quốc tế III) được thành lập vào năm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10096,6 +10457,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_362",
     "originalNum": 362,
     "questionText": "Câu 43: Nguyên nhân chủ yếu và có ý nghĩa quyết định sự bùng nổ và phát triển của cao trào cách mạng Việt Nam năm 1930?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10124,6 +10486,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_363",
     "originalNum": 363,
     "questionText": "Câu 44: Điểm giống nhau giữa Luận cương chính trị 10-1930 và Cương lĩnh chính trị đầu tiên của Đảng tháng 2-1930 là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10152,6 +10515,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_364",
     "originalNum": 364,
     "questionText": "Câu 45: Hội nghị trung ương VIII tháng 5/1941 nhấn mạnh điều gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10180,6 +10544,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_365",
     "originalNum": 365,
     "questionText": "Câu 46: Đại hội lần thứ VII của Quốc tế Cộng sản họp vào năm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10208,6 +10573,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_366",
     "originalNum": 366,
     "questionText": "Câu 47: Phát xít Nhật xâm lược nước ta vào ngày tháng, năm nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10236,6 +10602,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_367",
     "originalNum": 367,
     "questionText": "Câu 48: Mặt trận được xây dựng thời kỳ cách mạng 1930 - 1931 gọi tên là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10264,6 +10631,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_368",
     "originalNum": 368,
     "questionText": "Câu 49: Đối tượng của cách mạng Việt Nam được xác định trong Cương lĩnh chính trị đầu tiên của Đảng (2/1930) là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10292,6 +10660,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_369",
     "originalNum": 369,
     "questionText": "Câu 50: Hội Việt Nam Cách mạng Thanh niên hoạt động theo khuynh hướng nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10320,6 +10689,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_370",
     "originalNum": 370,
     "questionText": "Câu 51: Chỉ thị Kháng chiến kiến quốc của Trung ương Đảng ngày 25/11/1945, xác định nhiệm vụ nào là trung tâm, bao trùm nhất?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10348,6 +10718,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_371",
     "originalNum": 371,
     "questionText": "Câu 52: Tổ chức Cộng sản nào ra đời đầu tiên ở Việt Nam?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10376,6 +10747,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_372",
     "originalNum": 372,
     "questionText": "Câu 53: Giai cấp công nhân Việt Nam ra đời từ:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10404,6 +10776,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_373",
     "originalNum": 373,
     "questionText": "Câu 54: Sự kiện nào được Nguyễn Ái Quốc đánh giá “Nó là quả trứng, mà từ đó nở ra con chim non Cộng sản”?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10432,6 +10805,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_374",
     "originalNum": 374,
     "questionText": "Câu 55: Đâu là luận điểm sáng tạo của Hồ Chí Minh khi vận dụng chủ nghĩa Mác - Lênin về việc ra đời của Đảng Cộng sản Việt Nam?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10460,6 +10834,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_375",
     "originalNum": 375,
     "questionText": "Câu 56: Hội nghị Ban Chấp hành Trung ương Đảng Cộng sản Việt Nam (10/1930) đã đổi tên đảng thành :",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10488,6 +10863,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_376",
     "originalNum": 376,
     "questionText": "Câu 57: Một trong những tổ chức Cộng sản ra đời ở Việt Nam năm 1929 là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10516,6 +10892,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_377",
     "originalNum": 377,
     "questionText": "Câu 58: Trước sự xâm lược của thực dân Pháp, phong trào yêu nước do Việt Nam quốc dân Đảng khởi xướng theo khuynh hướng nào sau đây:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10544,6 +10921,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_378",
     "originalNum": 378,
     "questionText": "Câu 59: Trong cuộc khai thác thuộc địa lần thứ nhất của thực dân Pháp (1897 - 1913) ở Việt Nam đã xuất hiện những giai cấp, tầng lớp mới nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10572,6 +10950,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_379",
     "originalNum": 379,
     "questionText": "Câu 60: Đảng Cộng sản Việt Nam ra đời là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10600,6 +10979,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_380",
     "originalNum": 380,
     "questionText": "Câu 61: Sự kiện nào đánh dấu Nguyễn Ái Quốc bước đầu tìm thấy con đường cứu nước đúng đắn cho dân tộc?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10628,6 +11008,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_381",
     "originalNum": 381,
     "questionText": "Câu 62: Lực lượng chính của cách mạng được xác định trong Luận cương chính trị (10/1930) là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10656,6 +11037,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_382",
     "originalNum": 382,
     "questionText": "Câu 63: Kẻ thù chủ yếu của xã hội Việt Nam trong thời kì 1930 - 1931 là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10684,6 +11066,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_383",
     "originalNum": 383,
     "questionText": "Câu 64: Hạn chế lớn nhất của Luận cương chính trị tháng 10 năm 1930 là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10712,6 +11095,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_384",
     "originalNum": 384,
     "questionText": "Câu 65: Hội nghị trung ương VIII tháng 5/1941 chủ trương gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10740,6 +11124,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_385",
     "originalNum": 385,
     "questionText": "Câu 66: Chính cương vắn tắt, Sách lược vắn tắt … do Nguyễn Ái Quốc soạn thảo được thông qua tại Hội nghị thành lập Đảng được xem là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10768,6 +11153,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_386",
     "originalNum": 386,
     "questionText": "Câu 67: Chỉ thị Kháng chiến kiến quốc của Trung ương Đảng ngày 25/11/1945, xác định ai là kẻ thù chính của cách mạng Việt Nam lúc này?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10796,6 +11182,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_387",
     "originalNum": 387,
     "questionText": "Câu 68: Tình hình đất nước ta sau cách mạng tháng tám năm 1945 được ví như:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10824,6 +11211,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_388",
     "originalNum": 388,
     "questionText": "Câu 69: Lời kêu gọi toàn quốc kháng chiến của Chủ tịch Hồ Chí Minh được phát ra vào thời gian nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10852,6 +11240,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_389",
     "originalNum": 389,
     "questionText": "Câu 70: Ngày 23-9-1945 gắn với sự kiện lịch sử nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10880,6 +11269,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_390",
     "originalNum": 390,
     "questionText": "Câu 71: Nội dung nào dưới đây thuộc Hiệp định Sơ bộ (6 - 3 - 1946)?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10908,6 +11298,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_391",
     "originalNum": 391,
     "questionText": "Câu 72: Để kéo dài thời gian chuẩn bị lực lượng cho cuộc kháng chiến toàn quốc chống Pháp, sau Hiệp định Sơ bộ (6/3/1946), Chính phủ nước Việt Nam Dân chủ Cộng hòa tiếp tục ký với Pháp bản",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10936,6 +11327,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_392",
     "originalNum": 392,
     "questionText": "Câu 73: Đường lối kháng chiến chống thực dân Pháp xâm lược của Đảng (1946-1954) là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10964,6 +11356,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_393",
     "originalNum": 393,
     "questionText": "Câu 74: Từ tháng 9-1945 đến tháng 3-1946, ta chủ trương :",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -10992,6 +11385,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_394",
     "originalNum": 394,
     "questionText": "Câu 75: Sau Cách mạng tháng Tám năm 1945, tàn dư văn hóa lạc hậu của chế độ thực dân, phong kiến để lại hết sức nặng nề là :",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11020,6 +11414,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_395",
     "originalNum": 395,
     "questionText": "Câu 76: “Chúng ta thà hi sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ… ” là đoạn trích trong văn kiện nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11048,6 +11443,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_396",
     "originalNum": 396,
     "questionText": "Câu 77: Sau Cách mạng tháng Tám đến 1954, kẻ thù chính của nhân dân Việt Nam là?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11076,6 +11472,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_397",
     "originalNum": 397,
     "questionText": "Câu 78: Căn cứ địa cách mạng của ta trong cuộc kháng chiến chống Pháp xâm lược lần thứ hai là?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11104,6 +11501,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_398",
     "originalNum": 398,
     "questionText": "Câu 79: Đại hội nào sau đây được đánh dấu là “Đại hội kháng chiến thắng lợi”?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11132,6 +11530,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_399",
     "originalNum": 399,
     "questionText": "Câu 80: Kế hoạch quân sự được xem là lớn nhất trong quá trình xâm lược Việt Nam của Pháp từ 1945 - 1954?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11160,6 +11559,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_400",
     "originalNum": 400,
     "questionText": "Câu 81: Chiến dịch Điện Biên Phủ được coi là một chiến dịch lịch sử của quân đội ta và được chia làm bao nhiêu đợt?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11188,6 +11588,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_401",
     "originalNum": 401,
     "questionText": "Câu 82: Thắng lợi nào của quân và dân ta trong cuộc kháng chiến chống Pháp đã làm phá sản hoàn toàn kế hoạch Nava?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11216,6 +11617,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_402",
     "originalNum": 402,
     "questionText": "Câu 83: Thắng lợi ngoại giao lớn nhất của ta trong cuộc kháng chiến chống Pháp từ 1945-1954 là?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11244,6 +11646,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_403",
     "originalNum": 403,
     "questionText": "Câu 84: Quyền dân tộc cơ bản của Việt Nam trong Hiệp định Giơnevơ 1954 là gì?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11272,6 +11675,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_404",
     "originalNum": 404,
     "questionText": "Câu 85: Chiến thắng nào của ta quyết định thắng lợi tại hội nghị Giơnevơ 1954?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11300,6 +11704,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_405",
     "originalNum": 405,
     "questionText": "Câu 86: Được ghi vào lịch sử dân tộc như một Bạch Đằng, một Chi Lăng, một Đống Đa thế kỉ XX. Đó là ý nghĩa của chiến thắng nào?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11328,6 +11733,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_406",
     "originalNum": 406,
     "questionText": "Câu 87: Hiệp định Giơnevơ 1954, quy định việc di chuyển, tập kết quân đội ở hai miền Nam – Bắc với giới tuyến quân sự tạm thời là?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11356,6 +11762,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_407",
     "originalNum": 407,
     "questionText": "Câu 88: Hiệp định sơ bộ được Hồ Chí Minh ký với Sanh-tơ-ny vào thời gian nào sau đây?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11384,6 +11791,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_408",
     "originalNum": 408,
     "questionText": "Câu 89: Đảng ta đã lựa chọn giải pháp gì trong mối quan hệ với thực dân Pháp sau ngày Pháp và Tưởng ký hiệp ước Trùng Khánh (28-2-1946)?",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11412,6 +11820,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_409",
     "originalNum": 409,
     "questionText": "Câu 90: Tại Đại hội lần thứ II Đảng cộng sản Đông Dương quyết định tách ra thành ba Đảng cách mạng ở ba nước Đông Dương. Ở Việt Nam, Đảng ra hoạt động công khai lấy tên là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11440,6 +11849,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_410",
     "originalNum": 410,
     "questionText": "Câu 91: Đại hội II của Đảng Lao động Việt Nam vạch ra tính chất của xã hội Việt Nam là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11468,6 +11878,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_411",
     "originalNum": 411,
     "questionText": "Câu 92: Chính cương của Đảng lao động Việt Nam đã nêu ra các nhiệm vụ cơ bản của cách mạng Việt Nam là:",
+    "category": "PHẦN 2: THỜI KỲ CHỐNG PHÁP (1858 – 1954)",
     "options": [
       {
         "label": "A",
@@ -11496,6 +11907,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_412",
     "originalNum": 412,
     "questionText": "Câu 55: Đặc điểm cơ bản của Việt Nam sau tháng 7/1954 là?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11524,6 +11936,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_413",
     "originalNum": 413,
     "questionText": "Câu 56: Nhiệm vụ của cách mạng miền Bắc sau năm 1954 là gì?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11552,6 +11965,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_414",
     "originalNum": 414,
     "questionText": "Câu 57: Nhiệm vụ của cách mạng miền Nam sau 1954 là gì?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11580,6 +11994,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_415",
     "originalNum": 415,
     "questionText": "Câu 58: Để hoàn thành nhiệm vụ chung của cách mạng nước ta năm 1954 – 1975 thì vai trò của miền Bắc là:",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11608,6 +12023,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_416",
     "originalNum": 416,
     "questionText": "Câu 59: Cách mạng miền Nam có vai trò như thế nào trong việc đánh đổ ách thống trị của đế quốc Mỹ và tay sai của chúng, giải phóng miền Nam thống nhất đất nước?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11636,6 +12052,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_417",
     "originalNum": 417,
     "questionText": "Câu 60: Đường lối thể hiện sự sáng tạo, độc đáo của Đảng trong kháng chiến chống Mỹ cứu nước đó là:",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11664,6 +12081,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_418",
     "originalNum": 418,
     "questionText": "Câu 61: Đại hội Đảng toàn quốc lần thứ III tháng 9/1960 đưa đường lối chiến lược cho cách mạng Việt Nam trong giai đoạn mới đó là đường lối nào?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11692,6 +12110,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_419",
     "originalNum": 419,
     "questionText": "Câu 62: Đại hội nào của Đảng là Đại hội xây dựng CNXH ở miền Bắc và đấu tranh hòa bình thống nhất nước nhà?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11720,6 +12139,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_420",
     "originalNum": 420,
     "questionText": "Câu 63: Những chủ trương chỉ đạo chiến lược của Đảng đối với cách mạng miền Nam trong kháng chiến chống Mỹ cứu nước thể hiện qua nghị quyết:",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11748,6 +12168,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_421",
     "originalNum": 421,
     "questionText": "Câu 64: Chiến lược chiến tranh đơn phương của đế quốc Mỹ ở miền Nam Việt Nam diễn ra trong thời gian nào?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11776,6 +12197,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_422",
     "originalNum": 422,
     "questionText": "Câu 65: Chủ trương của Đảng trong giai đoạn đầu chống chiến lược chiến tranh đơn phương của đế quốc Mỹ là gì?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11804,6 +12226,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_423",
     "originalNum": 423,
     "questionText": "Câu 66: Phong trào Đồng Khởi đã đánh dấu bước phát triển của cách mạng miền Nam chuyển từ thế … sang thế…",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11832,6 +12255,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_424",
     "originalNum": 424,
     "questionText": "Câu 67: Ý nghĩa phong trào Đồng Khởi với cách mạng miền Nam là?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11860,6 +12284,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_425",
     "originalNum": 425,
     "questionText": "Câu 68: Mặt trận dân tộc giải phóng miền Nam Việt Nam thành lập khi nào và ở đâu?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11888,6 +12313,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_426",
     "originalNum": 426,
     "questionText": "Câu 69: Chiến lược \"Chiến tranh đặc biệt\" của Mỹ là?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11916,6 +12342,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_427",
     "originalNum": 427,
     "questionText": "Câu 70: Thủ đoạn chủ yếu được Mỹ coi là xương sống của chiến lược chiến tranh đặc biệt ở miền Nam là:",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11944,6 +12371,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_428",
     "originalNum": 428,
     "questionText": "Câu 71: Âm mưu của Mỹ trong chiến lược chiến tranh đặc biệt là:",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -11972,6 +12400,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_429",
     "originalNum": 429,
     "questionText": "Câu 72: Sau thất bại của Chiến tranh đặc biệt, Mỹ chuyển sang loại hình chiến lược chiến tranh nào?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -12000,6 +12429,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_430",
     "originalNum": 430,
     "questionText": "Câu 73: Quan điểm nào sau đây của Đảng về nhiệm vụ và mối quan hệ giữa hai miền sau khi Mỹ thực hiện “chiến tranh cục bộ”?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -12028,6 +12458,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_431",
     "originalNum": 431,
     "questionText": "Câu 74: Theo lời kêu gọi của Chủ tịch Hồ Chí Minh, quân dân miền Bắc đã dấy lên các phong trào: Ba sẵn sàng là của …; Tay cày, tay súng là của … và nhằm thẳng quân thù mà bắn là ở phong trào trong …",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -12056,6 +12487,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_432",
     "originalNum": 432,
     "questionText": "Câu 75: Nhân tố hàng đầu quyết định thắng lợi cho cách mạng Việt Nam là?",
+    "category": "PHẦN 3: THỜI KỲ CHỐNG MỸ (1954 – 1975)",
     "options": [
       {
         "label": "A",
@@ -12084,6 +12516,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_433",
     "originalNum": 433,
     "questionText": "Câu 76: Nhiệm vụ trước mắt cấp bách của CMVN sau chiến thắng 30/4/1975 là gì?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12112,6 +12545,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_434",
     "originalNum": 434,
     "questionText": "Câu 77: Hội nghị hiệp thương chính trị của 2 đoàn đại biểu miền Bắc và miền Nam sau chiến thắng 30/4/1975 bàn về thống nhất nước nhà họp thời gian nào và ở đâu?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12140,6 +12574,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_435",
     "originalNum": 435,
     "questionText": "Câu 78: Sau nhiệm vụ thống nhất về mặt nhà nước, tháng 4/1976 là phải?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12168,6 +12603,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_436",
     "originalNum": 436,
     "questionText": "Câu 79: Tổng tuyển cử bầu Quốc hội tháng 4/1976 theo nguyên tắc nào?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12196,6 +12632,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_437",
     "originalNum": 437,
     "questionText": "Câu 80: Tên nước Cộng hòa xã hội chủ nghĩa Việt Nam, được thông qua vào thời gian nào?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12224,6 +12661,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_438",
     "originalNum": 438,
     "questionText": "Câu 81: Việt Nam hoàn thành nhiệm vụ thống nhất đất nước về mặt nhà nước vào",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12252,6 +12690,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_439",
     "originalNum": 439,
     "questionText": "Câu 82: Đại hội IV của Đảng được tổ chức ở đâu, khi nào và trong hoàn cảnh nào?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12280,6 +12719,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_440",
     "originalNum": 440,
     "questionText": "Câu 83: Tại Đại hội IV Đảng lao động Việt Nam đổi tên thành:",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12308,6 +12748,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_441",
     "originalNum": 441,
     "questionText": "Câu 83.1: Lực lượng tạo nên động lực cho cách mạng Việt Nam được nêu ra trong Chính cương của Đảng Lao động Việt Nam là:",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12328,6 +12769,11 @@ window.SAMPLE_QUESTIONS = [
         "label": "D",
         "text": "Địa chủ, tư sản dân tộc",
         "isCorrect": false
+      },
+      {
+        "label": "E",
+        "text": "Công nhân, nông dân, tiểu tư sản, tư sản dân tộc, đại địa chủ",
+        "isCorrect": false
       }
     ],
     "correctIndex": 0
@@ -12336,6 +12782,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_442",
     "originalNum": 442,
     "questionText": "Câu 84: Đại hội IV của Đảng xác định đặc điểm lớn nhất của CMVN sau 1975 là?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12364,6 +12811,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_443",
     "originalNum": 443,
     "questionText": "Câu 85: Đại hội đại biểu toàn quốc lần thứ mấy của Đảng Cộng sản Việt Nam đề cập quá trình xây dựng chủ nghĩa xã hội và bảo vệ Tổ quốc?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12392,6 +12840,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_444",
     "originalNum": 444,
     "questionText": "Câu 86: Đại hội lần thứ V của Đảng (1982) đã coi lĩnh vực nào là Mặt trận hàng đầu?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12420,6 +12869,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_445",
     "originalNum": 445,
     "questionText": "Câu 87: Ngày 17/2/1979, quân đội nước nào tấn công phía Bắc biên giới nước ta?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12448,6 +12898,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_446",
     "originalNum": 446,
     "questionText": "Câu 88: Mặt trận dân tộc thống nhất trên cả nước từ năm 1976 đến nay có tên gọi là gì?",
+    "category": "PHẦN 4: THỜI KỲ SAU KHÁNG CHIẾN (1975 – 1985)",
     "options": [
       {
         "label": "A",
@@ -12476,6 +12927,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_447",
     "originalNum": 447,
     "questionText": "Câu 89: Đại hội nào được đánh giá là Đại hội đổi mới đất nước?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12504,6 +12956,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_448",
     "originalNum": 448,
     "questionText": "Câu 90: Trọng tâm của đổi mới kinh tế tại Đại hội VI (1986) là phải?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12532,6 +12985,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_449",
     "originalNum": 449,
     "questionText": "Câu 91: Ba chương trình kinh tế lớn của ta sau đổi mới kinh tế là:",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12560,6 +13014,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_450",
     "originalNum": 450,
     "questionText": "Câu 92: Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên CNXH được thông qua đại hội lần thứ mấy của Đảng?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12588,6 +13043,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_451",
     "originalNum": 451,
     "questionText": "Câu 93: Cương lĩnh chính trị xây dựng đất nước trong thời kỳ quá độ lên CNXH năm 1991 đã làm sáng tỏ con đường đi lên CNXH ở Việt Nam như thế nào?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12616,6 +13072,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_452",
     "originalNum": 452,
     "questionText": "Câu 94: Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên CNXH 1991 đề ra mấy phương hướng lớn trong xây dựng CNXH ở Việt Nam?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12644,6 +13101,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_453",
     "originalNum": 453,
     "questionText": "Câu 95: Mô hình kinh tế thị trường định hướng xã hội chủ nghĩa ở nước ta được chính thức nêu ra ở Đại hội nào của Đảng?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12672,6 +13130,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_454",
     "originalNum": 454,
     "questionText": "Câu 96: Việt Nam gia nhập Hiệp hội các quốc gia Đông Nam Á vào thời gian nào?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12700,6 +13159,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_455",
     "originalNum": 455,
     "questionText": "Câu 97: Việt Nam gia nhập Tổ chức Thương mại Thế giới WTO vào thời gian nào?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12728,6 +13188,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_456",
     "originalNum": 456,
     "questionText": "Câu 98: Việt Nam và Trung Quốc bình thường hóa quan hệ vào thời gian nào?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12756,6 +13217,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_457",
     "originalNum": 457,
     "questionText": "Câu 99: Đất nước ta chưa bao giờ có được cơ đồ, tiềm lực, vị thế và uy tín quốc tế như ngày nay. Được Văn kiện Đại hội đại biểu toàn quốc lần thứ mấy của Đảng khẳng định?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12784,6 +13246,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_458",
     "originalNum": 458,
     "questionText": "Câu 100: Quyền lực nhà nước là thống nhất, có sự phân công, phối hợp, kiểm soát giữa các cơ quan nhà nước trong việc thực hiện các quyền lập pháp, hành pháp, tư pháp được đề cập tại Đại hội lần thứ bao nhiêu của Đảng?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12812,6 +13275,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_459",
     "originalNum": 459,
     "questionText": "Câu 101: Chủ đề của Đại hội đại biểu toàn quốc lần thứ XIII của Đảng Cộng sản Việt Nam là? (Lựa chọn 2 phương án đúng nhất)",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12840,6 +13304,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_460",
     "originalNum": 460,
     "questionText": "Câu 102: Chiến lược phát triển bền vững kinh tế biển Việt Nam đến năm 2030 tầm nhìn đến năm 2045 là của Nghị quyết Hội nghị Trung ương khóa mấy ban hành?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12868,6 +13333,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_461",
     "originalNum": 461,
     "questionText": "Câu 103: Đại hội XIII đã đề ra mấy đột phá chiến lược để phát triển đất nước?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12896,6 +13362,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_462",
     "originalNum": 462,
     "questionText": "Câu 104: Mọi công việc của Đảng, Nhà nước phải quán triệt sâu sắc lấy dân làm gốc, dân làm trung tâm, kiên trì thực hiện phương châm:",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12924,6 +13391,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_463",
     "originalNum": 463,
     "questionText": "Câu 105: Khẩu hiệu của Đại hội lần thứ XII của Đảng là:",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12952,6 +13420,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_464",
     "originalNum": 464,
     "questionText": "Câu 106: Đại hội đại biểu toàn quốc lần thứ XIII Đảng Cộng sản Việt Nam họp từ ngày nào?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -12980,6 +13449,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_465",
     "originalNum": 465,
     "questionText": "Câu 107: Điền vào chỗ trống. Mục tiêu cụ thể được nêu trong đại hội lần thứ XIII của Đảng đó là: \"Đến năm 2025, kỷ niệm 50 năm giải phóng hoàn toàn miền Nam, thống nhất đất nước: là nước đang phát triển, có công nghiệp theo hướng hiện đại, vượt qua mức thu nhập....\"",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13008,6 +13478,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_466",
     "originalNum": 466,
     "questionText": "Câu 108: Bộ Chính trị ban hành Chỉ thị số 5-CT/TW ngày 15/5/2016 về:",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13036,6 +13507,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_467",
     "originalNum": 467,
     "questionText": "Câu 109: Phương án nào đúng nhất nói khái quát về thành tựu của đất nước qua 35 năm đổi mới dưới sự lãnh đạo của Đảng?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13064,6 +13536,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_468",
     "originalNum": 468,
     "questionText": "Câu 93: Để thực hiện chính sách “Tố cộng, diệt cộng” Ngô Định Diệm đưa ra:",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13092,6 +13565,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_469",
     "originalNum": 469,
     "questionText": "Câu 94: Hội nghị Trung ương Đảng lần thứ 11 tháng 03 năm 1965 và Hội nghị Trung ương Đảng lần thứ 12 tháng 12 năm 1965 đề ra khẩu hiệu chung của nhân dân cả nước là :",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13120,6 +13594,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_470",
     "originalNum": 470,
     "questionText": "Câu 95: Tại hội nghị nào, Ban Chấp hành Trung ương Đảng quyết định để nhân dân miền Nam sử dụng bạo lực cách mạng đánh đổ chính quyền Mỹ- Diệm?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13148,6 +13623,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_471",
     "originalNum": 471,
     "questionText": "Câu 96: Đại hội lần thứ III (9-1960), Đảng Lao động Việt Nam khẳng định nhiệm vụ cách mạng giữ vai trò quyết định nhất đối với sự phát triển cách mạng cả nước là",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13176,6 +13652,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_472",
     "originalNum": 472,
     "questionText": "Câu 97: Đại hội III (9-1960) của Đảng đã thông qua đường lối nào?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13204,6 +13681,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_473",
     "originalNum": 473,
     "questionText": "Câu 98: Quan điểm nào sau đây của Đảng về nhiệm vụ và mối quan hệ giữa hai miền sau khi Mỹ thực hiện “chiến tranh cục bộ” ?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13232,6 +13710,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_474",
     "originalNum": 474,
     "questionText": "Câu 99: Cuộc kháng chiến chống Mỹ, cứu nước của nhân dân Việt Nam (1954-1975) kết thúc bằng thắng lợi của chiến dịch nào?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13260,6 +13739,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_475",
     "originalNum": 475,
     "questionText": "Câu 100: Đại hội lần thứ III của Đảng họp tại thủ đô Hà Nội từ ngày 5 đến ngày 10/09/1960. Đại hội đã hoàn chỉnh đường lối chiến lược chung của cách mạng Việt Nam trong giai đoạn mới và vạch ra hai nhiệm vụ chiến lược đó là:",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13288,6 +13768,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_476",
     "originalNum": 476,
     "questionText": "Câu 101: Mối quan hệ giữa hai nhiệm vụ cách mạng của hai miền được Đại hội III của Đảng xác định là:",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13316,6 +13797,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_477",
     "originalNum": 477,
     "questionText": "Câu 102: Hội nghị nào của Đảng mở đường cho phong trào “Đồng khởi” ở miền Nam năm 1960?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13344,6 +13826,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_478",
     "originalNum": 478,
     "questionText": "Câu 103: Từ 1961-1965, Mỹ thực hiện loại hình chiến lược nào ở miền Nam Việt Nam?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13372,6 +13855,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_479",
     "originalNum": 479,
     "questionText": "Câu 104: Đại hội đại biểu toàn quốc lần thứ III của Đảng được tổ chức ở đâu?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
@@ -13400,6 +13884,7 @@ window.SAMPLE_QUESTIONS = [
     "id": "q_sample_480",
     "originalNum": 480,
     "questionText": "Câu 105: Đường lối chung xây dựng XHCN ở miền Bắc (1954-1975) được đề cập ở Đại hội lần thứ mấy của Đảng?",
+    "category": "PHẦN 5: THỜI KỲ ĐỔI MỚI – ĐẠI HỘI VI ĐẾN NAY (1986 – NAY)",
     "options": [
       {
         "label": "A",
