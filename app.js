@@ -77,6 +77,7 @@
       masteryProgressFill: document.getElementById('mastery-progress-fill'),
 
       btnStartFlashcard: document.getElementById('btn-start-flashcard'),
+      btnStartExam60: document.getElementById('btn-start-exam60'),
       btnOpenCategories: document.getElementById('btn-open-categories'),
       categoriesCountBtn: document.getElementById('categories-count-btn'),
       btnCategoriesQuit: document.getElementById('btn-categories-quit'),
@@ -701,7 +702,14 @@
     let sourcePool = [];
     let sessionQuestions = [];
 
-    if (mode === 'CATEGORY') {
+    if (mode === 'EXAM_60') {
+      if (APP_STATE.questionBank.length === 0) {
+        showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
+        return;
+      }
+      sourcePool = [...APP_STATE.questionBank];
+      sessionQuestions = shuffleArray(sourcePool).slice(0, Math.min(60, sourcePool.length));
+    } else if (mode === 'CATEGORY') {
       if (APP_STATE.questionBank.length === 0) {
         showToast('Vui lòng nạp file câu hỏi trước!', 'alert-circle');
         return;
@@ -762,7 +770,9 @@
       score: 0
     };
 
-    if (mode === 'CATEGORY') {
+    if (mode === 'EXAM_60') {
+      if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `🏆 Đề Thi Thử Ngẫu Nhiên (${sessionQuestions.length} câu)`;
+    } else if (mode === 'CATEGORY') {
       if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `${targetCategory} (${sessionQuestions.length} câu)`;
     } else if (mode === 'WRONG_ONLY') {
       if (DOM.quizModeLabel) DOM.quizModeLabel.textContent = `Luyện Tập Câu Sai (${sessionQuestions.length} câu)`;
@@ -1184,6 +1194,7 @@
     if (DOM.btnLoadSample) DOM.btnLoadSample.addEventListener('click', loadSampleFile);
 
     // Bank Action Buttons
+    if (DOM.btnStartExam60) DOM.btnStartExam60.addEventListener('click', () => startQuizSession('EXAM_60'));
     if (DOM.btnOpenCategories) DOM.btnOpenCategories.addEventListener('click', openCategoriesView);
     if (DOM.btnCategoriesQuit) DOM.btnCategoriesQuit.addEventListener('click', () => showView(DOM.viewUpload));
     if (DOM.btnStartFlashcard) DOM.btnStartFlashcard.addEventListener('click', () => startFlashcardSession());
