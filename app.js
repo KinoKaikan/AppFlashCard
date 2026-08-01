@@ -130,6 +130,12 @@
       statTotal: document.getElementById('stat-total'),
       statCorrect: document.getElementById('stat-correct'),
       statWrong: document.getElementById('stat-wrong'),
+      btnSummaryRepeatSame: document.getElementById('btn-summary-repeat-same'),
+      btnSummaryReviewSession: document.getElementById('btn-summary-review-session'),
+      summaryRepeatText: document.getElementById('summary-repeat-text'),
+      summaryReviewText: document.getElementById('summary-review-text'),
+      sessionReviewContainer: document.getElementById('session-review-container'),
+      sessionReviewList: document.getElementById('session-review-list'),
       btnSummaryRestart: document.getElementById('btn-summary-restart'),
       btnSummaryWrong: document.getElementById('btn-summary-wrong'),
       summaryWrongCount: document.getElementById('summary-wrong-count'),
@@ -920,6 +926,13 @@
     if (DOM.statCorrect) DOM.statCorrect.textContent = correct;
     if (DOM.statWrong) DOM.statWrong.textContent = wrong;
 
+    if (DOM.summaryRepeatText) DOM.summaryRepeatText.textContent = `Làm Lại Đề Này (${total} câu)`;
+    if (DOM.summaryReviewText) DOM.summaryReviewText.textContent = `Xem Chi Tiết ${total} Câu Đã Làm & Đáp Án`;
+
+    if (DOM.sessionReviewContainer) {
+      DOM.sessionReviewContainer.style.display = 'none';
+    }
+
     const wrongCount = APP_STATE.wrongQuestions.length;
     if (DOM.btnSummaryWrong) {
       if (wrongCount > 0) {
@@ -939,6 +952,108 @@
         origin: { y: 0.6 }
       });
     }
+  }
+
+  function repeatCurrentSession() {
+    const session = APP_STATE.currentSession;
+    if (!session || !session.questions || session.questions.length === 0) return;
+
+    session.currentIndex = 0;
+    session.userAnswers = [];
+    session.score = 0;
+
+    // Re-shuffle option order for the same questions
+    session.questions = session.questions.map(q => {
+      const shuffledOpts = shuffleArray(q.options);
+      const newCorrectIndex = shuffledOpts.findIndex(o => o.isCorrect);
+      return {
+        ...q,
+        options: shuffledOpts,
+        correctIndex: newCorrectIndex
+      };
+    });
+
+    showView(DOM.viewQuiz);
+    renderCurrentQuestion();
+    showToast(`Đã tải lại phiên làm đề (${session.questions.length} câu)!`, 'rotate-cw');
+  }
+
+  function renderSessionReview() {
+    const listContainer = document.getElementById('session-review-list');
+    const container = document.getElementById('session-review-container');
+    if (!listContainer || !container) return;
+
+    if (container.style.display === 'block') {
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = 'block';
+    listContainer.innerHTML = '';
+
+    const session = APP_STATE.currentSession;
+    const questions = session.questions;
+    const userAnswers = session.userAnswers;
+    const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+    questions.forEach((q, qIdx) => {
+      const userAnsObj = userAnswers.find(u => u.questionId === q.id) || userAnswers[qIdx];
+      const selectedIndex = userAnsObj ? userAnsObj.selectedIndex : -1;
+      const isUserCorrect = userAnsObj ? userAnsObj.isCorrect : false;
+
+      const card = document.createElement('div');
+      card.className = 'wrong-item-card';
+
+      let optionsHTML = '';
+      q.options.forEach((opt, oIdx) => {
+        const letter = labels[oIdx] || (oIdx + 1);
+        const isSelected = oIdx === selectedIndex;
+        const isCorrectOpt = opt.isCorrect;
+
+        let rowStyle = '';
+        let badgeHTML = '';
+
+        if (isSelected) {
+          if (isCorrectOpt) {
+            rowStyle = 'background: var(--success-bg); border-color: var(--success); color: #065f46; font-weight: 700;';
+            badgeHTML = '<strong style="color: var(--success); margin-left: 8px;">[ĐÁP ÁN BẠN CHỌN - CHÍNH XÁC 🎉]</strong>';
+          } else {
+            rowStyle = 'background: var(--danger-bg); border-color: var(--danger); color: #991b1b; font-weight: 700;';
+            badgeHTML = '<strong style="color: var(--danger); margin-left: 8px;">[ĐÁP ÁN BẠN CHỌN - SAI ❌]</strong>';
+          }
+        } else if (isCorrectOpt) {
+          rowStyle = 'background: rgba(16, 185, 129, 0.12); border-color: var(--success-border); color: #065f46; font-weight: 700;';
+          badgeHTML = '<strong style="color: var(--success); margin-left: 8px;">[ĐÁP ÁN ĐÚNG]</strong>';
+        }
+
+        optionsHTML += `
+          <div class="detail-option-row" style="${rowStyle}">
+            <div class="detail-option-badge">${letter}</div>
+            <div style="flex: 1;">${escapeHTML(opt.text)} ${badgeHTML}</div>
+          </div>
+        `;
+      });
+
+      const qStatusBadge = isUserCorrect
+        ? '<span class="badge" style="background: var(--success-bg); color: var(--success); font-weight: 700;">✓ Trả lời ĐÚNG</span>'
+        : '<span class="badge" style="background: var(--danger-bg); color: var(--danger); font-weight: 700;">❌ Trả lời SAI</span>';
+
+      card.innerHTML = `
+        <div class="wrong-item-header">
+          <span>Câu ${qIdx + 1} / ${questions.length} ${q.category ? `<small style="margin-left: 8px; color: var(--primary); font-size: 0.8rem; background: var(--primary-light); padding: 2px 8px; border-radius: 6px;">${escapeHTML(q.category)}</small>` : ''}</span>
+          ${qStatusBadge}
+        </div>
+        <div class="wrong-item-q">${escapeHTML(q.questionText)}</div>
+        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 6px;">
+          ${optionsHTML}
+        </div>
+      `;
+
+      listContainer.appendChild(card);
+    });
+
+    if (window.lucide) lucide.createIcons();
+    container.scrollIntoView({ behavior: 'smooth' });
   }
 
   // =========================================================================
@@ -1281,6 +1396,8 @@
       });
     }
 
+    if (DOM.btnSummaryRepeatSame) DOM.btnSummaryRepeatSame.addEventListener('click', repeatCurrentSession);
+    if (DOM.btnSummaryReviewSession) DOM.btnSummaryReviewSession.addEventListener('click', renderSessionReview);
     if (DOM.btnSummaryRestart) DOM.btnSummaryRestart.addEventListener('click', () => startQuizSession('UNLEARNED_ONLY'));
     if (DOM.btnSummaryWrong) DOM.btnSummaryWrong.addEventListener('click', () => startQuizSession('WRONG_ONLY'));
 

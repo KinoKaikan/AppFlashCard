@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234255ff'/><text x='50' y='72' font-size='65' font-weight='bold' text-anchor='middle' fill='white' font-family='sans-serif'>Q</text></svg>">
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=3.7">
+  <link rel="stylesheet" href="styles.css?v=3.8">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,7 +17,7 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Sample Pre-parsed Data for CORS-free file:// protocol loading -->
-  <script src="sampleData.js?v=3.7"></script>
+  <script src="sampleData.js?v=3.8"></script>
 </head>
 <body>
 
@@ -348,15 +348,36 @@
         </div>
 
         <div class="summary-actions">
+          <button class="btn btn-primary" id="btn-summary-repeat-same" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);">
+            <i data-lucide="rotate-cw"></i>
+            <span id="summary-repeat-text">Làm Lại Đề Thi Này</span>
+          </button>
+          <button class="btn btn-secondary" id="btn-summary-review-session" style="border: 1px solid var(--primary); color: var(--primary); background: var(--primary-light);">
+            <i data-lucide="list-checks"></i>
+            <span id="summary-review-text">Xem Chi Tiết 60 Câu Đã Làm & Đáp Án</span>
+          </button>
           <button class="btn btn-primary" id="btn-summary-restart">
-            <i data-lucide="rotate-ccw"></i> Học Lượt Mới (20 Câu Ngẫu Nhiên)
+            <i data-lucide="rotate-ccw"></i>
+            <span>Học Lượt Mới (20 Câu Ngẫu Nhiên)</span>
           </button>
           <button class="btn btn-secondary" id="btn-summary-wrong" style="display: none;">
-            <i data-lucide="bookmark-check"></i> Chỉ Luyện Tập Câu Sai (<span id="summary-wrong-count">0</span>)
+            <i data-lucide="bookmark-check"></i>
+            <span>Chỉ Luyện Tập Câu Sai (<span id="summary-wrong-count">0</span>)</span>
           </button>
           <button class="btn btn-outline" id="btn-summary-home">
-            <i data-lucide="home"></i> Về Màn Hình Chính
+            <i data-lucide="home"></i>
+            <span>Về Màn Hình Chính</span>
           </button>
+        </div>
+
+        <!-- Session Detail Review Container (Toggled on button click) -->
+        <div id="session-review-container" style="display: none; margin-top: 28px; border-top: 1px dashed var(--border-color); padding-top: 24px; text-align: left;">
+          <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 16px; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="list-checks" style="color: var(--primary);"></i> Danh Sách Chi Tiết Kết Quả Đã Làm
+          </h3>
+          <div id="session-review-list" style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- Rendered dynamically by JavaScript -->
+          </div>
         </div>
       </div>
     </section>
@@ -391,7 +412,7 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Application Logic JS -->
-  <script src="app.js?v=3.7"></script>
+  <script src="app.js?v=3.8"></script>
 
 </body>
 </html>
