@@ -1752,9 +1752,17 @@
     try {
       showToast('Đang bóc tách file PDF...', 'loader');
       if (!window.pdfjsLib) {
-        throw new Error('Thư viện PDF.js chưa được tải!');
+        throw new Error('Thư viện PDF.js chưa được tải! Vui lòng kiểm tra lại kết nối mạng hoặc tiện ích chặn quảng cáo.');
       }
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      
+      let pdf;
+      try {
+        pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      } catch (workerErr) {
+        console.warn('PDF Worker failed or blocked, attempting fallback without worker:', workerErr);
+        pdf = await pdfjsLib.getDocument({ data: arrayBuffer, disableWorker: true, isEvalSupported: false }).promise;
+      }
+
       let fullText = '';
       for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         const page = await pdf.getPage(pageNum);
