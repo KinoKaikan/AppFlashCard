@@ -3,7 +3,7 @@
   Color Palette: Indigo/Blue Primary (#4255ff), Dark Slate (#0a0e17), Soft Backgrounds, Vivid Feedback
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
 
 :root {
   --primary: #4255ff;
@@ -37,7 +37,7 @@
   --shadow-lg: 0 16px 36px rgba(66, 85, 255, 0.12);
   --shadow-card: 0 12px 32px rgba(46, 56, 86, 0.08);
 
-  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -566,7 +566,9 @@ main {
 .fc-question-text {
   font-size: 1.3rem;
   font-weight: 700;
-  line-height: 1.6;
+  line-height: 1.7;
+  letter-spacing: 0.015em;
+  word-spacing: 0.03em;
 }
 
 .fc-answer-box {
@@ -577,7 +579,9 @@ main {
   border-radius: var(--radius-lg);
   font-size: 1.2rem;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.65;
+  letter-spacing: 0.012em;
+  word-spacing: 0.025em;
   width: 100%;
   box-shadow: var(--shadow-sm);
   max-height: 280px;
@@ -602,6 +606,43 @@ main {
   border-radius: var(--radius-md);
   border: 1px solid var(--success-border);
   color: #065f46;
+}
+
+/* Flashcard Stage Side Controls */
+.flashcard-stage-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.fc-side-btn {
+  padding: 16px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.fc-side-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.fc-controls-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .fc-controls {
@@ -759,7 +800,9 @@ main {
 .question-text {
   font-size: 1.25rem;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.7;
+  letter-spacing: 0.015em;
+  word-spacing: 0.03em;
   color: var(--text-main);
   margin-bottom: 28px;
 }
@@ -814,8 +857,11 @@ main {
 }
 
 .option-content {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.012em;
+  word-spacing: 0.025em;
   flex: 1;
   color: var(--text-main);
 }
@@ -865,6 +911,91 @@ main {
   40%, 80% { transform: translateX(6px); }
 }
 
+/* Quiz Main Body Side Layout - Fixed Big Size Subtle Action Button */
+.quiz-body-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.quiz-body-wrapper .question-card {
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.quiz-side-panel {
+  width: 130px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-next-side {
+  width: 130px;
+  height: 480px; /* Fixed Big Size - Never changes regardless of question card size */
+  flex-shrink: 0;
+  padding: 20px 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: var(--bg-surface);
+  border: 2px dashed var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.btn-next-side:hover:not(:disabled) {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateX(2px);
+}
+
+.btn-next-side:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: var(--border-color);
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--text-muted);
+  transform: none;
+}
+
+.btn-next-side-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(100, 116, 139, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: var(--transition);
+}
+
+.btn-next-side:hover:not(:disabled) .btn-next-side-icon {
+  background: var(--primary);
+  color: white;
+  transform: translateX(3px);
+}
+
+.btn-next-side-text {
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+
 /* Quiz Controls */
 .quiz-footer {
   display: flex;
@@ -881,6 +1012,9 @@ main {
   font-size: 1rem;
   opacity: 0;
   transition: opacity 0.3s ease;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-color);
 }
 
 .feedback-msg.show {
@@ -1187,6 +1321,152 @@ main {
 }
 
 /* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero-title { font-size: 1.7rem; }
+  .question-text { font-size: 1.1rem; }
+  .flashcard-card { height: 360px; }
+  .categories-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   MULTI-DECK MANAGEMENT SYSTEM STYLES
+   ========================================================================= */
+.decks-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.decks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.decks-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-main);
+}
+
+.decks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.deck-card {
+  background: var(--bg-main);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: var(--transition);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.deck-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.deck-card.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 1px var(--primary), var(--shadow-sm);
+}
+
+.deck-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.deck-card-name {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.deck-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.deck-badge.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.deck-badge.inactive {
+  background: var(--border-color);
+  color: var(--text-muted);
+}
+
+.deck-stats {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.deck-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.deck-progress-bar {
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.deck-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  transition: width 0.3s ease;
+}
+
+.deck-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.deck-card-actions .btn {
+  padding: 8px 12px;
+  font-size: 0.82rem;
+}
+
 @media (max-width: 640px) {
   .hero-title { font-size: 1.7rem; }
   .upload-card { padding: 32px 16px; }

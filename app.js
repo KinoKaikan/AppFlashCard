@@ -14,20 +14,20 @@
   'use strict';
 
   const STORAGE_KEYS = {
-    QUESTION_BANK: 'qm_question_bank',
-    BANK_FILENAME: 'qm_bank_filename',
-    WRONG_QUESTIONS: 'qm_wrong_questions',
-    MASTERED_QUESTIONS: 'qm_mastered_questions',
-    FLASHCARD_INDEX: 'qm_flashcard_index',
+    DECKS: 'qm_decks_v5',
+    ACTIVE_DECK_ID: 'qm_active_deck_id_v5',
     THEME: 'qm_theme'
   };
 
   const APP_STATE = {
-    questionBank: [],        // Full loaded array of parsed questions
-    bankFilename: '',
-    wrongQuestions: [],      // Array of questions in "Cần học lại"
-    masteredQuestionIds: [], // Array of question IDs successfully remembered ("Đã thuộc")
-    flashcardIndex: 0,       // Current card index in 3D Flashcard mode (independent progress)
+    decks: [],               // Array of all deck objects
+    activeDeckId: null,      // Active deck ID
+    questionBank: [],        // References active deck questions
+    bankFilename: '',        // References active deck name
+    wrongQuestions: [],      // References active deck wrong questions
+    masteredQuestionIds: [], // References active deck mastered question IDs
+    flashcardIndex: 0,       // References active deck flashcard index
+    activeFlashcardBank: [],
     
     // Active session state
     currentSession: {
@@ -225,57 +225,103 @@
   }
 
   // =========================================================================
-  // LOCAL STORAGE & STATE PERSISTENCE
+  // MULTI-DECK DATA PERSISTENCE & DECK MANAGEMENT
   // =========================================================================
+
+  function syncActiveDeck() {
+    if (!Array.isArray(APP_STATE.decks) || APP_STATE.decks.length === 0) {
+      APP_STATE.activeDeckId = null;
+      APP_STATE.questionBank = [];
+      APP_STATE.bankFilename = '';
+      APP_STATE.wrongQuestions = [];
+      APP_STATE.masteredQuestionIds = [];
+      APP_STATE.flashcardIndex = 0;
+      APP_STATE.activeFlashcardBank = [];
+      return;
+    }
+
+    let activeDeck = APP_STATE.decks.find(d => d.id === APP_STATE.activeDeckId);
+    if (!activeDeck) {
+      activeDeck = APP_STATE.decks[0];
+      APP_STATE.activeDeckId = activeDeck.id;
+    }
+
+    APP_STATE.questionBank = activeDeck.questions || [];
+    APP_STATE.bankFilename = activeDeck.name || 'Bộ đề';
+    APP_STATE.wrongQuestions = activeDeck.wrongQuestions || [];
+    APP_STATE.masteredQuestionIds = activeDeck.masteredQuestionIds || [];
+    APP_STATE.flashcardIndex = activeDeck.flashcardIndex || 0;
+    APP_STATE.activeFlashcardBank = APP_STATE.questionBank;
+
+    try {
+      localStorage.setItem(STORAGE_KEYS.ACTIVE_DECK_ID, APP_STATE.activeDeckId);
+      localStorage.setItem(STORAGE_KEYS.DECKS, JSON.stringify(APP_STATE.decks));
+    } catch(e) {}
+  }
+
+  function saveCurrentDeckState() {
+    if (!APP_STATE.activeDeckId) return;
+    let activeDeck = APP_STATE.decks.find(d => d.id === APP_STATE.activeDeckId);
+    if (activeDeck) {
+      activeDeck.masteredQuestionIds = APP_STATE.masteredQuestionIds;
+      activeDeck.wrongQuestions = APP_STATE.wrongQuestions;
+      activeDeck.flashcardIndex = APP_STATE.flashcardIndex;
+      activeDeck.updatedAt = Date.now();
+    }
+    try {
+      localStorage.setItem(STORAGE_KEYS.DECKS, JSON.stringify(APP_STATE.decks));
+    } catch(e) {}
+    updateUIState();
+  }
+
   function loadStoredData() {
     try {
-      const savedBank = localStorage.getItem(STORAGE_KEYS.QUESTION_BANK);
-      const savedFilename = localStorage.getItem(STORAGE_KEYS.BANK_FILENAME);
-      const savedWrong = localStorage.getItem(STORAGE_KEYS.WRONG_QUESTIONS);
-      const savedMastered = localStorage.getItem(STORAGE_KEYS.MASTERED_QUESTIONS);
+      const savedDecks = localStorage.getItem(STORAGE_KEYS.DECKS);
+      const savedActiveId = localStorage.getItem(STORAGE_KEYS.ACTIVE_DECK_ID);
 
-      if (savedBank) {
-        let loadedBank = JSON.parse(savedBank);
+      if (savedDecks) {
+        APP_STATE.decks = JSON.parse(savedDecks);
+        APP_STATE.activeDeckId = savedActiveId || (APP_STATE.decks[0] ? APP_STATE.decks[0].id : null);
+      } else {
+        // Migration from legacy single bank storage if exists
+        const legacyBank = localStorage.getItem('qm_question_bank');
+        const legacyFilename = localStorage.getItem('qm_bank_filename');
+        const legacyMastered = localStorage.getItem('qm_mastered_questions');
+        const legacyWrong = localStorage.getItem('qm_wrong_questions');
 
-        // Auto-patch missing category properties from window.SAMPLE_QUESTIONS
-        if (window.SAMPLE_QUESTIONS && window.SAMPLE_QUESTIONS.length > 0) {
-          const sampleMap = {};
-          window.SAMPLE_QUESTIONS.forEach(sq => {
-            if (sq.id) sampleMap[sq.id] = sq.category;
-            if (sq.questionText) sampleMap[sq.questionText.trim()] = sq.category;
-          });
+        APP_STATE.decks = [];
 
-          let patched = false;
-          loadedBank.forEach(q => {
-            if (!q.category) {
-              q.category = sampleMap[q.id] || sampleMap[q.questionText ? q.questionText.trim() : ''] || 'CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1';
-              patched = true;
-            }
-          });
-
-          if (patched) {
-            localStorage.setItem(STORAGE_KEYS.QUESTION_BANK, JSON.stringify(loadedBank));
-          }
+        if (legacyBank) {
+          const bank = JSON.parse(legacyBank);
+          const deck = {
+            id: 'deck_legacy_' + Date.now(),
+            name: legacyFilename || 'Bộ đề cương đã nạp',
+            questions: bank,
+            masteredQuestionIds: legacyMastered ? JSON.parse(legacyMastered) : [],
+            wrongQuestions: legacyWrong ? JSON.parse(legacyWrong) : [],
+            flashcardIndex: 0,
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+          };
+          APP_STATE.decks.push(deck);
+          APP_STATE.activeDeckId = deck.id;
+        } else if (window.SAMPLE_QUESTIONS && window.SAMPLE_QUESTIONS.length > 0) {
+          const sampleDeck = {
+            id: 'deck_sample_vnr202',
+            name: '[VNR202] ĐỀ CƯƠNG THẦY NHỰTVH.docx',
+            questions: window.SAMPLE_QUESTIONS,
+            masteredQuestionIds: [],
+            wrongQuestions: [],
+            flashcardIndex: 0,
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+          };
+          APP_STATE.decks.push(sampleDeck);
+          APP_STATE.activeDeckId = sampleDeck.id;
         }
-
-        APP_STATE.questionBank = loadedBank;
-        APP_STATE.bankFilename = savedFilename || 'Bộ đề cương đã nạp';
-      } else if (window.SAMPLE_QUESTIONS && window.SAMPLE_QUESTIONS.length > 0) {
-        // Auto-load built-in sample if available
-        APP_STATE.questionBank = window.SAMPLE_QUESTIONS;
-        APP_STATE.bankFilename = '[VNR202] ĐỀ CƯƠNG THẦY NHỰTVH.docx';
-        localStorage.setItem(STORAGE_KEYS.QUESTION_BANK, JSON.stringify(window.SAMPLE_QUESTIONS));
-        localStorage.setItem(STORAGE_KEYS.BANK_FILENAME, APP_STATE.bankFilename);
       }
 
-      if (savedWrong) {
-        APP_STATE.wrongQuestions = JSON.parse(savedWrong);
-      }
-
-      if (savedMastered) {
-        APP_STATE.masteredQuestionIds = JSON.parse(savedMastered);
-      }
-
+      syncActiveDeck();
       updateUIState();
     } catch (err) {
       console.error('Error loading stored data:', err);
@@ -283,45 +329,167 @@
   }
 
   function saveQuestionBank(bank, filename) {
-    APP_STATE.questionBank = bank;
-    APP_STATE.bankFilename = filename;
-    APP_STATE.masteredQuestionIds = []; // reset mastered on new upload
-    localStorage.setItem(STORAGE_KEYS.QUESTION_BANK, JSON.stringify(bank));
-    localStorage.setItem(STORAGE_KEYS.BANK_FILENAME, filename);
-    localStorage.setItem(STORAGE_KEYS.MASTERED_QUESTIONS, JSON.stringify([]));
+    if (!Array.isArray(APP_STATE.decks)) APP_STATE.decks = [];
+    
+    const existingIndex = APP_STATE.decks.findIndex(d => d.name.toLowerCase() === filename.toLowerCase());
+
+    if (existingIndex !== -1) {
+      const existing = APP_STATE.decks[existingIndex];
+      existing.questions = bank;
+      existing.updatedAt = Date.now();
+      APP_STATE.activeDeckId = existing.id;
+    } else {
+      const newDeck = {
+        id: 'deck_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+        name: filename,
+        questions: bank,
+        masteredQuestionIds: [],
+        wrongQuestions: [],
+        flashcardIndex: 0,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      };
+      APP_STATE.decks.unshift(newDeck);
+      APP_STATE.activeDeckId = newDeck.id;
+    }
+
+    syncActiveDeck();
     updateUIState();
+  }
+
+  function switchActiveDeck(deckId) {
+    APP_STATE.activeDeckId = deckId;
+    syncActiveDeck();
+    updateUIState();
+    showToast(`Đã chuyển sang bộ đề: ${APP_STATE.bankFilename}`, 'folder-open');
+  }
+
+  function deleteDeck(deckId) {
+    const target = APP_STATE.decks.find(d => d.id === deckId);
+    const name = target ? target.name : 'bộ đề';
+    if (confirm(`Bạn có chắc muốn xóa bộ đề "${name}" khỏi danh sách?`)) {
+      APP_STATE.decks = APP_STATE.decks.filter(d => d.id !== deckId);
+      if (APP_STATE.activeDeckId === deckId) {
+        APP_STATE.activeDeckId = APP_STATE.decks.length > 0 ? APP_STATE.decks[0].id : null;
+      }
+      syncActiveDeck();
+      updateUIState();
+      showToast(`Đã xóa bộ đề "${name}".`, 'trash-2');
+    }
   }
 
   function saveWrongQuestions() {
-    localStorage.setItem(STORAGE_KEYS.WRONG_QUESTIONS, JSON.stringify(APP_STATE.wrongQuestions));
-    updateUIState();
+    saveCurrentDeckState();
   }
 
   function saveMasteredQuestions() {
-    localStorage.setItem(STORAGE_KEYS.MASTERED_QUESTIONS, JSON.stringify(APP_STATE.masteredQuestionIds));
-    updateUIState();
+    saveCurrentDeckState();
   }
 
   function resetMasteryProgress() {
     APP_STATE.masteredQuestionIds = [];
-    saveMasteredQuestions();
-    showToast('Đã đặt lại tiến độ! Tất cả câu hỏi được đưa về trạng thái "Chưa thuộc".', 'rotate-ccw');
+    saveCurrentDeckState();
+    showToast('Đã đặt lại tiến độ! Tất cả câu hỏi trong bộ đề này được đưa về trạng thái "Chưa thuộc".', 'rotate-ccw');
   }
 
   function clearQuestionBank() {
-    APP_STATE.questionBank = [];
-    APP_STATE.bankFilename = '';
-    APP_STATE.masteredQuestionIds = [];
-    APP_STATE.wrongQuestions = [];
-    localStorage.removeItem(STORAGE_KEYS.QUESTION_BANK);
-    localStorage.removeItem(STORAGE_KEYS.BANK_FILENAME);
-    localStorage.removeItem(STORAGE_KEYS.WRONG_QUESTIONS);
-    localStorage.removeItem(STORAGE_KEYS.MASTERED_QUESTIONS);
-    updateUIState();
-    showToast('Đã xóa bộ câu hỏi khỏi bộ nhớ local.', 'trash-2');
+    if (APP_STATE.activeDeckId) {
+      deleteDeck(APP_STATE.activeDeckId);
+    }
+  }
+
+  function renderDecksGrid() {
+    const container = document.getElementById('decks-container');
+    const grid = document.getElementById('decks-grid');
+    const countText = document.getElementById('decks-count-text');
+
+    if (!container || !grid) return;
+
+    const decks = APP_STATE.decks || [];
+
+    if (decks.length === 0) {
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = 'block';
+    if (countText) countText.textContent = decks.length;
+    grid.innerHTML = '';
+
+    decks.forEach(deck => {
+      const isActive = deck.id === APP_STATE.activeDeckId;
+      const totalQ = deck.questions ? deck.questions.length : 0;
+      const masteredCount = deck.masteredQuestionIds ? deck.masteredQuestionIds.length : 0;
+      const percent = totalQ > 0 ? Math.round((masteredCount / totalQ) * 100) : 0;
+
+      const card = document.createElement('div');
+      card.className = `deck-card ${isActive ? 'active' : ''}`;
+      
+      card.innerHTML = `
+        <div class="deck-card-top">
+          <div class="deck-card-name">
+            <i data-lucide="book-marked" style="color: ${isActive ? 'var(--primary)' : 'var(--text-muted)'}; margin-right: 6px;"></i>
+            ${escapeHTML(deck.name)}
+          </div>
+          <span class="deck-badge ${isActive ? 'active' : 'inactive'}">
+            ${isActive ? 'Đang học' : 'Chưa chọn'}
+          </span>
+        </div>
+
+        <div class="deck-stats">
+          <div class="deck-stat-row">
+            <span>Số lượng:</span>
+            <strong>${totalQ} câu</strong>
+          </div>
+          <div class="deck-stat-row">
+            <span>Đã thuộc:</span>
+            <strong style="color: var(--success);">${masteredCount} / ${totalQ} (${percent}%)</strong>
+          </div>
+          <div class="deck-progress-bar">
+            <div class="deck-progress-fill" style="width: ${percent}%;"></div>
+          </div>
+        </div>
+
+        <div class="deck-card-actions">
+          ${isActive ? `
+            <button class="btn btn-primary btn-sm" style="flex: 1; font-size: 0.8rem;" disabled>
+              <i data-lucide="check-circle-2"></i> Đang Chọn Bộ Này
+            </button>
+          ` : `
+            <button class="btn btn-secondary btn-sm btn-switch-deck" data-id="${deck.id}" style="flex: 1; font-size: 0.8rem;">
+              <i data-lucide="arrow-right-left"></i> Chuyển Sang Bộ Này
+            </button>
+          `}
+          <button class="btn btn-outline btn-sm btn-delete-deck" data-id="${deck.id}" title="Xóa bộ đề này" style="color: var(--danger); border-color: var(--danger-border);">
+            <i data-lucide="trash-2"></i>
+          </button>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    grid.querySelectorAll('.btn-switch-deck').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        switchActiveDeck(id);
+      });
+    });
+
+    grid.querySelectorAll('.btn-delete-deck').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = e.currentTarget.getAttribute('data-id');
+        deleteDeck(id);
+      });
+    });
+
+    if (window.lucide) lucide.createIcons();
   }
 
   function updateUIState() {
+    renderDecksGrid();
+
     const bankSize = APP_STATE.questionBank.length;
     const wrongSize = APP_STATE.wrongQuestions.length;
     const masteredSize = APP_STATE.masteredQuestionIds.length;
@@ -344,6 +512,8 @@
         if (DOM.bankFilename) DOM.bankFilename.textContent = APP_STATE.bankFilename;
         if (DOM.bankCountBadge) DOM.bankCountBadge.textContent = `${bankSize} câu`;
         if (DOM.totalBankBtnCount) DOM.totalBankBtnCount.textContent = bankSize;
+        const fcBtnCount = document.getElementById('fc-bank-btn-count');
+        if (fcBtnCount) fcBtnCount.textContent = bankSize;
         
         if (DOM.masteredCountText) DOM.masteredCountText.textContent = masteredSize;
         if (DOM.totalBankText) DOM.totalBankText.textContent = bankSize;
@@ -583,8 +753,7 @@
       const doc = parser.parseFromString(htmlText, 'text/html');
 
       const questions = [];
-      let currentQ = null;
-      let currentCategory = 'CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1';
+      let currentCategory = 'TỔNG HỢP';
 
       const validHeaderTitles = new Set([
         'CHƯƠNG MỞ ĐẦU VÀ CHƯƠNG 1',
@@ -607,59 +776,224 @@
         return headerRegex.test(text.trim()) && text.trim().length < 90;
       }
 
-      const qPattern = /^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i;
-      const optPattern = /^([A-F])[\.\/\)]\s*/i;
+      function extractAnswerLetter(text) {
+        if (!text) return null;
+        // 1. Explicit tags: Đáp án: A, Answer: B, Key: C, (Đáp án A)
+        let m = text.match(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*([A-F])/i);
+        if (m) return m[1].toUpperCase();
 
-      const elements = doc.querySelectorAll('p, h1, h2, h3, h4, div, li');
+        // 2. Standalone letter A-F
+        if (/^[A-F]$/i.test(text.trim())) return text.trim().toUpperCase();
 
-      elements.forEach((el) => {
-        const fullText = el.textContent ? el.textContent.trim() : '';
-        if (!fullText) return;
+        // 3. Watermark brackets e.g. (NHUNGC HOÀNG) -> C, (NHUNG HOÀNG)D -> D
+        m = text.match(/\([A-Z]*([A-F])[A-Z]*\s+HOÀNG\)/i);
+        if (m) return m[1].toUpperCase();
+        m = text.match(/\(NHUNG\s+HOÀNG\)\s*([A-F])/i);
+        if (m) return m[1].toUpperCase();
 
-        const hasBoldTag = Boolean(el.querySelector('strong, b'));
+        // 4. Standalone letter at end of line or after punctuation / question mark: e.g. '? C', '?A', 'below? D', 'inB', 'aesthetics?A'
+        m = text.match(/(?:[\:\?\)\'\"]|\b\s+)([A-F])[\s\.\:\?\)]*$/);
+        if (m) return m[1].toUpperCase();
 
-        const matchQ = qPattern.test(fullText);
-        const matchOpt = optPattern.exec(fullText);
-
-        if (!matchQ && !matchOpt) {
-          if (isCategoryHeader(fullText)) {
-            currentCategory = fullText;
-          }
-        } else if (matchQ) {
-          if (currentQ && currentQ.options.length > 0) {
-            questions.push(currentQ);
-          }
-
-          currentQ = {
-            id: 'q_' + (questions.length + 1) + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-            originalNum: questions.length + 1,
-            questionText: fullText,
-            category: currentCategory,
-            options: [],
-            correctIndex: -1
-          };
-        } else if (matchOpt && currentQ) {
-          const optionLabel = matchOpt[1].toUpperCase();
-          const cleanOptionText = fullText.replace(/^([A-F])[\.\/\)]\s*/i, '').trim();
-
-          const isCorrect = hasBoldTag;
-
-          const optObj = {
-            label: optionLabel,
-            text: cleanOptionText,
-            isCorrect: isCorrect
-          };
-
-          currentQ.options.push(optObj);
-
-          if (isCorrect) {
-            currentQ.correctIndex = currentQ.options.length - 1;
+        // 5. Embedded answer letter attached to hyphen or word or after punctuation:
+        m = text.match(/(?:[a-zA-Z0-9\-\:\?\)\,\'\"][\s\-]*)([A-F])(?:[\s\-]+[a-zA-Z0-9\"\'\(]+|[\,\.\?\)]|$)/);
+        if (m) {
+          const ans = m[1].toUpperCase();
+          const startPos = m.index;
+          const beforeChar = startPos > 0 ? text[startPos - 1] : ' ';
+          const afterStr = text.substring(startPos + 1, startPos + 6);
+          if (ans === 'A' && beforeChar === ' ' && /^\s+[a-z]/.test(afterStr)) {
+            // skip 'a book'
+          } else {
+            return ans;
           }
         }
+        return null;
+      }
+
+      const qNumPattern = /^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i;
+      const optPattern = /^([A-F])[\.\/\:\)]\s*/i;
+
+      const rawElements = Array.from(doc.querySelectorAll('p, h1, h2, h3, h4, div, li'));
+      const elements = [];
+
+      rawElements.forEach(el => {
+        const fullText = el.textContent ? el.textContent.trim() : '';
+        if (!fullText) return;
+        const hasBold = Boolean(el.querySelector('strong, b'));
+        elements.push({
+          text: fullText,
+          bold: hasBold
+        });
       });
 
-      if (currentQ && currentQ.options.length > 0) {
-        questions.push(currentQ);
+      let i = 0;
+      while (i < elements.length) {
+        if (isCategoryHeader(elements[i].text)) {
+          currentCategory = elements[i].text;
+          i++;
+          continue;
+        }
+
+        const qParagraphs = [];
+        let targetAns = null;
+        let j = i;
+
+        while (j < elements.length) {
+          const txt = elements[j].text;
+          if (isCategoryHeader(txt)) break;
+
+          const mOpt = optPattern.exec(txt);
+          if (mOpt && mOpt[1].toUpperCase() === 'A' && qParagraphs.length > 0) {
+            break;
+          }
+
+          const ans = extractAnswerLetter(txt);
+          if (ans && !targetAns) {
+            targetAns = ans;
+          }
+
+          qParagraphs.push(elements[j]);
+          j++;
+
+          if (j < elements.length) {
+            if (isCategoryHeader(elements[j].text)) break;
+            const nextMOpt = optPattern.exec(elements[j].text);
+            if (nextMOpt && nextMOpt[1].toUpperCase() === 'A') {
+              break;
+            }
+            if (qParagraphs.length >= 1 && targetAns) {
+              if (j + 3 < elements.length) {
+                let isOpts = true;
+                for (let kCheck = j; kCheck < j + 4; kCheck++) {
+                  const kT = elements[kCheck].text;
+                  if (qNumPattern.test(kT) || /^\d+[\.\:]?$/.test(kT) || extractAnswerLetter(kT)) {
+                    isOpts = false;
+                    break;
+                  }
+                }
+                if (isOpts) break;
+              }
+            }
+          }
+        }
+
+        const opts = [];
+        let k = j;
+        while (k < elements.length) {
+          const kEl = elements[k];
+          const kTxt = kEl.text;
+
+          if (isCategoryHeader(kTxt)) break;
+
+          const mOpt = optPattern.exec(kTxt);
+          const mQ = qNumPattern.test(kTxt) || /^\d+[\.\:]?$/.test(kTxt);
+
+          if (mQ && opts.length >= 2) break;
+
+          const expectedLabel = String.fromCharCode(65 + opts.length);
+          let cleanOpt = kTxt;
+
+          if (mOpt) {
+            const matchedLabel = mOpt[1].toUpperCase();
+            if (matchedLabel === expectedLabel) {
+              cleanOpt = kTxt.replace(/^([A-F])[\.\/\:\)]\s*/i, '').trim();
+            } else {
+              cleanOpt = kTxt.trim();
+            }
+            opts.push({
+              label: expectedLabel,
+              text: cleanOpt,
+              bold: kEl.bold
+            });
+            k++;
+          } else if (opts.length < 4 && !mQ) {
+            opts.push({
+              label: expectedLabel,
+              text: cleanOpt.trim(),
+              bold: kEl.bold
+            });
+            k++;
+          } else {
+            break;
+          }
+        }
+
+        if (qParagraphs.length > 0 && opts.length >= 2) {
+          const fullQText = qParagraphs.map(p => p.text).join(' ');
+
+          if (!targetAns) {
+            targetAns = extractAnswerLetter(fullQText);
+          }
+
+          let corrIdx = -1;
+          // 1. Check bold
+          for (let idx = 0; idx < opts.length; idx++) {
+            if (opts[idx].bold) {
+              corrIdx = idx;
+              break;
+            }
+          }
+          // 2. Check inline marked option
+          if (corrIdx === -1) {
+            for (let idx = 0; idx < opts.length; idx++) {
+              if (/(?:\(Đáp\s*án\s*đúng\)|\[Đúng\]|\(True\)|\*)/i.test(opts[idx].text)) {
+                corrIdx = idx;
+                opts[idx].text = opts[idx].text.replace(/(?:\(Đáp\s*án\s*đúng\)|\[Đúng\]|\(True\)|\*)/gi, '').trim();
+                break;
+              }
+            }
+          }
+          // 3. Target answer letter check
+          if (corrIdx === -1 && targetAns) {
+            for (let idx = 0; idx < opts.length; idx++) {
+              if (opts[idx].label === targetAns) {
+                corrIdx = idx;
+                break;
+              }
+            }
+          }
+
+          let cleanQ = fullQText;
+          cleanQ = cleanQ.replace(/\([0-9\-\s]+\)/g, '');
+          cleanQ = cleanQ.replace(/\(NHUNG\s*HOÀNG\)/gi, '');
+          cleanQ = cleanQ.replace(/\(NHUNGC\s*HOÀNG\)/gi, '');
+          cleanQ = cleanQ.replace(/Fill in the blank with the correct words\s*[:\.]?/gi, '');
+          cleanQ = cleanQ.replace(/Fill in the blank\s*[:\.]?/gi, '');
+          cleanQ = cleanQ.replace(/^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i, '');
+
+          // Hide/strip target answer letter or embedded answer key from question text so user won't see pre-marked answers!
+          if (targetAns) {
+            const ansRegex1 = new RegExp('(?:^|\\s|\\:|\\?|\\))\\s*' + targetAns + '\\s*(?:\\s+|$|\\.|\\?)', 'g');
+            cleanQ = cleanQ.replace(ansRegex1, ' ');
+            const ansRegex2 = new RegExp('([\\w\\)])\\s*' + targetAns + '\\s+([\\w\\"])', 'g');
+            cleanQ = cleanQ.replace(ansRegex2, '$1 $2');
+          }
+          cleanQ = cleanQ.replace(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*[A-F]/gi, '');
+          cleanQ = cleanQ.replace(/\s+/g, ' ').trim();
+
+          questions.push({
+            id: 'q_' + (questions.length + 1) + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+            originalNum: questions.length + 1,
+            questionText: cleanQ,
+            category: currentCategory,
+            options: opts.map(o => ({
+              label: o.label,
+              text: o.text,
+              isCorrect: false
+            })),
+            correctIndex: corrIdx
+          });
+
+          if (corrIdx !== -1) {
+            questions[questions.length - 1].options[corrIdx].isCorrect = true;
+          }
+
+          i = k;
+          continue;
+        }
+
+        i++;
       }
 
       if (questions.length === 0) {
@@ -669,7 +1003,7 @@
       const validCount = questions.filter(q => q.correctIndex !== -1).length;
       
       saveQuestionBank(questions, filename);
-      showToast(`Đã nạp thành công ${questions.length} câu hỏi! (${validCount} câu nhận diện đáp án bold)`, 'check-circle-2');
+      showToast(`Đã nạp thành công ${questions.length} câu hỏi! (${validCount} câu nhận diện đáp án)`, 'check-circle-2');
       showView(DOM.viewUpload);
 
     } catch (err) {
@@ -1414,18 +1748,204 @@
     }
   }
 
+  async function parsePdfFile(arrayBuffer, filename) {
+    try {
+      showToast('Đang bóc tách file PDF...', 'loader');
+      if (!window.pdfjsLib) {
+        throw new Error('Thư viện PDF.js chưa được tải!');
+      }
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      let fullText = '';
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        const page = await pdf.getPage(pageNum);
+        const textContent = await page.getTextContent();
+        const pageStrings = textContent.items.map(item => item.str);
+        fullText += pageStrings.join('\n') + '\n';
+      }
+      await parseTextContent(fullText, filename);
+    } catch (err) {
+      console.error('PDF Parsing error:', err);
+      alert('Lỗi khi bóc tách file PDF: ' + err.message);
+    }
+  }
+
+  async function parseTextContent(fullText, filename) {
+    try {
+      showToast('Đang phân tích dữ liệu câu hỏi...', 'loader');
+      
+      const lines = fullText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+      const filteredLines = lines.filter(l => 
+        !/CHUẨN NHUNG HOÀNG/i.test(l) &&
+        !/quizlet\.com/i.test(l) &&
+        !/^\d+\s*\/\s*\d+$/.test(l)
+      );
+
+      const qNumPattern = /^(?:Câu\s*)?(\d+)[\.\:\)]?\s*(.*)/i;
+      const optPattern = /^([A-D])[\.\/\:\)]\s*(.*)/i;
+
+      const questions = [];
+      let currentCategory = filename.replace(/\.[^/.]+$/, '').toUpperCase();
+      let i = 0;
+
+      while (i < filteredLines.length) {
+        const l = filteredLines[i];
+        const mQ = l.match(qNumPattern);
+
+        if (mQ && (/^\d+[\.\:\)]?$/.test(l) || mQ[2].trim().length > 0)) {
+          const qNum = parseInt(mQ[1], 10);
+          const qStemFirst = mQ[2] ? mQ[2].trim() : '';
+          const qLines = [];
+          if (qStemFirst) qLines.push(qStemFirst);
+
+          const opts = [];
+          let targetAns = null;
+
+          let j = i + 1;
+          while (j < filteredLines.length) {
+            const lTxt = filteredLines[j];
+            const mOpt = lTxt.match(optPattern);
+            const mNextQ = lTxt.match(qNumPattern);
+
+            if (mNextQ && (/^\d+[\.\:\)]?$/.test(lTxt) || (mNextQ[2] && mNextQ[2].trim().length > 0)) && opts.length >= 2) {
+              break;
+            }
+
+            if (mOpt) {
+              const label = mOpt[1].toUpperCase();
+              const optT = mOpt[2].trim();
+              opts.push({ label: label, text: optT });
+              j++;
+            } else if (opts.length === 0) {
+              if (/^[A-D]$/i.test(lTxt)) {
+                targetAns = lTxt.toUpperCase();
+              } else {
+                qLines.push(lTxt);
+              }
+              j++;
+            } else if (opts.length >= 1 && opts.length < 4) {
+              if (/^[A-D]$/i.test(lTxt) && !targetAns) {
+                targetAns = lTxt.toUpperCase();
+              } else {
+                opts[opts.length - 1].text += ' ' + lTxt;
+              }
+              j++;
+            } else {
+              if (/^[A-D]$/i.test(lTxt)) {
+                targetAns = lTxt.toUpperCase();
+                j++;
+              }
+              break;
+            }
+          }
+
+          if (opts.length >= 2) {
+            let corrIdx = -1;
+            if (targetAns) {
+              for (let idx = 0; idx < opts.length; idx++) {
+                if (opts[idx].label === targetAns) {
+                  corrIdx = idx;
+                  break;
+                }
+              }
+            }
+
+            let fullQ = qLines.join(' ');
+            let cleanQ = fullQ;
+            cleanQ = cleanQ.replace(/\([0-9\-\s]+\)/g, '');
+            cleanQ = cleanQ.replace(/\(NHUNG\s*HOÀNG\)/gi, '');
+            cleanQ = cleanQ.replace(/\(NHUNGC\s*HOÀNG\)/gi, '');
+            cleanQ = cleanQ.replace(/Fill in the blank with the correct words\s*[:\.]?/gi, '');
+            cleanQ = cleanQ.replace(/Fill in the blank\s*[:\.]?/gi, '');
+            cleanQ = cleanQ.replace(/^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i, '');
+
+            if (targetAns) {
+              const ansRegex1 = new RegExp('(?:^|\\s|\\:|\\?|\\))\\s*' + targetAns + '\\s*(?:\\s+|$|\\.|\\?)', 'gi');
+              cleanQ = cleanQ.replace(ansRegex1, ' ');
+            }
+            cleanQ = cleanQ.replace(/\s+/g, ' ').trim();
+
+            questions.push({
+              id: 'q_text_' + (questions.length + 1) + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+              originalNum: qNum || (questions.length + 1),
+              questionText: cleanQ,
+              category: currentCategory,
+              options: opts.map((o, idx) => ({
+                label: o.label,
+                text: o.text.replace(/\s+/g, ' ').trim(),
+                isCorrect: (idx === corrIdx)
+              })),
+              correctIndex: corrIdx
+            });
+
+            i = j;
+            continue;
+          }
+        }
+        i++;
+      }
+
+      if (questions.length === 0) {
+        throw new Error('Không bóc tách được câu hỏi từ dữ liệu văn bản!');
+      }
+
+      const validCount = questions.filter(q => q.correctIndex !== -1).length;
+      saveQuestionBank(questions, filename);
+      showToast(`Đã nạp thành công ${questions.length} câu hỏi! (${validCount} câu nhận diện đáp án)`, 'check-circle-2');
+      showView(DOM.viewUpload);
+
+    } catch (err) {
+      console.error('Text Parsing error:', err);
+      alert('Lỗi khi phân tích dữ liệu: ' + err.message);
+    }
+  }
+
   function handleFileSelect(file) {
-    if (!file.name.endsWith('.docx')) {
-      alert('Vui lòng chọn file định dạng .docx của Microsoft Word!');
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (!['docx', 'pdf', 'txt', 'json'].includes(ext)) {
+      alert('Vui lòng chọn file định dạng .docx, .pdf, hoặc .txt!');
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const buffer = e.target.result;
-      parseDocxFile(buffer, file.name);
-    };
-    reader.readAsArrayBuffer(file);
+    if (ext === 'docx') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const buffer = e.target.result;
+        parseDocxFile(buffer, file.name);
+      };
+      reader.readAsArrayBuffer(file);
+    } else if (ext === 'pdf') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const buffer = e.target.result;
+        parsePdfFile(buffer, file.name);
+      };
+      reader.readAsArrayBuffer(file);
+    } else if (ext === 'txt') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target.result;
+        parseTextContent(text, file.name);
+      };
+      reader.readAsText(file, 'utf-8');
+    } else if (ext === 'json') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const questions = JSON.parse(e.target.result);
+          if (Array.isArray(questions) && questions.length > 0) {
+            saveQuestionBank(questions, file.name);
+            showToast(`Đã nạp thành công ${questions.length} câu hỏi!`, 'check-circle-2');
+            showView(DOM.viewUpload);
+          } else {
+            alert('File JSON không đúng cấu trúc danh sách câu hỏi!');
+          }
+        } catch(err) {
+          alert('Lỗi khi đọc file JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file, 'utf-8');
+    }
   }
 
   let isCloudBlocked = false;
@@ -1437,19 +1957,23 @@
       localStorage.setItem('qm_global_visits', currentLocal.toString());
 
       if (!isCloudBlocked) {
-        fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up', {
-          mode: 'cors',
-          keepalive: true
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data && data.count) {
-              localStorage.setItem('qm_global_visits', data.count.toString());
-            }
+        try {
+          fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up', {
+            mode: 'cors',
+            keepalive: true
           })
-          .catch(() => {
-            isCloudBlocked = true;
-          });
+            .then(res => res.json())
+            .then(data => {
+              if (data && data.count) {
+                localStorage.setItem('qm_global_visits', data.count.toString());
+              }
+            })
+            .catch(() => {
+              isCloudBlocked = true;
+            });
+        } catch(err) {
+          isCloudBlocked = true;
+        }
       }
     } catch(e) {}
   }
@@ -1478,12 +2002,16 @@
         } catch(e) {}
 
         if (!isCloudBlocked) {
-          fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/active_pulse/up', {
-            mode: 'cors',
-            keepalive: true
-          }).catch(() => {
+          try {
+            fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/active_pulse/up', {
+              mode: 'cors',
+              keepalive: true
+            }).catch(() => {
+              isCloudBlocked = true;
+            });
+          } catch(err) {
             isCloudBlocked = true;
-          });
+          }
         }
       }
 

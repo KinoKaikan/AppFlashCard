@@ -14,6 +14,13 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Mammoth.js (Docx Parser) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <!-- PDF.js (PDF Parser) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <!-- Sample Pre-parsed Data for CORS-free file:// protocol loading -->
@@ -51,8 +58,8 @@
          ========================================================================= -->
     <section id="view-upload" class="view active">
       <div class="hero-section">
-        <h1 class="hero-title">Ôn Tập Trắc Nghiệm Từ File Word</h1>
-        <p class="hero-subtitle">Tải lên file đề cương <strong>.docx</strong>. Hệ thống tự động nhận diện đáp án <strong>Bold (Tô đậm)</strong> và ẩn định dạng khi học.</p>
+        <h1 class="hero-title">Ôn Tập Trắc Nghiệm Từ File Word & PDF</h1>
+        <p class="hero-subtitle">Tải lên file đề cương <strong>.docx / .pdf / .txt</strong>. Hệ thống tự động nhận diện đáp án <strong>Bold (Tô đậm)</strong> hoặc <strong>Đáp án có sẵn (A/B/C/D)</strong> và ẩn định dạng khi học.</p>
       </div>
 
       <!-- File Upload Dropzone -->
@@ -60,12 +67,12 @@
         <div class="upload-icon-wrapper">
           <i data-lucide="file-up"></i>
         </div>
-        <h3>Kéo & thả file Word (.docx) vào đây</h3>
+        <h3>Kéo & thả file Word (.docx), PDF (.pdf) hoặc Text (.txt) vào đây</h3>
         <p>Hoặc nhấp để chọn file từ máy tính của bạn</p>
         <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
-          <i data-lucide="upload"></i> Chọn File .DOCX
+          <i data-lucide="upload"></i> Chọn File Từ Máy Tính
         </button>
-        <input type="file" id="file-input" class="file-input" accept=".docx">
+        <input type="file" id="file-input" class="file-input" accept=".docx,.pdf,.txt,.json">
       </div>
 
       <!-- Auto Detect Default Local File Button -->
@@ -82,6 +89,22 @@
         <button class="btn btn-secondary" id="btn-load-sample">
           <i data-lucide="folder-open"></i> Nạp File Mẫu Sẵn Có
         </button>
+      </div>
+
+      <!-- Multi-Deck Management Section -->
+      <div class="decks-container" id="decks-container" style="display: none;">
+        <div class="decks-header">
+          <div class="decks-title">
+            <i data-lucide="folder-kanban" style="color: var(--primary);"></i>
+            <span>Danh Sách Bộ Đề Của Bạn (<strong id="decks-count-text">0</strong>)</span>
+          </div>
+          <button class="btn btn-secondary" id="btn-add-deck" onclick="document.getElementById('file-input').click()" style="padding: 8px 14px; font-size: 0.85rem;">
+            <i data-lucide="plus-circle"></i> Thêm Bộ Đề Mới
+          </button>
+        </div>
+        <div class="decks-grid" id="decks-grid">
+          <!-- Dynamically populated by JS -->
+        </div>
       </div>
 
       <!-- Current Question Bank Card (Shows if dataset exists in storage) -->
@@ -116,7 +139,7 @@
           </button>
           <button class="btn btn-primary" id="btn-start-flashcard" style="background: linear-gradient(135deg, #6366f1, #4255ff); box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);">
             <i data-lucide="layers"></i>
-            <span>Học Flashcard Lật Thẻ (480 Thẻ)</span>
+            <span>Học Flashcard Lật Thẻ (<strong id="fc-bank-btn-count">0</strong> Thẻ)</span>
           </button>
           <button class="btn btn-secondary" id="btn-start-unlearned">
             <i data-lucide="zap"></i>
@@ -124,7 +147,7 @@
           </button>
           <button class="btn btn-secondary" id="btn-start-quiz">
             <i data-lucide="shuffle"></i>
-            <span>Luyện Tập Tất Cả (<strong id="total-bank-btn-count">480</strong> câu)</span>
+            <span>Luyện Tập Tất Cả (<strong id="total-bank-btn-count">0</strong> câu)</span>
           </button>
           <button class="btn btn-outline" id="btn-view-all-q">
             <i data-lucide="list"></i>
@@ -160,7 +183,7 @@
 
         <div style="margin-top: 16px;">
           <h2 style="font-size: 1.5rem; font-weight: 800;">Chọn Phần Hoặc Chương Bài Học Để Ôn Tập</h2>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Hệ thống chia sẵn 480 câu hỏi theo đúng các chương và thời kỳ lịch sử.</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Hệ thống phân chia câu hỏi theo từng phần của môn học.</p>
         </div>
       </div>
 
@@ -189,46 +212,50 @@
         </div>
       </div>
 
-      <!-- 3D Card Area -->
-      <div class="flashcard-container">
-        <div class="flashcard-wrapper" id="flashcard-card">
-          <div class="flashcard-inner">
-            <!-- Front Face: Question Only -->
-            <div class="flashcard-front">
-              <div class="fc-hint">
-                <i data-lucide="mouse-pointer-click"></i> Nhấn vào thẻ để lật xem đáp án đúng
+      <!-- 3D Card Area with Side Navigation -->
+      <div class="flashcard-stage-wrapper">
+        <button class="btn btn-secondary fc-side-btn fc-side-prev" id="btn-fc-prev" title="Thẻ Trước">
+          <i data-lucide="chevron-left"></i>
+        </button>
+
+        <div class="flashcard-container">
+          <div class="flashcard-wrapper" id="flashcard-card">
+            <div class="flashcard-inner">
+              <!-- Front Face: Question Only -->
+              <div class="flashcard-front">
+                <div class="fc-hint">
+                  <i data-lucide="mouse-pointer-click"></i> Nhấn vào thẻ để lật xem đáp án đúng
+                </div>
+                <h2 class="fc-question-text" id="fc-front-text">
+                  Nội dung câu hỏi Flashcard...
+                </h2>
               </div>
-              <h2 class="fc-question-text" id="fc-front-text">
-                Nội dung câu hỏi Flashcard...
-              </h2>
-            </div>
-            <!-- Back Face: Correct Answer Only -->
-            <div class="flashcard-back">
-              <div class="fc-hint" style="color: var(--success);">
-                <i data-lucide="check-circle-2"></i> Đáp án đúng (Chính xác)
-              </div>
-              <div class="fc-answer-box" id="fc-back-text">
-                Nội dung đáp án đúng...
+              <!-- Back Face: Correct Answer Only -->
+              <div class="flashcard-back">
+                <div class="fc-hint" style="color: var(--success);">
+                  <i data-lucide="check-circle-2"></i> Đáp án đúng (Chính xác)
+                </div>
+                <div class="fc-answer-box" id="fc-back-text">
+                  Nội dung đáp án đúng...
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Controls Bar -->
-        <div class="fc-controls">
-          <button class="btn btn-secondary" id="btn-fc-prev">
-            <i data-lucide="chevron-left"></i> Thẻ Trước
-          </button>
-          <button class="btn btn-primary" id="btn-fc-flip" style="background: #6366f1;">
-            <i data-lucide="rotate-cw"></i> Lật Thẻ
-          </button>
-          <button class="btn btn-secondary" id="btn-fc-next">
-            Thẻ Tiếp Theo <i data-lucide="chevron-right"></i>
-          </button>
-          <button class="btn btn-outline" id="btn-fc-reset" title="Bắt đầu lại từ thẻ số 1">
-            <i data-lucide="rotate-ccw"></i> Về Thẻ 1
-          </button>
-        </div>
+        <button class="btn btn-primary fc-side-btn fc-side-next" id="btn-fc-next" title="Thẻ Tiếp Theo">
+          <span>Thẻ Tiếp</span> <i data-lucide="chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Controls Bar Center -->
+      <div class="fc-controls-center">
+        <button class="btn btn-primary" id="btn-fc-flip" style="background: #6366f1; padding: 12px 28px;">
+          <i data-lucide="rotate-cw"></i> Lật Thẻ Xem Đáp Án
+        </button>
+        <button class="btn btn-outline" id="btn-fc-reset" title="Bắt đầu lại từ thẻ số 1">
+          <i data-lucide="rotate-ccw"></i> Về Thẻ 1
+        </button>
       </div>
     </section>
 
@@ -285,33 +312,41 @@
         </div>
       </div>
 
-      <!-- Question Card -->
-      <div class="question-card">
-        <div class="question-meta">
-          <span>Câu hỏi <span id="current-q-index">1</span></span>
-          <button class="btn-quit" id="btn-flag-q" title="Đánh dấu câu hỏi này">
-            <i data-lucide="bookmark" id="flag-icon"></i>
+      <!-- Quiz Main Body Layout -->
+      <div class="quiz-body-wrapper">
+        <!-- Question Card -->
+        <div class="question-card">
+          <div class="question-meta">
+            <span>Câu hỏi <span id="current-q-index">1</span></span>
+            <button class="btn-quit" id="btn-flag-q" title="Đánh dấu câu hỏi này">
+              <i data-lucide="bookmark" id="flag-icon"></i>
+            </button>
+          </div>
+          
+          <h2 class="question-text" id="q-text-content">
+            Nội dung câu hỏi sẽ hiển thị ở đây...
+          </h2>
+
+          <!-- Options Container -->
+          <div class="options-grid" id="options-container">
+            <!-- Dynamically populated options -->
+          </div>
+
+          <!-- Feedback Message -->
+          <div class="feedback-msg" id="feedback-msg">
+            <!-- Instant feedback icons & text -->
+          </div>
+        </div>
+
+        <!-- Right Side Panel for Next Question Button (Full Height Large Button) -->
+        <div class="quiz-side-panel">
+          <button class="btn btn-primary btn-next-side" id="btn-next-q" disabled title="Bấm vào bất kỳ đâu trên dải bên phải này để sang câu tiếp theo">
+            <div class="btn-next-side-icon">
+              <i data-lucide="arrow-right"></i>
+            </div>
+            <span class="btn-next-side-text">CÂU TIẾP THEO</span>
           </button>
         </div>
-        
-        <h2 class="question-text" id="q-text-content">
-          Nội dung câu hỏi sẽ hiển thị ở đây...
-        </h2>
-
-        <!-- Options Container -->
-        <div class="options-grid" id="options-container">
-          <!-- Dynamically populated options -->
-        </div>
-      </div>
-
-      <!-- Quiz Footer Controls -->
-      <div class="quiz-footer">
-        <div class="feedback-msg" id="feedback-msg">
-          <!-- Instant feedback icons & text -->
-        </div>
-        <button class="btn btn-primary" id="btn-next-q" disabled>
-          <span>Câu Tiếp Theo</span> <i data-lucide="arrow-right"></i>
-        </button>
       </div>
     </section>
 
