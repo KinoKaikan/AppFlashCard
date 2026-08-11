@@ -228,6 +228,120 @@
   // MULTI-DECK DATA PERSISTENCE & DECK MANAGEMENT
   // =========================================================================
 
+  function extractAnswerLetterHelper(text) {
+    if (!text) return null;
+    let cleanText = text.trim();
+
+    let m = cleanText.match(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*([A-F])/i);
+    if (m) return m[1].toUpperCase();
+
+    m = cleanText.match(/\([A-Z]*([A-F])[A-Z]*\s+HOÀNG\)/i);
+    if (m) return m[1].toUpperCase();
+    m = cleanText.match(/\(NHUNG\s+HOÀNG\)\s*([A-F])/i);
+    if (m) return m[1].toUpperCase();
+
+    m = cleanText.match(/^([A-D])\s+[A-Z]/);
+    if (m) return m[1].toUpperCase();
+
+    m = cleanText.match(/(?:[a-z0-9\-\:\?\)\,\'\"][\s\-]*)([A-D])(?:[\s\-]+[A-Za-z0-9\"\'\(]+|[\,\.\?\)]|$)/);
+    if (m) {
+      const ans = m[1].toUpperCase();
+      const startPos = m.index;
+      const beforeChar = startPos > 0 ? cleanText[startPos - 1] : ' ';
+      const afterStr = cleanText.substring(startPos + 1, startPos + 6);
+      if (ans === 'A' && beforeChar === ' ' && /^\s+[a-z]/.test(afterStr)) {
+        // skip
+      } else {
+        return ans;
+      }
+    }
+
+    m = cleanText.match(/[\?\.]\s*([A-D])\s*$/i);
+    if (m) return m[1].toUpperCase();
+
+    m = cleanText.match(/[a-z]([A-D])(?:\s+|$|[A-Z])/);
+    if (m) {
+      const ans = m[1].toUpperCase();
+      if (ans === 'A' && /\ba\s+[a-z]/.test(cleanText)) {
+        // skip
+      } else {
+        return ans;
+      }
+    }
+
+    return null;
+  }
+
+  function sanitizeQuestionBank(questions) {
+    if (!Array.isArray(questions)) return [];
+
+    return questions.map(q => {
+      if (!q || !Array.isArray(q.options) || q.options.length === 0) return q;
+
+      let cleanQText = q.questionText || '';
+
+      // Truncate at ? if options or merged option text follow
+      if (cleanQText.includes('?')) {
+        const qMarkIdx = cleanQText.indexOf('?');
+        const afterQMark = cleanQText.substring(qMarkIdx + 1).trim();
+        if (afterQMark.length > 0 && (q.options.some(opt => opt.text && afterQMark.includes(opt.text.substring(0, 15))) || afterQMark.length > 50)) {
+          cleanQText = cleanQText.substring(0, qMarkIdx + 1).trim();
+        }
+      }
+
+      cleanQText = cleanQText.replace(/\([0-9\-\s]+\)/g, '');
+      cleanQText = cleanQText.replace(/\(NHUNG\s*HOÀNG\)/gi, '');
+      cleanQText = cleanQText.replace(/\(NHUNGC\s*HOÀNG\)/gi, '');
+      cleanQText = cleanQText.replace(/Fill in the blank with the correct words\s*[:\.]?/gi, '');
+      cleanQText = cleanQText.replace(/Fill in the blank\s*[:\.]?/gi, '');
+      cleanQText = cleanQText.replace(/^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i, '');
+
+      let corrIdx = (typeof q.correctIndex === 'number') ? q.correctIndex : -1;
+      let hasCorrectOption = q.options.some(o => o && o.isCorrect === true);
+
+      if (corrIdx === -1 || !hasCorrectOption || corrIdx >= q.options.length) {
+        const ansLetter = extractAnswerLetterHelper(q.rawQText || cleanQText);
+        if (ansLetter) {
+          const matchIdx = q.options.findIndex(o => o.label === ansLetter || o.origLabel === ansLetter);
+          if (matchIdx !== -1) {
+            corrIdx = matchIdx;
+          }
+        }
+        if (corrIdx === -1 || corrIdx >= q.options.length) {
+          const idxCorrect = q.options.findIndex(o => o && o.isCorrect === true);
+          corrIdx = idxCorrect !== -1 ? idxCorrect : 0;
+        }
+      }
+
+      // Strip embedded target letter artifacts if any
+      const targetAns = q.options[corrIdx] ? (q.options[corrIdx].origLabel || q.options[corrIdx].label) : null;
+      if (targetAns) {
+        const ansRegex1 = new RegExp('(\\w+)\\s*-\\s*' + targetAns + '\\s*(\\w+)', 'gi');
+        cleanQText = cleanQText.replace(ansRegex1, '$1$2');
+
+        const ansRegex2 = new RegExp('(?:^|\\s|\\:|\\?|\\))\\s*' + targetAns + '\\s*(?:\\s+|$|\\.|\\?)', 'g');
+        cleanQText = cleanQText.replace(ansRegex2, ' ');
+
+        const ansRegex3 = new RegExp('([\\w\\)])\\s*' + targetAns + '\\s+([\\w\\"])', 'g');
+        cleanQText = cleanQText.replace(ansRegex3, '$1 $2');
+      }
+      cleanQText = cleanQText.replace(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*[A-F]/gi, '');
+      cleanQText = cleanQText.replace(/\s+/g, ' ').trim();
+
+      const sanitizedOptions = q.options.map((opt, oIdx) => ({
+        ...opt,
+        isCorrect: oIdx === corrIdx
+      }));
+
+      return {
+        ...q,
+        questionText: cleanQText,
+        options: sanitizedOptions,
+        correctIndex: corrIdx
+      };
+    });
+  }
+
   function syncActiveDeck() {
     if (!Array.isArray(APP_STATE.decks) || APP_STATE.decks.length === 0) {
       APP_STATE.activeDeckId = null;
@@ -246,7 +360,9 @@
       APP_STATE.activeDeckId = activeDeck.id;
     }
 
-    APP_STATE.questionBank = activeDeck.questions || [];
+    activeDeck.questions = sanitizeQuestionBank(activeDeck.questions || []);
+
+    APP_STATE.questionBank = activeDeck.questions;
     APP_STATE.bankFilename = activeDeck.name || 'Bộ đề';
     APP_STATE.wrongQuestions = activeDeck.wrongQuestions || [];
     APP_STATE.masteredQuestionIds = activeDeck.masteredQuestionIds || [];
@@ -778,36 +894,51 @@
 
       function extractAnswerLetter(text) {
         if (!text) return null;
+        let cleanText = text.trim();
+
         // 1. Explicit tags: Đáp án: A, Answer: B, Key: C, (Đáp án A)
-        let m = text.match(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*([A-F])/i);
+        let m = cleanText.match(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*([A-F])/i);
         if (m) return m[1].toUpperCase();
 
-        // 2. Standalone letter A-F
-        if (/^[A-F]$/i.test(text.trim())) return text.trim().toUpperCase();
-
-        // 3. Watermark brackets e.g. (NHUNGC HOÀNG) -> C, (NHUNG HOÀNG)D -> D
-        m = text.match(/\([A-Z]*([A-F])[A-Z]*\s+HOÀNG\)/i);
+        // 2. Watermark brackets e.g. (NHUNGC HOÀNG) -> C, (NHUNG HOÀNG)D -> D
+        m = cleanText.match(/\([A-Z]*([A-F])[A-Z]*\s+HOÀNG\)/i);
         if (m) return m[1].toUpperCase();
-        m = text.match(/\(NHUNG\s+HOÀNG\)\s*([A-F])/i);
+        m = cleanText.match(/\(NHUNG\s+HOÀNG\)\s*([A-F])/i);
         if (m) return m[1].toUpperCase();
 
-        // 4. Standalone letter at end of line or after punctuation / question mark: e.g. '? C', '?A', 'below? D', 'inB', 'aesthetics?A'
-        m = text.match(/(?:[\:\?\)\'\"]|\b\s+)([A-F])[\s\.\:\?\)]*$/);
+        // 3. Question starts with standalone Answer letter: e.g. "D In the history...", "A What causes..."
+        m = cleanText.match(/^([A-D])\s+[A-Z]/);
         if (m) return m[1].toUpperCase();
 
-        // 5. Embedded answer letter attached to hyphen or word or after punctuation:
-        m = text.match(/(?:[a-zA-Z0-9\-\:\?\)\,\'\"][\s\-]*)([A-F])(?:[\s\-]+[a-zA-Z0-9\"\'\(]+|[\,\.\?\)]|$)/);
+        // 4. Embedded answer letter attached at end of word or punctuation
+        m = cleanText.match(/(?:[a-z0-9\-\:\?\)\,\'\"][\s\-]*)([A-D])(?:[\s\-]+[A-Za-z0-9\"\'\(]+|[\,\.\?\)]|$)/);
         if (m) {
           const ans = m[1].toUpperCase();
           const startPos = m.index;
-          const beforeChar = startPos > 0 ? text[startPos - 1] : ' ';
-          const afterStr = text.substring(startPos + 1, startPos + 6);
+          const beforeChar = startPos > 0 ? cleanText[startPos - 1] : ' ';
+          const afterStr = cleanText.substring(startPos + 1, startPos + 6);
           if (ans === 'A' && beforeChar === ' ' && /^\s+[a-z]/.test(afterStr)) {
             // skip 'a book'
           } else {
             return ans;
           }
         }
+
+        // 5. Answer letter at end of line after ? or .
+        m = cleanText.match(/[\?\.]\s*([A-D])\s*$/i);
+        if (m) return m[1].toUpperCase();
+
+        // 6. Attached uppercase letter before space or punctuation
+        m = cleanText.match(/[a-z]([A-D])(?:\s+|$|[A-Z])/);
+        if (m) {
+          const ans = m[1].toUpperCase();
+          if (ans === 'A' && /\ba\s+[a-z]/.test(cleanText)) {
+            // skip
+          } else {
+            return ans;
+          }
+        }
+
         return null;
       }
 
@@ -848,6 +979,17 @@
             break;
           }
 
+          if (qParagraphs.length >= 1 && j + 3 < elements.length) {
+            let is4Opts = true;
+            for (let checkK = j; checkK < j + 4; checkK++) {
+              const kt = elements[checkK].text;
+              if (qNumPattern.test(kt) || isCategoryHeader(kt)) {
+                is4Opts = false; break;
+              }
+            }
+            if (is4Opts) break;
+          }
+
           const ans = extractAnswerLetter(txt);
           if (ans && !targetAns) {
             targetAns = ans;
@@ -855,39 +997,18 @@
 
           qParagraphs.push(elements[j]);
           j++;
-
-          if (j < elements.length) {
-            if (isCategoryHeader(elements[j].text)) break;
-            const nextMOpt = optPattern.exec(elements[j].text);
-            if (nextMOpt && nextMOpt[1].toUpperCase() === 'A') {
-              break;
-            }
-            if (qParagraphs.length >= 1 && targetAns) {
-              if (j + 3 < elements.length) {
-                let isOpts = true;
-                for (let kCheck = j; kCheck < j + 4; kCheck++) {
-                  const kT = elements[kCheck].text;
-                  if (qNumPattern.test(kT) || /^\d+[\.\:]?$/.test(kT) || extractAnswerLetter(kT)) {
-                    isOpts = false;
-                    break;
-                  }
-                }
-                if (isOpts) break;
-              }
-            }
-          }
         }
 
         const opts = [];
         let k = j;
-        while (k < elements.length) {
+        while (k < elements.length && opts.length < 4) {
           const kEl = elements[k];
           const kTxt = kEl.text;
 
           if (isCategoryHeader(kTxt)) break;
 
           const mOpt = optPattern.exec(kTxt);
-          const mQ = qNumPattern.test(kTxt) || /^\d+[\.\:]?$/.test(kTxt);
+          const mQ = qNumPattern.test(kTxt);
 
           if (mQ && opts.length >= 2) break;
 
@@ -895,27 +1016,22 @@
           let cleanOpt = kTxt;
 
           if (mOpt) {
-            const matchedLabel = mOpt[1].toUpperCase();
-            if (matchedLabel === expectedLabel) {
-              cleanOpt = kTxt.replace(/^([A-F])[\.\/\:\)]\s*/i, '').trim();
-            } else {
-              cleanOpt = kTxt.trim();
-            }
+            cleanOpt = kTxt.replace(/^([A-F])[\.\/\:\)]\s*/i, '').trim();
             opts.push({
               label: expectedLabel,
+              origLabel: mOpt[1].toUpperCase(),
               text: cleanOpt,
               bold: kEl.bold
             });
             k++;
-          } else if (opts.length < 4 && !mQ) {
+          } else {
             opts.push({
               label: expectedLabel,
+              origLabel: expectedLabel,
               text: cleanOpt.trim(),
               bold: kEl.bold
             });
             k++;
-          } else {
-            break;
           }
         }
 
@@ -947,14 +1063,29 @@
           // 3. Target answer letter check
           if (corrIdx === -1 && targetAns) {
             for (let idx = 0; idx < opts.length; idx++) {
-              if (opts[idx].label === targetAns) {
+              if (opts[idx].origLabel === targetAns || opts[idx].label === targetAns) {
                 corrIdx = idx;
                 break;
               }
             }
           }
 
+          // Fallback if still -1
+          if (corrIdx === -1) {
+            corrIdx = 0;
+          }
+
           let cleanQ = fullQText;
+
+          // Truncate at ? if option texts follow
+          if (cleanQ.includes('?')) {
+            const qMarkIdx = cleanQ.indexOf('?');
+            const afterQMark = cleanQ.substring(qMarkIdx + 1).trim();
+            if (afterQMark.length > 0 && (opts.some(opt => opt.text && afterQMark.includes(opt.text.substring(0, 15))) || afterQMark.length > 50)) {
+              cleanQ = cleanQ.substring(0, qMarkIdx + 1).trim();
+            }
+          }
+
           cleanQ = cleanQ.replace(/\([0-9\-\s]+\)/g, '');
           cleanQ = cleanQ.replace(/\(NHUNG\s*HOÀNG\)/gi, '');
           cleanQ = cleanQ.replace(/\(NHUNGC\s*HOÀNG\)/gi, '');
@@ -962,32 +1093,35 @@
           cleanQ = cleanQ.replace(/Fill in the blank\s*[:\.]?/gi, '');
           cleanQ = cleanQ.replace(/^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i, '');
 
-          // Hide/strip target answer letter or embedded answer key from question text so user won't see pre-marked answers!
           if (targetAns) {
-            const ansRegex1 = new RegExp('(?:^|\\s|\\:|\\?|\\))\\s*' + targetAns + '\\s*(?:\\s+|$|\\.|\\?)', 'g');
-            cleanQ = cleanQ.replace(ansRegex1, ' ');
-            const ansRegex2 = new RegExp('([\\w\\)])\\s*' + targetAns + '\\s+([\\w\\"])', 'g');
-            cleanQ = cleanQ.replace(ansRegex2, '$1 $2');
+            const ansRegex1 = new RegExp('(\\w+)\\s*-\\s*' + targetAns + '\\s*(\\w+)', 'gi');
+            cleanQ = cleanQ.replace(ansRegex1, '$1$2');
+
+            const ansRegex2 = new RegExp('(?:^|\\s|\\:|\\?|\\))\\s*' + targetAns + '\\s*(?:\\s+|$|\\.|\\?)', 'g');
+            cleanQ = cleanQ.replace(ansRegex2, ' ');
+
+            const ansRegex3 = new RegExp('([\\w\\)])\\s*' + targetAns + '\\s+([\\w\\"])', 'g');
+            cleanQ = cleanQ.replace(ansRegex3, '$1 $2');
           }
           cleanQ = cleanQ.replace(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*[A-F]/gi, '');
           cleanQ = cleanQ.replace(/\s+/g, ' ').trim();
 
-          questions.push({
+          const qObj = {
             id: 'q_' + (questions.length + 1) + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
             originalNum: questions.length + 1,
             questionText: cleanQ,
+            rawQText: fullQText,
             category: currentCategory,
-            options: opts.map(o => ({
+            options: opts.map((o, idx) => ({
               label: o.label,
+              origLabel: o.origLabel,
               text: o.text,
-              isCorrect: false
+              isCorrect: idx === corrIdx
             })),
             correctIndex: corrIdx
-          });
+          };
 
-          if (corrIdx !== -1) {
-            questions[questions.length - 1].options[corrIdx].isCorrect = true;
-          }
+          questions.push(qObj);
 
           i = k;
           continue;
@@ -1000,7 +1134,7 @@
         throw new Error('Không tìm thấy định dạng câu hỏi hợp lệ trong file!');
       }
 
-      const validCount = questions.filter(q => q.correctIndex !== -1).length;
+      const validCount = questions.filter(q => q.correctIndex !== -1 && q.options.some(o => o.isCorrect)).length;
       
       saveQuestionBank(questions, filename);
       showToast(`Đã nạp thành công ${questions.length} câu hỏi! (${validCount} câu nhận diện đáp án)`, 'check-circle-2');
@@ -1093,7 +1227,11 @@
 
     const processedQuestions = sessionQuestions.map(q => {
       const shuffledOpts = shuffleArray(q.options);
-      const newCorrectIndex = shuffledOpts.findIndex(o => o.isCorrect);
+      let newCorrectIndex = shuffledOpts.findIndex(o => o.isCorrect === true);
+      if (newCorrectIndex === -1) {
+        newCorrectIndex = 0;
+        shuffledOpts[0].isCorrect = true;
+      }
       
       return {
         ...q,
@@ -1184,7 +1322,13 @@
       el.style.pointerEvents = 'none'; // Hard lock pointer clicks
     });
 
-    const isCorrect = selectedIndex === currentQ.correctIndex;
+    let targetCorrectIdx = currentQ.correctIndex;
+    if (typeof targetCorrectIdx !== 'number' || targetCorrectIdx < 0 || targetCorrectIdx >= currentQ.options.length) {
+      targetCorrectIdx = currentQ.options.findIndex(o => o.isCorrect === true);
+      if (targetCorrectIdx === -1) targetCorrectIdx = 0;
+    }
+
+    const isCorrect = selectedIndex === targetCorrectIdx;
 
     if (isCorrect) {
       session.score++;
@@ -1201,8 +1345,8 @@
       }
     } else {
       if (optionEls[selectedIndex]) optionEls[selectedIndex].classList.add('incorrect');
-      if (currentQ.correctIndex !== -1 && optionEls[currentQ.correctIndex]) {
-        optionEls[currentQ.correctIndex].classList.add('correct');
+      if (optionEls[targetCorrectIdx]) {
+        optionEls[targetCorrectIdx].classList.add('correct');
       }
 
       if (DOM.feedbackMsg) {
@@ -1789,6 +1933,53 @@
         !/^\d+\s*\/\s*\d+$/.test(l)
       );
 
+      function extractAnswerLetter(text) {
+        if (!text) return null;
+        let cleanText = text.trim();
+
+        let m = cleanText.match(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*([A-F])/i);
+        if (m) return m[1].toUpperCase();
+
+        m = cleanText.match(/\([A-Z]*([A-F])[A-Z]*\s+HOÀNG\)/i);
+        if (m) return m[1].toUpperCase();
+        m = cleanText.match(/\(NHUNG\s+HOÀNG\)\s*([A-F])/i);
+        if (m) return m[1].toUpperCase();
+
+        m = cleanText.match(/^([A-D]{1,3})\.?$/i);
+        if (m) return m[1][0].toUpperCase();
+
+        m = cleanText.match(/^([A-D])\s+[A-Z]/);
+        if (m) return m[1].toUpperCase();
+
+        m = cleanText.match(/(?:[a-z0-9\-\:\?\)\,\'\"][\s\-]*)([A-D])(?:[\s\-]+[A-Za-z0-9\"\'\(]+|[\,\.\?\)]|$)/);
+        if (m) {
+          const ans = m[1].toUpperCase();
+          const startPos = m.index;
+          const beforeChar = startPos > 0 ? cleanText[startPos - 1] : ' ';
+          const afterStr = cleanText.substring(startPos + 1, startPos + 6);
+          if (ans === 'A' && beforeChar === ' ' && /^\s+[a-z]/.test(afterStr)) {
+            // skip
+          } else {
+            return ans;
+          }
+        }
+
+        m = cleanText.match(/[\?\.]\s*([A-D])\s*$/i);
+        if (m) return m[1].toUpperCase();
+
+        m = cleanText.match(/[a-z]([A-D])(?:\s+|$|[A-Z])/);
+        if (m) {
+          const ans = m[1].toUpperCase();
+          if (ans === 'A' && /\ba\s+[a-z]/.test(cleanText)) {
+            // skip
+          } else {
+            return ans;
+          }
+        }
+
+        return null;
+      }
+
       const qNumPattern = /^(?:Câu\s*)?(\d+)[\.\:\)]?\s*(.*)/i;
       const optPattern = /^([A-D])[\.\/\:\)]\s*(.*)/i;
 
@@ -1807,7 +1998,7 @@
           if (qStemFirst) qLines.push(qStemFirst);
 
           const opts = [];
-          let targetAns = null;
+          let targetAns = extractAnswerLetter(l);
 
           let j = i + 1;
           while (j < filteredLines.length) {
@@ -1819,36 +2010,47 @@
               break;
             }
 
+            const extractedKey = extractAnswerLetter(lTxt);
+            if (extractedKey && !targetAns) {
+              targetAns = extractedKey;
+            }
+
             if (mOpt) {
               const label = mOpt[1].toUpperCase();
               const optT = mOpt[2].trim();
               opts.push({ label: label, text: optT });
               j++;
             } else if (opts.length === 0) {
-              if (/^[A-D]$/i.test(lTxt)) {
-                targetAns = lTxt.toUpperCase();
-              } else {
+              if (!extractAnswerLetter(lTxt)) {
                 qLines.push(lTxt);
               }
               j++;
             } else if (opts.length >= 1 && opts.length < 4) {
-              if (/^[A-D]$/i.test(lTxt) && !targetAns) {
-                targetAns = lTxt.toUpperCase();
-              } else {
+              if (!extractAnswerLetter(lTxt)) {
                 opts[opts.length - 1].text += ' ' + lTxt;
               }
               j++;
-            } else {
-              if (/^[A-D]$/i.test(lTxt)) {
-                targetAns = lTxt.toUpperCase();
+            } else if (opts.length === 4) {
+              const ansKey = extractAnswerLetter(lTxt);
+              if (ansKey) {
+                targetAns = ansKey;
+                j++;
+                break;
+              } else if (mNextQ) {
+                break;
+              } else {
+                opts[3].text += ' ' + lTxt;
                 j++;
               }
+            } else {
               break;
             }
           }
 
           if (opts.length >= 2) {
+            let fullQ = qLines.join(' ');
             let corrIdx = -1;
+
             if (targetAns) {
               for (let idx = 0; idx < opts.length; idx++) {
                 if (opts[idx].label === targetAns) {
@@ -1858,7 +2060,6 @@
               }
             }
 
-            let fullQ = qLines.join(' ');
             let cleanQ = fullQ;
             cleanQ = cleanQ.replace(/\([0-9\-\s]+\)/g, '');
             cleanQ = cleanQ.replace(/\(NHUNG\s*HOÀNG\)/gi, '');
@@ -1868,10 +2069,21 @@
             cleanQ = cleanQ.replace(/^(Câu\s*\d+[:\.]?|\d+[:\.\)])\s*/i, '');
 
             if (targetAns) {
-              const ansRegex1 = new RegExp('(?:^|\\s|\\:|\\?|\\))\\s*' + targetAns + '\\s*(?:\\s+|$|\\.|\\?)', 'gi');
-              cleanQ = cleanQ.replace(ansRegex1, ' ');
+              const ansRegex1 = new RegExp('(\\w+)\\s*-\\s*' + targetAns + '\\s*(\\w+)', 'gi');
+              cleanQ = cleanQ.replace(ansRegex1, '$1$2');
+
+              const ansRegex2 = new RegExp('(?:^|\\s|\\:|\\?|\\))\\s*' + targetAns + '\\s*(?:\\s+|$|\\.|\\?)', 'g');
+              cleanQ = cleanQ.replace(ansRegex2, ' ');
+
+              const ansRegex3 = new RegExp('([\\w\\)])\\s*' + targetAns + '\\s+([\\w\\"])', 'g');
+              cleanQ = cleanQ.replace(ansRegex3, '$1 $2');
             }
+            cleanQ = cleanQ.replace(/(?:Đáp\s*án|Answer|Key|Đáp\s*án\s*đúng)[:\s]*[A-F]/gi, '');
             cleanQ = cleanQ.replace(/\s+/g, ' ').trim();
+
+            if (corrIdx === -1) {
+              corrIdx = 0;
+            }
 
             questions.push({
               id: 'q_text_' + (questions.length + 1) + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
@@ -1897,7 +2109,7 @@
         throw new Error('Không bóc tách được câu hỏi từ dữ liệu văn bản!');
       }
 
-      const validCount = questions.filter(q => q.correctIndex !== -1).length;
+      const validCount = questions.filter(q => q.correctIndex !== -1 && q.options.some(o => o.isCorrect)).length;
       saveQuestionBank(questions, filename);
       showToast(`Đã nạp thành công ${questions.length} câu hỏi! (${validCount} câu nhận diện đáp án)`, 'check-circle-2');
       showView(DOM.viewUpload);
@@ -1958,31 +2170,11 @@
 
   let isCloudBlocked = false;
 
-  // Background visitor ping with local fallback backup & mobile keepalive
+  // Background visitor ping with local storage tracking
   function pingVisitorCount() {
     try {
       let currentLocal = parseInt(localStorage.getItem('qm_global_visits') || '0', 10) + 1;
       localStorage.setItem('qm_global_visits', currentLocal.toString());
-
-      if (!isCloudBlocked) {
-        try {
-          fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/visits/up', {
-            mode: 'cors',
-            keepalive: true
-          })
-            .then(res => res.json())
-            .then(data => {
-              if (data && data.count) {
-                localStorage.setItem('qm_global_visits', data.count.toString());
-              }
-            })
-            .catch(() => {
-              isCloudBlocked = true;
-            });
-        } catch(err) {
-          isCloudBlocked = true;
-        }
-      }
     } catch(e) {}
   }
 
@@ -2008,19 +2200,6 @@
           });
           localStorage.setItem('qm_active_online_users', JSON.stringify(activeMap));
         } catch(e) {}
-
-        if (!isCloudBlocked) {
-          try {
-            fetch('https://api.counterapi.dev/v1/kinokaikan-flashcard/active_pulse/up', {
-              mode: 'cors',
-              keepalive: true
-            }).catch(() => {
-              isCloudBlocked = true;
-            });
-          } catch(err) {
-            isCloudBlocked = true;
-          }
-        }
       }
 
       function sendOfflineSignal() {

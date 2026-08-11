@@ -15,5 +15,10 @@
     "offline"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^30.0.1",
+    "mammoth": "^1.12.1",
+    "pdfjs-dist": "^6.2.108"
+  }
 }
